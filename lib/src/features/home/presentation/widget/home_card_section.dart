@@ -44,7 +44,7 @@ class HomeCardSection extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.mail_outline_outlined,
                   color: ColorApp.purpleLight,
                 ),
@@ -72,7 +72,7 @@ class HomeCardSection extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.mail_outline_outlined,
                   color: ColorApp.purpleLight,
                 ),

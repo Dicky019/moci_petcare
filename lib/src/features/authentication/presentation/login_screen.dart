@@ -12,10 +12,10 @@ class LoginScreen extends StatelessWidget {
         decoration: const BoxDecoration(
           color: ColorApp.purpleLight,
         ),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             Center(
               child: LoginCardSection(),
             ),

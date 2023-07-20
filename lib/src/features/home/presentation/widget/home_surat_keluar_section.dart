@@ -41,7 +41,7 @@ class HomeSuratKeluarSection extends StatelessWidget {
             ],
           ),
         ),
-        Container(
+        SizedBox(
           height: SizeApp.customHeight(95),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,

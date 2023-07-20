@@ -17,7 +17,7 @@ class DioClient {
 
   final HiveService hiveService;
 
-  String setBaseUrl() {
+  String get setBaseUrl {
     String baseUrl;
 
     if (Platform.isIOS) {
@@ -38,7 +38,7 @@ class DioClient {
   }) {
     _dio = dio;
     _dio
-      ..options.baseUrl = setBaseUrl()
+      ..options.baseUrl = setBaseUrl
       ..options.connectTimeout = _defaultConnectTimeout
       ..options.receiveTimeout = _defaultReceiveTimeout
       ..httpClientAdapter

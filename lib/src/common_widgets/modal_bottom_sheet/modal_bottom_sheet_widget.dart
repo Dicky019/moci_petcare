@@ -38,10 +38,10 @@ class ModalBottomSheetHelper {
                 children: [
                   SingleChildScrollView(
                     controller: scrollController,
-                    child: Column(
+                    child: const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
+                      children: [
                         Center(
                           child: Icon(
                             Icons.horizontal_rule_rounded,
