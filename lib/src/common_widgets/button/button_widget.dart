@@ -27,19 +27,19 @@ class ButtonWidget extends StatelessWidget {
   final bool isLoading;
   final String text;
 
-  Color? _getColor() {
+  Color? get _getColor {
     return _isEnabled ? color : ColorApp.halfGrey;
   }
 
-  Color? _getFocusColor() {
+  Color? get _getFocusColor {
     return _isEnabled ? focusColor : null;
   }
 
-  MaterialStateProperty<Color>? _getOverlayColor() {
+  MaterialStateProperty<Color>? get _getOverlayColor {
     return _isEnabled ? MaterialStateProperty.all(overlayColor) : null;
   }
 
-  Widget _getLoadingWidget() {
+  Widget get _getLoadingWidget {
     return SizedBox(
       height: 18.h,
       width: 18.w,
@@ -49,16 +49,16 @@ class ButtonWidget extends StatelessWidget {
     );
   }
 
-  EdgeInsets _getPadding() {
+  EdgeInsets get _getPadding {
     if (isSmall) {
       return EdgeInsets.symmetric(
         horizontal: 30.w,
-        vertical: 8.h,
+        vertical: 4.h,
       );
     } else {
       return EdgeInsets.symmetric(
-        horizontal: 16.w,
-        vertical: 16.h,
+        horizontal: 8.w,
+        vertical: 8.h,
       );
     }
   }
@@ -66,16 +66,16 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: _getColor(),
+      color: _getColor,
       borderRadius: BorderRadius.circular(60.r),
       child: InkWell(
         borderRadius: BorderRadius.circular(60.r),
         onTap: _isEnabled ? onTap : null,
-        focusColor: _getFocusColor(),
-        overlayColor: _getOverlayColor(),
+        focusColor: _getFocusColor,
+        overlayColor: _getOverlayColor,
         child: Container(
           width: isSmall ? null : double.infinity,
-          padding: _getPadding(),
+          padding: _getPadding,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(60.r),
           ),
@@ -84,7 +84,7 @@ class ButtonWidget extends StatelessWidget {
             children: [
               Visibility(
                 visible: isLoading,
-                child: _getLoadingWidget(),
+                child: _getLoadingWidget,
               ),
               Visibility(
                 visible: !isLoading,
@@ -95,6 +95,7 @@ class ButtonWidget extends StatelessWidget {
                   text,
                   style: TypographyTheme.title2.copyWith(
                     color: !_isEnabled ? ColorApp.offGrey : textColor,
+                    fontSize: isSmall ? 12.sp : null,
                   ),
                   textAlign: TextAlign.center,
                 ),

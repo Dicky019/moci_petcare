@@ -20,8 +20,12 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  int get id => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
+  String get id =>
+      throw _privateConstructorUsedError; // required String createdAt,
+// required String updatedAt,
+  String get name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +37,7 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({int id, String username});
+  $Res call({String id, String name, String email, String image});
 }
 
 /// @nodoc
@@ -50,16 +54,26 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @override
   $Res call({
     Object? id = null,
-    Object? username = null,
+    Object? name = null,
+    Object? email = null,
+    Object? image = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -71,7 +85,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$_UserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String username});
+  $Res call({String id, String name, String email, String image});
 }
 
 /// @nodoc
@@ -84,16 +98,26 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
   @override
   $Res call({
     Object? id = null,
-    Object? username = null,
+    Object? name = null,
+    Object? email = null,
+    Object? image = null,
   }) {
     return _then(_$_User(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -102,18 +126,29 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 /// @nodoc
 @JsonSerializable()
 class _$_User extends _User {
-  _$_User({required this.id, required this.username}) : super._();
+  _$_User(
+      {required this.id,
+      required this.name,
+      required this.email,
+      required this.image})
+      : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
-  final int id;
+  final String id;
+// required String createdAt,
+// required String updatedAt,
   @override
-  final String username;
+  final String name;
+  @override
+  final String email;
+  @override
+  final String image;
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username)';
+    return 'User(id: $id, name: $name, email: $email, image: $image)';
   }
 
   @override
@@ -122,13 +157,14 @@ class _$_User extends _User {
         (other.runtimeType == runtimeType &&
             other is _$_User &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.username, username) ||
-                other.username == username));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username);
+  int get hashCode => Object.hash(runtimeType, id, name, email, image);
 
   @JsonKey(ignore: true)
   @override
@@ -145,16 +181,24 @@ class _$_User extends _User {
 }
 
 abstract class _User extends User {
-  factory _User({required final int id, required final String username}) =
-      _$_User;
+  factory _User(
+      {required final String id,
+      required final String name,
+      required final String email,
+      required final String image}) = _$_User;
   _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
-  int get id;
+  String get id;
+  @override // required String createdAt,
+// required String updatedAt,
+  String get name;
   @override
-  String get username;
+  String get email;
+  @override
+  String get image;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

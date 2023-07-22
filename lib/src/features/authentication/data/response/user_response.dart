@@ -7,15 +7,18 @@ part 'user_response.g.dart';
 
 @freezed
 class UserResponse with _$UserResponse {
+
   const factory UserResponse({
-    @JsonKey(name: "id") int? id,
-    @JsonKey(name: "username") String? username,
-    @JsonKey(name: "email") String? email,
-    @JsonKey(name: "provider") String? provider,
-    @JsonKey(name: "confirmed") bool? confirmed,
-    @JsonKey(name: "blocked") bool? blocked,
+    @JsonKey(name: "id") String? id,
     @JsonKey(name: "createdAt") String? createdAt,
     @JsonKey(name: "updatedAt") String? updatedAt,
+    @JsonKey(name: "name") String? name,
+    @JsonKey(name: "email") String? email,
+    @JsonKey(name: "emailVerified") String? emailVerified,
+    @JsonKey(name: "image") String? image,
+    @JsonKey(name: "isActive") bool? isActive,
+    @JsonKey(name: "role") String? role,
+    @JsonKey(name: "accessToken") String? accessToken,
   }) = _UserResponse;
 
   factory UserResponse.fromJson(Map<String, dynamic> json) =>

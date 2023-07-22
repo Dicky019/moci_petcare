@@ -33,7 +33,7 @@ class HomeCardSection extends StatelessWidget {
                   Text(
                     'Keluar',
                     style: TypographyTheme.title2.copyWith(
-                      color: ColorApp.purpleLight,
+                      color: ColorApp.purpleLight // Color Primary,
                     ),
                   ),
                   Text(
@@ -46,7 +46,7 @@ class HomeCardSection extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.mail_outline_outlined,
-                  color: ColorApp.purpleLight,
+                  color: ColorApp.purpleLight // Color Primary,
                 ),
               )
             ],
@@ -61,7 +61,7 @@ class HomeCardSection extends StatelessWidget {
                   Text(
                     'Masuk',
                     style: TypographyTheme.title2.copyWith(
-                      color: ColorApp.purpleLight,
+                      color: ColorApp.purpleLight // Color Primary,
                     ),
                   ),
                   Text(
@@ -74,7 +74,7 @@ class HomeCardSection extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.mail_outline_outlined,
-                  color: ColorApp.purpleLight,
+                  color: ColorApp.purpleLight // Color Primary,
                 ),
               )
             ],

@@ -39,7 +39,7 @@ class TextFieldWidget extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(12)),
           borderSide: BorderSide(
             width: 2,
-            color: ColorApp.purpleLight,
+            color: ColorApp.purpleLight // Color Primary,
           ),
         ),
         hintText: hintText,

@@ -21,9 +21,9 @@ class DioClient {
     String baseUrl;
 
     if (Platform.isIOS) {
-      baseUrl = 'http://localhost:1337/';
+      baseUrl = 'https://petcare-web-zeta.vercel.app/';
     } else {
-      baseUrl = 'http://10.0.2.2:1337/';
+      baseUrl = 'https://petcare-web-zeta.vercel.app/';
     }
 
     return baseUrl;

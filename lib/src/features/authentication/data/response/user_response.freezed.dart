@@ -21,21 +21,25 @@ UserResponse _$UserResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserResponse {
   @JsonKey(name: "id")
-  int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "username")
-  String? get username => throw _privateConstructorUsedError;
-  @JsonKey(name: "email")
-  String? get email => throw _privateConstructorUsedError;
-  @JsonKey(name: "provider")
-  String? get provider => throw _privateConstructorUsedError;
-  @JsonKey(name: "confirmed")
-  bool? get confirmed => throw _privateConstructorUsedError;
-  @JsonKey(name: "blocked")
-  bool? get blocked => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "createdAt")
   String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: "updatedAt")
   String? get updatedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: "name")
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: "email")
+  String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: "emailVerified")
+  String? get emailVerified => throw _privateConstructorUsedError;
+  @JsonKey(name: "image")
+  String? get image => throw _privateConstructorUsedError;
+  @JsonKey(name: "isActive")
+  bool? get isActive => throw _privateConstructorUsedError;
+  @JsonKey(name: "role")
+  String? get role => throw _privateConstructorUsedError;
+  @JsonKey(name: "accessToken")
+  String? get accessToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,14 +54,16 @@ abstract class $UserResponseCopyWith<$Res> {
       _$UserResponseCopyWithImpl<$Res, UserResponse>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "username") String? username,
-      @JsonKey(name: "email") String? email,
-      @JsonKey(name: "provider") String? provider,
-      @JsonKey(name: "confirmed") bool? confirmed,
-      @JsonKey(name: "blocked") bool? blocked,
+      {@JsonKey(name: "id") String? id,
       @JsonKey(name: "createdAt") String? createdAt,
-      @JsonKey(name: "updatedAt") String? updatedAt});
+      @JsonKey(name: "updatedAt") String? updatedAt,
+      @JsonKey(name: "name") String? name,
+      @JsonKey(name: "email") String? email,
+      @JsonKey(name: "emailVerified") String? emailVerified,
+      @JsonKey(name: "image") String? image,
+      @JsonKey(name: "isActive") bool? isActive,
+      @JsonKey(name: "role") String? role,
+      @JsonKey(name: "accessToken") String? accessToken});
 }
 
 /// @nodoc
@@ -74,39 +80,21 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
   @override
   $Res call({
     Object? id = freezed,
-    Object? username = freezed,
-    Object? email = freezed,
-    Object? provider = freezed,
-    Object? confirmed = freezed,
-    Object? blocked = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? name = freezed,
+    Object? email = freezed,
+    Object? emailVerified = freezed,
+    Object? image = freezed,
+    Object? isActive = freezed,
+    Object? role = freezed,
+    Object? accessToken = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      provider: freezed == provider
-          ? _value.provider
-          : provider // ignore: cast_nullable_to_non_nullable
-              as String?,
-      confirmed: freezed == confirmed
-          ? _value.confirmed
-          : confirmed // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      blocked: freezed == blocked
-          ? _value.blocked
-          : blocked // ignore: cast_nullable_to_non_nullable
-              as bool?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -114,6 +102,34 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailVerified: freezed == emailVerified
+          ? _value.emailVerified
+          : emailVerified // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isActive: freezed == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      role: freezed == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+      accessToken: freezed == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -128,14 +144,16 @@ abstract class _$$_UserResponseCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "username") String? username,
-      @JsonKey(name: "email") String? email,
-      @JsonKey(name: "provider") String? provider,
-      @JsonKey(name: "confirmed") bool? confirmed,
-      @JsonKey(name: "blocked") bool? blocked,
+      {@JsonKey(name: "id") String? id,
       @JsonKey(name: "createdAt") String? createdAt,
-      @JsonKey(name: "updatedAt") String? updatedAt});
+      @JsonKey(name: "updatedAt") String? updatedAt,
+      @JsonKey(name: "name") String? name,
+      @JsonKey(name: "email") String? email,
+      @JsonKey(name: "emailVerified") String? emailVerified,
+      @JsonKey(name: "image") String? image,
+      @JsonKey(name: "isActive") bool? isActive,
+      @JsonKey(name: "role") String? role,
+      @JsonKey(name: "accessToken") String? accessToken});
 }
 
 /// @nodoc
@@ -150,39 +168,21 @@ class __$$_UserResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? username = freezed,
-    Object? email = freezed,
-    Object? provider = freezed,
-    Object? confirmed = freezed,
-    Object? blocked = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? name = freezed,
+    Object? email = freezed,
+    Object? emailVerified = freezed,
+    Object? image = freezed,
+    Object? isActive = freezed,
+    Object? role = freezed,
+    Object? accessToken = freezed,
   }) {
     return _then(_$_UserResponse(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      provider: freezed == provider
-          ? _value.provider
-          : provider // ignore: cast_nullable_to_non_nullable
-              as String?,
-      confirmed: freezed == confirmed
-          ? _value.confirmed
-          : confirmed // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      blocked: freezed == blocked
-          ? _value.blocked
-          : blocked // ignore: cast_nullable_to_non_nullable
-              as bool?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -190,6 +190,34 @@ class __$$_UserResponseCopyWithImpl<$Res>
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailVerified: freezed == emailVerified
+          ? _value.emailVerified
+          : emailVerified // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isActive: freezed == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      role: freezed == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+      accessToken: freezed == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -200,45 +228,53 @@ class __$$_UserResponseCopyWithImpl<$Res>
 class _$_UserResponse implements _UserResponse {
   const _$_UserResponse(
       {@JsonKey(name: "id") this.id,
-      @JsonKey(name: "username") this.username,
-      @JsonKey(name: "email") this.email,
-      @JsonKey(name: "provider") this.provider,
-      @JsonKey(name: "confirmed") this.confirmed,
-      @JsonKey(name: "blocked") this.blocked,
       @JsonKey(name: "createdAt") this.createdAt,
-      @JsonKey(name: "updatedAt") this.updatedAt});
+      @JsonKey(name: "updatedAt") this.updatedAt,
+      @JsonKey(name: "name") this.name,
+      @JsonKey(name: "email") this.email,
+      @JsonKey(name: "emailVerified") this.emailVerified,
+      @JsonKey(name: "image") this.image,
+      @JsonKey(name: "isActive") this.isActive,
+      @JsonKey(name: "role") this.role,
+      @JsonKey(name: "accessToken") this.accessToken});
 
   factory _$_UserResponse.fromJson(Map<String, dynamic> json) =>
       _$$_UserResponseFromJson(json);
 
   @override
   @JsonKey(name: "id")
-  final int? id;
-  @override
-  @JsonKey(name: "username")
-  final String? username;
-  @override
-  @JsonKey(name: "email")
-  final String? email;
-  @override
-  @JsonKey(name: "provider")
-  final String? provider;
-  @override
-  @JsonKey(name: "confirmed")
-  final bool? confirmed;
-  @override
-  @JsonKey(name: "blocked")
-  final bool? blocked;
+  final String? id;
   @override
   @JsonKey(name: "createdAt")
   final String? createdAt;
   @override
   @JsonKey(name: "updatedAt")
   final String? updatedAt;
+  @override
+  @JsonKey(name: "name")
+  final String? name;
+  @override
+  @JsonKey(name: "email")
+  final String? email;
+  @override
+  @JsonKey(name: "emailVerified")
+  final String? emailVerified;
+  @override
+  @JsonKey(name: "image")
+  final String? image;
+  @override
+  @JsonKey(name: "isActive")
+  final bool? isActive;
+  @override
+  @JsonKey(name: "role")
+  final String? role;
+  @override
+  @JsonKey(name: "accessToken")
+  final String? accessToken;
 
   @override
   String toString() {
-    return 'UserResponse(id: $id, username: $username, email: $email, provider: $provider, confirmed: $confirmed, blocked: $blocked, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'UserResponse(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, name: $name, email: $email, emailVerified: $emailVerified, image: $image, isActive: $isActive, role: $role, accessToken: $accessToken)';
   }
 
   @override
@@ -247,24 +283,26 @@ class _$_UserResponse implements _UserResponse {
         (other.runtimeType == runtimeType &&
             other is _$_UserResponse &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.provider, provider) ||
-                other.provider == provider) &&
-            (identical(other.confirmed, confirmed) ||
-                other.confirmed == confirmed) &&
-            (identical(other.blocked, blocked) || other.blocked == blocked) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.emailVerified, emailVerified) ||
+                other.emailVerified == emailVerified) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive) &&
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, email, provider,
-      confirmed, blocked, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, createdAt, updatedAt, name,
+      email, emailVerified, image, isActive, role, accessToken);
 
   @JsonKey(ignore: true)
   @override
@@ -282,42 +320,51 @@ class _$_UserResponse implements _UserResponse {
 
 abstract class _UserResponse implements UserResponse {
   const factory _UserResponse(
-      {@JsonKey(name: "id") final int? id,
-      @JsonKey(name: "username") final String? username,
-      @JsonKey(name: "email") final String? email,
-      @JsonKey(name: "provider") final String? provider,
-      @JsonKey(name: "confirmed") final bool? confirmed,
-      @JsonKey(name: "blocked") final bool? blocked,
-      @JsonKey(name: "createdAt") final String? createdAt,
-      @JsonKey(name: "updatedAt") final String? updatedAt}) = _$_UserResponse;
+          {@JsonKey(name: "id") final String? id,
+          @JsonKey(name: "createdAt") final String? createdAt,
+          @JsonKey(name: "updatedAt") final String? updatedAt,
+          @JsonKey(name: "name") final String? name,
+          @JsonKey(name: "email") final String? email,
+          @JsonKey(name: "emailVerified") final String? emailVerified,
+          @JsonKey(name: "image") final String? image,
+          @JsonKey(name: "isActive") final bool? isActive,
+          @JsonKey(name: "role") final String? role,
+          @JsonKey(name: "accessToken") final String? accessToken}) =
+      _$_UserResponse;
 
   factory _UserResponse.fromJson(Map<String, dynamic> json) =
       _$_UserResponse.fromJson;
 
   @override
   @JsonKey(name: "id")
-  int? get id;
-  @override
-  @JsonKey(name: "username")
-  String? get username;
-  @override
-  @JsonKey(name: "email")
-  String? get email;
-  @override
-  @JsonKey(name: "provider")
-  String? get provider;
-  @override
-  @JsonKey(name: "confirmed")
-  bool? get confirmed;
-  @override
-  @JsonKey(name: "blocked")
-  bool? get blocked;
+  String? get id;
   @override
   @JsonKey(name: "createdAt")
   String? get createdAt;
   @override
   @JsonKey(name: "updatedAt")
   String? get updatedAt;
+  @override
+  @JsonKey(name: "name")
+  String? get name;
+  @override
+  @JsonKey(name: "email")
+  String? get email;
+  @override
+  @JsonKey(name: "emailVerified")
+  String? get emailVerified;
+  @override
+  @JsonKey(name: "image")
+  String? get image;
+  @override
+  @JsonKey(name: "isActive")
+  bool? get isActive;
+  @override
+  @JsonKey(name: "role")
+  String? get role;
+  @override
+  @JsonKey(name: "accessToken")
+  String? get accessToken;
   @override
   @JsonKey(ignore: true)
   _$$_UserResponseCopyWith<_$_UserResponse> get copyWith =>

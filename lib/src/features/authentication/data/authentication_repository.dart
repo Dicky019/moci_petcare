@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../domain/user.dart';
 import '/src/features/authentication/data/response/user_response.dart';
-import '/src/features/authentication/domain/user.dart';
 import '/src/services/local/hive_service.dart';
 import '/src/services/remote/api/auth_api.dart';
 import '/src/services/remote/config/config.dart';
@@ -14,14 +15,8 @@ class AuthenticationRepository {
     this._hiveService,
   );
 
-  Future<Result<String>> login({
-    required String email,
-    required String password,
-  }) async {
-    final result = await _authApi.login(
-      email: email,
-      password: password,
-    );
+  Future<Result<String>> login() async {
+    final result = await _authApi.login();
 
     return result;
   }
@@ -39,9 +34,9 @@ class AuthenticationRepository {
 
   void saveUserCredential({
     required String email,
-    required String password,
-  }) =>
-      _hiveService.saveUserCredential(email: email, password: password);
+  }) {
+    _hiveService.saveUserCredential(email: email);
+  }
 
   String? get currentUser => _hiveService.getUserToken();
 

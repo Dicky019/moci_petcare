@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moci_petcare/gen/assets.gen.dart';
 import '/src/common_widgets/common_widgets.dart';
 import '/src/constants/constants.dart';
 import '/src/features/authentication/presentation/login_controller.dart';
@@ -50,39 +51,32 @@ class LoginCardSection extends ConsumerWidget {
       ),
       margin: EdgeInsets.symmetric(horizontal: SizeApp.w24),
       decoration: BoxDecoration(
-          color: ColorApp.pureWhite,
-          borderRadius: BorderRadius.all(Radius.circular(12.r))),
+        color: ColorApp.pureWhite,
+        borderRadius: BorderRadius.all(
+          Radius.circular(12.r),
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             'Masuk',
-            style: TypographyTheme.title2.copyWith(
-              color: ColorApp.purpleLight,
-            ),
+            style: TypographyTheme.title1
+                .copyWith(color: ColorApp.purpleLight // Color Primary,
+                    ),
           ),
           Gap.h16,
-          InputFormWidget(
-            keyForm: GlobalKey<FormState>(),
-            isLoading: false,
-            onSubmit: () {},
-            children: [
-              TextFieldWidget(
-                hintText: "username",
-                textEditingController: controller.emailController,
-              ),
-              TextFieldWidget(
-                hintText: "password",
-                textEditingController: controller.passwordController,
-              ),
-            ],
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8).r,
+            child: Assets.images.kucing.image(),
           ),
+          Gap.h16,
           ButtonWidget(
-            text: 'Masuk',
+            text: 'Google',
             isLoading: state.isLoading,
             onTap: controller.fetchLogin,
           ),
-          Gap.h12,
+          Gap.h16,
         ],
       ),
     );

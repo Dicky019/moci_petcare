@@ -10,8 +10,10 @@ class AuthenticationMapper {
       success: (data) {
         return Result.success(
           User(
-            id: data.id ?? 0,
-            username: data.username ?? "-",
+            id: data.id ?? "-",
+            name: data.name ?? "-",
+            email: data.email ?? "-",
+            image: data.image ?? "-",
           ),
         );
       },

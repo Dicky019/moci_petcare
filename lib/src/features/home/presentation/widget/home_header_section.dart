@@ -29,23 +29,6 @@ class HomeHeaderSection extends ConsumerWidget {
                   color: ColorApp.pureWhite,
                 ),
               ),
-              Row(
-                children: [
-                  Text(
-                    'Periode 2021/2022',
-                    style: TypographyTheme.body.copyWith(
-                      color: Colors.white,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.keyboard_arrow_down_outlined,
-                      color: ColorApp.pureWhite,
-                    ),
-                  )
-                ],
-              )
             ],
           ),
           IconButton(

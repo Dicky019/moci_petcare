@@ -63,10 +63,10 @@ class HiveService {
   /// Set User Credential
   void saveUserCredential({
     required String email,
-    required String password,
+    // required String password,
   }) {
     hiveEmail.put(HiveKey.email, email);
-    hivePassword.put(HiveKey.password, password);
+    // hivePassword.put(HiveKey.password, password);
   }
 
   /// Get Credential Email

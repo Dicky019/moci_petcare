@@ -24,7 +24,7 @@ class HomeSuratKeluarSection extends StatelessWidget {
               Text(
                 'Surat Keluar',
                 style: TypographyTheme.title2.copyWith(
-                  color: ColorApp.purpleLight,
+                  color: ColorApp.purpleLight // Color Primary,
                 ),
               ),
               TextButton(

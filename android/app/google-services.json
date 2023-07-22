@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "204696322261",
+    "project_id": "moci-petcare",
+    "storage_bucket": "moci-petcare.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204696322261:android:83f7f8d50771627238625c",
+        "android_client_info": {
+          "package_name": "com.moci.petcare.moci_petcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204696322261-0he7gdpp43nf11m20udoba2mm00u8ss0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh8LKvE7rryxwuv6NfWHWJk95lUAfLXLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204696322261-0he7gdpp43nf11m20udoba2mm00u8ss0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

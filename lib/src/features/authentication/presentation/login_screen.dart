@@ -10,7 +10,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          color: ColorApp.purpleLight,
+          color: ColorApp.purpleLight // Color Primary,
         ),
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
