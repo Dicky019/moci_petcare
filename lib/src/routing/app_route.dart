@@ -1,19 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '/src/features/authentication/data/authentication_repository.dart';
 
 import '../features/authentication/presentation/login_screen.dart';
 import '../features/home/presentation/home_screen.dart';
-import '../features/surat_keluar/presentation/surat_keluar/surat_keluar_screen.dart';
-import '../features/surat_masuk/presentation/surat_masuk_screen.dart';
-import '../features/surat_keluar/presentation/surat_reshuffle/surat_reshuffle_screen.dart';
+import '../features/profile/presentation/profile_screen.dart';
+import '/src/features/authentication/data/authentication_repository.dart';
+import 'sell_router_dasboard.dart';
 
 enum Routes {
   init("/", "home"),
-  login("login", "login"),
-  suratMasuk("surat-masuk", "surat-masuk"),
-  suratKeluar("surat-keluar", "surat-keluar"),
-  suratKeluarReshuffle("reshuffle", "reshuffle");
+  login("/login", "login"),
+  pemesanan("/pemesanan", "pemesanan"),
+  profile("/profile", "profile");
 
   const Routes(this.path, this.name);
   final String path, name;
@@ -33,33 +31,31 @@ final goRouterProvider = Provider<GoRouter>(
         return null;
       },
       routes: [
+        ref.read(
+          sellRouterDasboard(
+            [
+              GoRoute(
+                path: Routes.init.path,
+                name: Routes.init.name,
+                builder: (context, state) => const HomeScreen(),
+              ),
+              GoRoute(
+                path: Routes.pemesanan.path,
+                name: Routes.pemesanan.name,
+                builder: (context, state) => const LoginScreen(),
+              ),
+              GoRoute(
+                path: Routes.profile.path,
+                name: Routes.profile.name,
+                builder: (context, state) => const ProfileScreen(),
+              ),
+            ],
+          ),
+        ),
         GoRoute(
-          path: Routes.init.path,
-          name: Routes.init.name,
-          builder: (context, state) => const HomeScreen(),
-          routes: [
-            GoRoute(
-              path: Routes.login.path,
-              name: Routes.login.name,
-              builder: (context, state) => const LoginScreen(),
-            ),
-            GoRoute(
-              path: Routes.suratMasuk.path,
-              name: Routes.suratMasuk.name,
-              builder: (context, state) => const SuratMasukScreen(),
-            ),
-            GoRoute(
-                path: Routes.suratKeluar.path,
-                name: Routes.suratKeluar.name,
-                builder: (context, state) => const SuratKeluarScreen(),
-                routes: [
-                  GoRoute(
-                    path: Routes.suratKeluarReshuffle.path,
-                    name: Routes.suratKeluarReshuffle.name,
-                    builder: (context, state) => const SuratReshuffleScreen(),
-                  ),
-                ]),
-          ],
+          path: Routes.login.path,
+          name: Routes.login.name,
+          builder: (context, state) => const LoginScreen(),
         ),
       ],
     );

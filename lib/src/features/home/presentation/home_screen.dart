@@ -1,16 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moci_petcare/src/features/home/presentation/profile_controller.dart';
-import '/src/common_widgets/button/button_widget.dart';
-import '/src/common_widgets/modal_bottom_sheet/modal_bottom_sheet_widget.dart';
+
 import '/src/constants/constants.dart';
-import '/src/features/home/presentation/widget/home_card_section.dart';
-import '/src/features/home/presentation/widget/home_header_section.dart';
-import '/src/features/home/presentation/widget/home_surat_keluar_section.dart';
-import '/src/features/home/presentation/widget/home_surat_masuk_section.dart';
+import 'home_controller.dart';
+import 'widget/home_layanan_widget.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -21,61 +14,52 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
-  void initState() {
-
-    super.initState();
-  }
-  @override
   Widget build(BuildContext context) {
+    final jadwalControllerProvider = ref.watch(homeControllerProvider);
+
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            height: SizeApp.customHeight(200),
-            decoration: BoxDecoration(
-              color: ColorApp.purpleLight, // Color Primary,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20.r),
-                bottomRight: Radius.circular(20.r),
-              ),
-            ),
-          ),
-          // Padding(
-          //   padding: EdgeInsets.all(
-          //     SizeApp.w24,
-          //   ),
-          //   child:
-          SafeArea(
-            child: Column(
+      backgroundColor: ColorApp.purpleLight,
+      body: SafeArea(
+        child: jadwalControllerProvider.when(
+          data: (value) {
+            final layananGrouming = value.data.layananGrouming;
+            final layananKesehatan = value.data.layananKesehatan;
+            final layananKonsultasi = value.data.layananKonsultasi;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Gap.h16,
-                Consumer(
-                  builder: (context, ref, child) {
-                    final user = ref.read(profileControllerProvider).getUser;
-                    return Text(user?.email ?? "kosong");
-                  },
+                Gap.h20,
+                Center(
+                  child: Text(
+                    "Jadwal Layanan ",
+                    style: TypographyTheme.title1.copyWith(
+                      color: ColorApp.pureWhite,
+                      fontWeight: FontWeight.w600, // Color Primary,
+                    ),
+                  ),
                 ),
-                const HomeHeaderSection(),
-                Gap.h28,
-                const HomeCardSection(),
-                const HomeSuratKeluarSection(),
-                const HomeSuratMasukSection()
+                Gap.h16,
+                HomeLayananWidget(
+                  title: "Grouming",
+                  layanan: layananGrouming,
+                ),
+                const Divider(),
+                HomeLayananWidget(
+                  title: "Kesehatan",
+                  layanan: layananKesehatan,
+                ),
+                const Divider(),
+                HomeLayananWidget(
+                  title: "Konsultasi ",
+                  layanan: layananKonsultasi,
+                ),
               ],
-              // ),
-            ),
-          ),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: SizeApp.w24,
-        ),
-        child: ButtonWidget(
-          text: 'Buat surat',
-          onTap: () {
-            ModalBottomSheetHelper.showModalBottomSheetHelper(context);
+            );
           },
+          error: (error, stackTrace) => const Text("Error"),
+          loading: () => const Center(
+            child: CircularProgressIndicator(color: ColorApp.offGrey),
+          ),
         ),
       ),
     );

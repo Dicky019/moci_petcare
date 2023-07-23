@@ -47,6 +47,7 @@ class AuthenticationService {
       failure: (error, stackTrace) {
         log(error.toString());
         log(stackTrace.toString());
+        authRepository.removeCurrentUser();
       },
     );
   }

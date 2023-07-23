@@ -26,15 +26,18 @@ class AuthApi {
       if (sign.user?.email == null) {
         throw Exception("Tidak Email");
       }
-      final response = await _dioClient.post(
-        Endpoint.login,
-        data: {
-          'email': sign.user?.email,
-          // 'password': password,
-        },
-      );
-      log(response.toString());
-      return Result.success(response['accessToken']);
+
+      final data = {
+        'email': sign.user?.email,
+        'image': sign.user?.photoURL,
+        'name': sign.user?.displayName,
+      };
+
+      log(data.toString(), name: "data");
+
+      final response = await _dioClient.post(Endpoint.login, data: data);
+      log(response.toString(), name: "response");
+      return Result.success(response['data']['accessToken'] ?? "");
     } catch (e, st) {
       return Result.failure(
         NetworkExceptions.getDioException(e, st),
@@ -51,7 +54,7 @@ class AuthApi {
   Future<Result<UserResponse>> loginResponse() async {
     try {
       final response = await _dioClient.get(Endpoint.user);
-      log((response['data'] as Map).toString(),name: "_dioClient");
+      log((response['data'] as Map).toString(), name: "_dioClient");
       return Result.success(UserResponse.fromJson(response['data']));
     } catch (e, st) {
       return Result.failure(

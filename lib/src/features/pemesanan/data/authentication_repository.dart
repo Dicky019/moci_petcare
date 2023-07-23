@@ -40,19 +40,6 @@ class AuthenticationRepository {
 
   String? get currentUser => _hiveService.getUserToken();
 
-  String? getCredentialEmail() => _hiveService.getCredentialEmail();
-
-  String? getCredentialPassword() => _hiveService.getCredentialPassword();
-
-  User? getCurrentUser() => _hiveService.getCurrentUser();
-
-  void saveUserToken(String token) => _hiveService.saveUserToken(token);
-
-  void saveCurrentUser(User user) => _hiveService.saveCurrentUser(user);
-  void removeCurrentUser() {
-    _hiveService.deleteUserToken();
-    _hiveService.deleteCurrentUser();
-  }
 }
 
 final authenticationRepositoryProvider =

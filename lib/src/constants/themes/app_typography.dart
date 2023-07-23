@@ -22,4 +22,9 @@ class TypographyTheme {
     fontFamily: FontFamily.poppins,
     fontSize: 12.sp,
   );
+
+  static TextStyle body2 = TextStyle(
+    fontFamily: FontFamily.poppins,
+    fontSize: 14.sp,
+  );
 }
