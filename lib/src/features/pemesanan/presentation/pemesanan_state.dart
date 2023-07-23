@@ -1,16 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginState {
+class PemesananState {
   final AsyncValue<bool?> value;
 
-  const LoginState({
+  const PemesananState({
     this.value = const AsyncData(null),
   });
 
-  LoginState copyWith({
+  PemesananState copyWith({
     AsyncValue<bool?>? value,
   }) {
-    return LoginState(
+    return PemesananState(
       value: value ?? this.value,
     );
   }

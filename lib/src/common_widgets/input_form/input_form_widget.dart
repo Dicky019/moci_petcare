@@ -10,12 +10,14 @@ class InputFormWidget extends StatelessWidget {
     required this.children,
     required this.onSubmit,
     required this.isLoading,
+    required this.title,
   });
 
   final GlobalKey<FormState> keyForm;
-  final List<TextFieldWidget> children;
+  final List<Widget> children;
   final void Function() onSubmit;
   final bool isLoading;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,13 @@ class InputFormWidget extends StatelessWidget {
               );
             },
           ),
+          Gap.h12,
+          ButtonWidget(
+            text: title,
+            isLoading: isLoading,
+            onTap: onSubmit,
+          ),
+          // Gap.h8,
         ],
       ),
     );

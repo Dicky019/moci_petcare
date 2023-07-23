@@ -4,8 +4,8 @@ import '/src/constants/constants.dart';
 
 enum CardTypes {
   _primary,
-  _small,
-  _suratCategory,
+  // _small,
+  _header,
 }
 
 class CardWidget extends StatelessWidget {
@@ -14,114 +14,51 @@ class CardWidget extends StatelessWidget {
     Key? key,
 
     /// [INFO] required params
-    required this.suratName,
-    required this.suratCategory,
-    required this.suratDate,
-    required this.onTap,
-  })  : _cardVariant = CardTypes._primary,
-        isSmall = false,
+    required this.child,
+    this.onTap,
+  })  : cardTypes = CardTypes._primary,
         super(key: key);
 
-  /// [INFO] small card
-  const CardWidget.small({
+  const CardWidget.header({
     Key? key,
-    required this.suratCategory,
-    required this.onTap,
-  })  : _cardVariant = CardTypes._small,
-        suratName = '',
-        suratDate = '',
-        isSmall = true,
+
+    /// [INFO] required params
+    required this.child,
+    this.onTap,
+  })  : cardTypes = CardTypes._header,
         super(key: key);
 
-  /// [INFO] surat category
-  const CardWidget.suratCategory({
-    Key? key,
-    required this.suratName,
-    required this.onTap,
-  })  : _cardVariant = CardTypes._suratCategory,
-        suratCategory = '',
-        suratDate = '',
-        isSmall = false,
-        super(key: key);
-
-  final String suratName;
-  final String suratCategory;
-  final String suratDate;
-  final bool isSmall;
-  final VoidCallback onTap;
-  final CardTypes _cardVariant;
+  final Widget child;
+  final VoidCallback? onTap;
+  final CardTypes cardTypes;
 
   @override
   Widget build(BuildContext context) {
+
+    EdgeInsets padding() {
+      return cardTypes == CardTypes._primary
+          ? EdgeInsets.all(
+              SizeApp.w24,
+            )
+          : EdgeInsets.all(
+              SizeApp.w4,
+            );
+    }
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: isSmall ? SizeApp.customWidth(105) : null,
-        padding: EdgeInsets.all(
-          isSmall ? SizeApp.w12 : SizeApp.w16,
+        padding: padding(),
+        margin: EdgeInsets.symmetric(
+          horizontal: SizeApp.w16,
         ),
         decoration: BoxDecoration(
-          border: Border.all(
-            color: ColorApp.halfGrey,
-          ),
+          color: ColorApp.pureWhite,
           borderRadius: BorderRadius.all(
             Radius.circular(12.r),
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: isSmall == true
-                  ? MainAxisAlignment.center
-                  : MainAxisAlignment.start,
-              children: [
-                if (_cardVariant == CardTypes._primary ||
-                    _cardVariant == CardTypes._small) ...[
-                  FittedBox(
-                    child: Icon(
-                      Icons.circle,
-                      size: 50.h,
-                      color: ColorApp.halfGrey,
-                    ),
-                  ),
-                ],
-                if (isSmall == false) ...[
-                  Gap.w16,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        suratName,
-                        style: TypographyTheme.title2.copyWith(
-                          color: ColorApp.purpleDark,
-                        ),
-                      ),
-                      if (_cardVariant == CardTypes._primary) ...[
-                        Gap.h4,
-                        Text(suratCategory),
-                        Gap.h4,
-                        Text(suratDate),
-                      ],
-                    ],
-                  ),
-                ]
-              ],
-            ),
-            if (isSmall == true) ...[
-              Gap.h4,
-              Expanded(
-                child: FittedBox(
-                  child: Text(
-                    suratCategory,
-                    style: TypographyTheme.body,
-                  ),
-                ),
-              ),
-            ],
-          ],
-        ),
+        child: child,
       ),
     );
   }

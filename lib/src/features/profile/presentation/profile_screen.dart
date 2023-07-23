@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../common_widgets/common_widgets.dart';
 import '../../../constants/constants.dart';
 import 'widget/profile_card_section.dart';
 
@@ -8,17 +9,26 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          color: ColorApp.purpleLight // Color Primary,
-        ),
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      backgroundColor: ColorApp.purpleLight,
+      body: SafeArea(
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Center(
-              child: ProfileCardSection(),
+            Gap.h20,
+            CardWidget.header(
+              child: Center(
+                child: Text(
+                  "Profile",
+                  style: TypographyTheme.title1.copyWith(
+                    color: ColorApp.purpleDark,
+                    fontWeight: FontWeight.w600, // Color Primary,
+                  ),
+                ),
+              ),
             ),
+            Gap.h16,
+            const ProfileCardSection(),
           ],
         ),
       ),

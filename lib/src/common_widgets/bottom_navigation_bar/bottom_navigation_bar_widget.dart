@@ -62,7 +62,7 @@ class BottomNavigationBarWidget extends ConsumerWidget {
           ),
         ],
         currentIndex: selectedIndex,
-        fixedColor: ColorApp.purpleBlue,
+        fixedColor: ColorApp.purpleDark,
         backgroundColor: ColorApp.offGrey,
         unselectedItemColor: ColorApp.halfGrey,
         unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),

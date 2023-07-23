@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../common_widgets/common_widgets.dart';
 import '/src/constants/constants.dart';
 import 'home_controller.dart';
 import 'widget/home_layanan_widget.dart';
@@ -29,12 +30,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Gap.h20,
-                Center(
-                  child: Text(
-                    "Jadwal Layanan ",
-                    style: TypographyTheme.title1.copyWith(
-                      color: ColorApp.pureWhite,
-                      fontWeight: FontWeight.w600, // Color Primary,
+                CardWidget.header(
+                  child: Center(
+                    child: Text(
+                      "Jadwal Layanan ",
+                      style: TypographyTheme.title1.copyWith(
+                        color: ColorApp.purpleDark,
+                        fontWeight: FontWeight.w600, // Color Primary,
+                      ),
                     ),
                   ),
                 ),

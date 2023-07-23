@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,28 +18,25 @@ class ProfileCardSection extends ConsumerWidget {
     final image = controller.getUser?.image;
     final name = controller.getUser?.name ?? "";
 
-    return Container(
-      padding: EdgeInsets.all(
-        SizeApp.w16,
-      ),
-      margin: EdgeInsets.symmetric(horizontal: SizeApp.w24),
-      decoration: BoxDecoration(
-        color: ColorApp.pureWhite,
-        borderRadius: BorderRadius.all(
-          Radius.circular(12.r),
-        ),
-      ),
+    getImage() => image == null
+        ? Assets.images.kucing.image(
+            height: 120.h,
+            fit: BoxFit.cover,
+          )
+        : Image.network(
+            image,
+            height: 120.h,
+            fit: BoxFit.cover,
+          );
+
+    return CardWidget.primary(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(50).r,
-              child: image == null
-                  ? Assets.images.kucing.image(height: 100.h)
-                  : Image.network(
-                      image,
-                    ),
+              borderRadius: BorderRadius.circular(60.h),
+              child: getImage(),
             ),
           ),
           Gap.h16,
@@ -88,9 +83,9 @@ class TitleValueTextWidget extends StatelessWidget {
         Text(
           title,
           style: TypographyTheme.body2.copyWith(
-              color: ColorApp.purpleLight,
-              fontWeight: FontWeight.w600 // Color Primary,
-              ),
+            color: ColorApp.purpleDark,
+            fontWeight: FontWeight.w800, // Color Primary,
+          ),
         ),
         Text(
           value ?? "-",

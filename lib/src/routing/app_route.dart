@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../features/authentication/presentation/login_screen.dart';
 import '../features/home/presentation/home_screen.dart';
+import '../features/pemesanan/presentation/pemesanan_screen.dart';
 import '../features/profile/presentation/profile_screen.dart';
 import '/src/features/authentication/data/authentication_repository.dart';
 import 'sell_router_dasboard.dart';
@@ -42,7 +43,7 @@ final goRouterProvider = Provider<GoRouter>(
               GoRoute(
                 path: Routes.pemesanan.path,
                 name: Routes.pemesanan.name,
-                builder: (context, state) => const LoginScreen(),
+                builder: (context, state) => const PemesananScreen(),
               ),
               GoRoute(
                 path: Routes.profile.path,

@@ -6,6 +6,7 @@ import '../common_widgets/bottom_navigation_bar/bottom_navigation_bar_widget.dar
 
 final sellRouterDasboard = Provider.family<ShellRoute, List<GoRoute>>(
   (ref, routes) {
+    // ref.read(authServiceProvider).getCurrentUser();
     return ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) {
         return Scaffold(
