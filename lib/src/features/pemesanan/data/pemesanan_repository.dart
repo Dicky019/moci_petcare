@@ -1,24 +1,34 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '/src/services/remote/api/auth_api.dart';
 import '/src/services/remote/config/config.dart';
+import '../../../services/remote/api/pemesanan_api.dart';
+import 'request/pemesanan_request.dart';
+import 'response/pemesanan_response.dart';
 
 class PemesananRepository {
-  final AuthApi _authApi;
+  final PemesananApi _pemesananApi;
 
-  PemesananRepository(
-    this._authApi,
+  const PemesananRepository(
+    this._pemesananApi,
   );
 
-  Future<Result<String>> createPemesanan() async {
-    final result = await _authApi.login();
+  Future<Result<PemesananResponse>> createPemesanan(
+    PemesananRequest pemesananRequest,
+  ) async {
+    final result = await _pemesananApi.pemesanan(pemesananRequest);
+
+    return result;
+  }
+
+  Future<Result<ListPemesananResponse>> getAllPemesanan() async {
+    final result = await _pemesananApi.getAllPemesanan();
 
     return result;
   }
 }
 
 final pemesananRepositoryProvider = Provider<PemesananRepository>((ref) {
-  final authApi = ref.read(authApiProvider);
+  final pemesananApi = ref.read(pemesananApiProvider);
 
-  return PemesananRepository(authApi);
+  return PemesananRepository(pemesananApi);
 });

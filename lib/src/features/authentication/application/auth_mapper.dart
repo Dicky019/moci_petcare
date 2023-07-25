@@ -1,3 +1,5 @@
+import 'package:moci_petcare/src/utils/extension/string_extension.dart';
+
 import '/src/features/authentication/data/response/user_response.dart';
 import '/src/features/authentication/domain/user.dart';
 import '/src/services/remote/config/config.dart';
@@ -10,10 +12,11 @@ class AuthenticationMapper {
       success: (data) {
         return Result.success(
           User(
-            id: data.id ?? "-",
-            name: data.name ?? "-",
-            email: data.email ?? "-",
-            image: data.image ?? "-",
+            id: data.id.toEmpty,
+            name: data.name.toEmpty,
+            email: data.email.toEmpty,
+            image: data.image.toEmpty,
+            noHP: data.noHP.toEmpty,
           ),
         );
       },

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:moci_petcare/src/features/pemesanan/data/request/pemesanan_request.dart';
+import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan.dart';
 import 'package:moci_petcare/src/features/pemesanan/presentation/pemesanan_state.dart';
 
 import '../application/pemesanan_service.dart';
@@ -19,7 +21,7 @@ class PemesananControllerNotifier extends StateNotifier<PemesananState> {
   final noHPController = TextEditingController();
   final hariController = TextEditingController();
   final jamController = TextEditingController();
-      final GlobalKey<FormState> keyForm = GlobalKey<FormState>();
+  final GlobalKey<FormState> keyForm = GlobalKey<FormState>();
 
   String get namaHewan => namaHewanController.text;
   String get kategoriHewan => kategoriHewanController.text;
@@ -33,8 +35,19 @@ class PemesananControllerNotifier extends StateNotifier<PemesananState> {
 
   void fetchCreatePemesanan() async {
     state = state.copyWith(value: const AsyncLoading());
+    final pemesananRequest = PemesananRequest(
+      jenisLayanan: jenisLayanan,
+      namaHewan: namaHewan,
+      kategoriHewan: kategoriHewan,
+      umurHewan: umurHewan,
+      jenisKelaminHewan: jenisKelaminHewan,
+      keluhan: keluhan,
+      noHP: noHP,
+      hari: hari,
+      jam: jam,
+    );
 
-    final result = await _pemesananService.createPemesanan();
+    final result = await _pemesananService.createPemesanan(pemesananRequest);
 
     result.when(
       success: (data) {
@@ -64,15 +77,15 @@ final pemesananControllerProvider = StateNotifierProvider.autoDispose<
   },
 );
 
-
-  // "jenisLayanan": "kesehatan",
-  // "namaHewan": "dasdasdasd312313",
-  // "kategoriHewan": "dasdsadsad2312312",
-  // "umurHewan": "sadlkadaksd3123123",
-  // "jenisKelaminHewan": "jantan",
-  // "keluhan": "dasdasdad",
-  // "noHP": "",
-  // "hari" : "senin",
-  // "pilihJamGrouming": "jam09_12",
-  // "pilihJamKesehatanKonsultasi": "jam09_10"
-  // "status": "pending",
+final listPemesananControllerProvider =
+    FutureProvider.autoDispose<ListPemesanan>(
+  (ref) async {
+    final data = await ref.read(pemesananServiceProvider).getAllPemesanan();
+    return data.when(
+      success: (data) => data,
+      failure: (error, stackTrace) {
+        return ListPemesanan(list: []);
+      },
+    );
+  },
+);

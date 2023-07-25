@@ -12,12 +12,7 @@ class AuthApi {
 
   AuthApi(this._dioClient);
 
-  Future<Result<String>> login(
-      // {
-      // required String email,
-      // required String password,
-      // }
-      ) async {
+  Future<Result<String>> login() async {
     try {
       final sign = await signInWithGoogle();
       if (sign.user == null) {
@@ -31,6 +26,7 @@ class AuthApi {
         'email': sign.user?.email,
         'image': sign.user?.photoURL,
         'name': sign.user?.displayName,
+        'noHP': sign.user?.phoneNumber ?? "-",
       };
 
       log(data.toString(), name: "data");

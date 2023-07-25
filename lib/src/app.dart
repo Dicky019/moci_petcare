@@ -17,7 +17,8 @@ class MyApp extends ConsumerWidget {
         return MaterialApp.router(
           title: 'KeDai Persuratan',
           theme: ThemeData(
-            primarySwatch: Colors.purple,
+            scaffoldBackgroundColor: ColorApp.purpleLight,
+            primarySwatch: Colors.deepPurple,
             appBarTheme: AppBarTheme(
               backgroundColor: ColorApp.purpleDark,
               titleTextStyle: TextStyle(

@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:moci_petcare/src/features/pemesanan/data/request/pemesanan_request.dart';
+import 'package:moci_petcare/src/features/pemesanan/data/response/pemesanan_response.dart';
 import '/src/services/remote/config/config.dart';
 
 class PemesananApi {
@@ -6,15 +8,42 @@ class PemesananApi {
 
   PemesananApi(this._dioClient);
 
-  Future<Result<String>> pemesanan() async {
+  Future<Result<PemesananResponse>> pemesanan(
+      PemesananRequest pemesananRequest) async {
     try {
       final response = await _dioClient.post(
         Endpoint.pemesanan,
-        data: {
-          'email': "",
-        },
+        data: pemesananRequest.toJson(),
       );
-      return Result.success(response['accessToken']);
+      return Result.success(response['data']);
+    } catch (e, st) {
+      return Result.failure(
+        NetworkExceptions.getDioException(e, st),
+        st,
+      );
+    }
+  }
+
+  Future<Result<ListPemesananResponse>> getAllPemesanan() async {
+    try {
+      final response = await _dioClient.get(
+        Endpoint.pemesanan,
+      );
+      return Result.success(response['data']);
+    } catch (e, st) {
+      return Result.failure(
+        NetworkExceptions.getDioException(e, st),
+        st,
+      );
+    }
+  }
+
+  Future<Result<PemesananResponse>> getPemesanan(String id) async {
+    try {
+      final response = await _dioClient.get(
+        "${Endpoint.pemesanan}/$id",
+      );
+      return Result.success(response['data']);
     } catch (e, st) {
       return Result.failure(
         NetworkExceptions.getDioException(e, st),
@@ -24,6 +53,6 @@ class PemesananApi {
   }
 }
 
-final authApiProvider = Provider<PemesananApi>((ref) {
+final pemesananApiProvider = Provider<PemesananApi>((ref) {
   return PemesananApi(ref.read(dioClientProvider));
 });
