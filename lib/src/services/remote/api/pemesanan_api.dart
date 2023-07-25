@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moci_petcare/src/features/pemesanan/data/request/pemesanan_request.dart';
 import 'package:moci_petcare/src/features/pemesanan/data/response/pemesanan_response.dart';
@@ -29,7 +31,8 @@ class PemesananApi {
       final response = await _dioClient.get(
         Endpoint.pemesanan,
       );
-      return Result.success(response['data']);
+      log(response.toString());
+      return Result.success(ListPemesananResponse.fromJson(response));
     } catch (e, st) {
       return Result.failure(
         NetworkExceptions.getDioException(e, st),

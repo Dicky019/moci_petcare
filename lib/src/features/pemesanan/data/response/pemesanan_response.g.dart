@@ -44,15 +44,15 @@ Map<String, dynamic> _$$_PemesananResponseToJson(
 _$_ListPemesananResponse _$$_ListPemesananResponseFromJson(
         Map<String, dynamic> json) =>
     _$_ListPemesananResponse(
-      list: (json['list'] as List<dynamic>?)
+      list: (json['data'] as List<dynamic>?)
               ?.map(
                   (e) => PemesananResponse.fromJson(e as Map<String, dynamic>))
               .toList() ??
-          const [],
+          [],
     );
 
 Map<String, dynamic> _$$_ListPemesananResponseToJson(
         _$_ListPemesananResponse instance) =>
     <String, dynamic>{
-      'list': instance.list,
+      'data': instance.list,
     };

@@ -462,7 +462,8 @@ ListPemesananResponse _$ListPemesananResponseFromJson(
 
 /// @nodoc
 mixin _$ListPemesananResponse {
-  List<PemesananResponse> get list => throw _privateConstructorUsedError;
+  @JsonKey(name: "data", defaultValue: [])
+  List<PemesananResponse>? get list => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -476,7 +477,8 @@ abstract class $ListPemesananResponseCopyWith<$Res> {
           $Res Function(ListPemesananResponse) then) =
       _$ListPemesananResponseCopyWithImpl<$Res, ListPemesananResponse>;
   @useResult
-  $Res call({List<PemesananResponse> list});
+  $Res call(
+      {@JsonKey(name: "data", defaultValue: []) List<PemesananResponse>? list});
 }
 
 /// @nodoc
@@ -493,13 +495,13 @@ class _$ListPemesananResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? list = null,
+    Object? list = freezed,
   }) {
     return _then(_value.copyWith(
-      list: null == list
+      list: freezed == list
           ? _value.list
           : list // ignore: cast_nullable_to_non_nullable
-              as List<PemesananResponse>,
+              as List<PemesananResponse>?,
     ) as $Val);
   }
 }
@@ -512,7 +514,8 @@ abstract class _$$_ListPemesananResponseCopyWith<$Res>
       __$$_ListPemesananResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<PemesananResponse> list});
+  $Res call(
+      {@JsonKey(name: "data", defaultValue: []) List<PemesananResponse>? list});
 }
 
 /// @nodoc
@@ -526,13 +529,13 @@ class __$$_ListPemesananResponseCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? list = null,
+    Object? list = freezed,
   }) {
     return _then(_$_ListPemesananResponse(
-      list: null == list
+      list: freezed == list
           ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
-              as List<PemesananResponse>,
+              as List<PemesananResponse>?,
     ));
   }
 }
@@ -541,19 +544,22 @@ class __$$_ListPemesananResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ListPemesananResponse implements _ListPemesananResponse {
   const _$_ListPemesananResponse(
-      {final List<PemesananResponse> list = const []})
+      {@JsonKey(name: "data", defaultValue: [])
+      final List<PemesananResponse>? list})
       : _list = list;
 
   factory _$_ListPemesananResponse.fromJson(Map<String, dynamic> json) =>
       _$$_ListPemesananResponseFromJson(json);
 
-  final List<PemesananResponse> _list;
+  final List<PemesananResponse>? _list;
   @override
-  @JsonKey()
-  List<PemesananResponse> get list {
+  @JsonKey(name: "data", defaultValue: [])
+  List<PemesananResponse>? get list {
+    final value = _list;
+    if (value == null) return null;
     if (_list is EqualUnmodifiableListView) return _list;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_list);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -590,14 +596,16 @@ class _$_ListPemesananResponse implements _ListPemesananResponse {
 }
 
 abstract class _ListPemesananResponse implements ListPemesananResponse {
-  const factory _ListPemesananResponse({final List<PemesananResponse> list}) =
-      _$_ListPemesananResponse;
+  const factory _ListPemesananResponse(
+      {@JsonKey(name: "data", defaultValue: [])
+      final List<PemesananResponse>? list}) = _$_ListPemesananResponse;
 
   factory _ListPemesananResponse.fromJson(Map<String, dynamic> json) =
       _$_ListPemesananResponse.fromJson;
 
   @override
-  List<PemesananResponse> get list;
+  @JsonKey(name: "data", defaultValue: [])
+  List<PemesananResponse>? get list;
   @override
   @JsonKey(ignore: true)
   _$$_ListPemesananResponseCopyWith<_$_ListPemesananResponse> get copyWith =>

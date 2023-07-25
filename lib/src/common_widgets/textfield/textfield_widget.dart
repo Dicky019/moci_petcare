@@ -7,26 +7,29 @@ class TextFieldWidget extends StatelessWidget {
     super.key,
     required this.textEditingController,
     required this.hintText,
-    this.validator,
+    this.validator, this.onClick,
   }) : _isSearch = false;
 
   const TextFieldWidget.search({
     super.key,
     required this.textEditingController,
     required this.hintText,
-    this.validator,
+    this.validator, this.onClick,
   }) : _isSearch = true;
 
   final TextEditingController textEditingController;
   final String hintText;
   final String? Function(String?)? validator;
   final bool _isSearch;
+  final VoidCallback? onClick;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: textEditingController,
       validator: validator,
+      onTap: onClick,
+      readOnly: onClick != null,
       decoration: InputDecoration(
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),

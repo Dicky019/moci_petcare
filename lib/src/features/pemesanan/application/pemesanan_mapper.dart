@@ -35,7 +35,7 @@ class PemesananMapper {
       Result<ListPemesananResponse> response) {
     return response.when(
       success: (data) {
-        final list = data.list
+        final list = (data.list ?? [])
             .map(
               (e) => Pemesanan(
                 id: e.id.toEmpty,

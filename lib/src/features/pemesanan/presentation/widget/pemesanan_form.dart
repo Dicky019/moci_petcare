@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+import 'package:week_day_picker/week_day_picker.dart';
 
 import '/src/common_widgets/common_widgets.dart';
 import '/src/constants/constants.dart';
@@ -77,13 +79,42 @@ class PemesananFormWidget extends ConsumerWidget {
                 child: TextFieldWidget(
                   textEditingController: controller.hariController,
                   hintText: "Hari",
+                  onClick: () async {
+                    final now = DateTime.now();
+                    final firstDate =
+                        DateTime(now.year, now.month, now.day);
+                    final lastDate = DateTime(now.year, now.month + 1, now.day);
+                    var selectedDay= await WeekDayPicker(
+                      context: context,
+                      initialDate: now,
+                      firstDate: firstDate,
+                      lastDate: lastDate,
+                      locale: const Locale.fromSubtags(languageCode: 'id'),
+                      selectableDayInWeek: [1, 2, 3, 4, 5],
+                      selectableBitwiseOperator: BitwiseOperator.or,
+                    ).show();
+                    if (selectedDay != null) {
+                      final result = DateFormat("EEEE, d MMMM").format(selectedDay);
+                      controller.hariController.text = result;
+                    }
+                  },
                 ),
               ),
               Gap.w12,
               Expanded(
                 child: TextFieldWidget(
-                  textEditingController: controller.noHPController,
+                  textEditingController: controller.jamController,
                   hintText: "Jam",
+                  onClick: () async {
+                    final selectedTime = await showTimePicker(
+                      initialTime: TimeOfDay.now(),
+                      context: context,
+                    );
+                     if (selectedTime != null) {
+                      final result = "${selectedTime.hour}.${selectedTime.minute}" ;
+                      controller.jamController.text = result;
+                    }
+                  },
                 ),
               ),
             ],

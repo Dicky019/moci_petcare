@@ -9,6 +9,15 @@ class Jadwal with _$Jadwal {
     required Data data,
   }) = _Jadwal;
 
+  const factory Jadwal.empty({
+    @Default(Data(
+      layananGrouming: [],
+      layananKesehatan: [],
+      layananKonsultasi: [],
+    ))
+    Data data,
+  }) = _JadwalEmpty;
+
   factory Jadwal.fromJson(Map<String, dynamic> json) => _$JadwalFromJson(json);
 }
 
@@ -31,5 +40,6 @@ class Layanan with _$Layanan {
     required String jenisLayanan,
   }) = _Layanan;
 
-  factory Layanan.fromJson(Map<String, dynamic> json) => _$LayananFromJson(json);
+  factory Layanan.fromJson(Map<String, dynamic> json) =>
+      _$LayananFromJson(json);
 }

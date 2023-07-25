@@ -8,10 +8,27 @@ part of 'jadwal.dart';
 
 _$_Jadwal _$$_JadwalFromJson(Map<String, dynamic> json) => _$_Jadwal(
       data: Data.fromJson(json['data'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$_JadwalToJson(_$_Jadwal instance) => <String, dynamic>{
       'data': instance.data,
+      'runtimeType': instance.$type,
+    };
+
+_$_JadwalEmpty _$$_JadwalEmptyFromJson(Map<String, dynamic> json) =>
+    _$_JadwalEmpty(
+      data: json['data'] == null
+          ? const Data(
+              layananGrouming: [], layananKesehatan: [], layananKonsultasi: [])
+          : Data.fromJson(json['data'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$_JadwalEmptyToJson(_$_JadwalEmpty instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'runtimeType': instance.$type,
     };
 
 _$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(

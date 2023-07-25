@@ -15,13 +15,59 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Jadwal _$JadwalFromJson(Map<String, dynamic> json) {
-  return _Jadwal.fromJson(json);
+  switch (json['runtimeType']) {
+    case 'default':
+      return _Jadwal.fromJson(json);
+    case 'empty':
+      return _JadwalEmpty.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'Jadwal',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
 mixin _$Jadwal {
   Data get data => throw _privateConstructorUsedError;
-
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Data data) $default, {
+    required TResult Function(Data data) empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(Data data)? $default, {
+    TResult? Function(Data data)? empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Data data)? $default, {
+    TResult Function(Data data)? empty,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Jadwal value) $default, {
+    required TResult Function(_JadwalEmpty value) empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Jadwal value)? $default, {
+    TResult? Function(_JadwalEmpty value)? empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Jadwal value)? $default, {
+    TResult Function(_JadwalEmpty value)? empty,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $JadwalCopyWith<Jadwal> get copyWith => throw _privateConstructorUsedError;
@@ -105,13 +151,17 @@ class __$$_JadwalCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Jadwal implements _Jadwal {
-  const _$_Jadwal({required this.data});
+  const _$_Jadwal({required this.data, final String? $type})
+      : $type = $type ?? 'default';
 
   factory _$_Jadwal.fromJson(Map<String, dynamic> json) =>
       _$$_JadwalFromJson(json);
 
   @override
   final Data data;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -137,6 +187,68 @@ class _$_Jadwal implements _Jadwal {
       __$$_JadwalCopyWithImpl<_$_Jadwal>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Data data) $default, {
+    required TResult Function(Data data) empty,
+  }) {
+    return $default(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(Data data)? $default, {
+    TResult? Function(Data data)? empty,
+  }) {
+    return $default?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Data data)? $default, {
+    TResult Function(Data data)? empty,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Jadwal value) $default, {
+    required TResult Function(_JadwalEmpty value) empty,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Jadwal value)? $default, {
+    TResult? Function(_JadwalEmpty value)? empty,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Jadwal value)? $default, {
+    TResult Function(_JadwalEmpty value)? empty,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$_JadwalToJson(
       this,
@@ -154,6 +266,167 @@ abstract class _Jadwal implements Jadwal {
   @override
   @JsonKey(ignore: true)
   _$$_JadwalCopyWith<_$_Jadwal> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_JadwalEmptyCopyWith<$Res> implements $JadwalCopyWith<$Res> {
+  factory _$$_JadwalEmptyCopyWith(
+          _$_JadwalEmpty value, $Res Function(_$_JadwalEmpty) then) =
+      __$$_JadwalEmptyCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Data data});
+
+  @override
+  $DataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$_JadwalEmptyCopyWithImpl<$Res>
+    extends _$JadwalCopyWithImpl<$Res, _$_JadwalEmpty>
+    implements _$$_JadwalEmptyCopyWith<$Res> {
+  __$$_JadwalEmptyCopyWithImpl(
+      _$_JadwalEmpty _value, $Res Function(_$_JadwalEmpty) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_JadwalEmpty(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Data,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_JadwalEmpty implements _JadwalEmpty {
+  const _$_JadwalEmpty(
+      {this.data = const Data(
+          layananGrouming: [], layananKesehatan: [], layananKonsultasi: []),
+      final String? $type})
+      : $type = $type ?? 'empty';
+
+  factory _$_JadwalEmpty.fromJson(Map<String, dynamic> json) =>
+      _$$_JadwalEmptyFromJson(json);
+
+  @override
+  @JsonKey()
+  final Data data;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'Jadwal.empty(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_JadwalEmpty &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_JadwalEmptyCopyWith<_$_JadwalEmpty> get copyWith =>
+      __$$_JadwalEmptyCopyWithImpl<_$_JadwalEmpty>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Data data) $default, {
+    required TResult Function(Data data) empty,
+  }) {
+    return empty(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(Data data)? $default, {
+    TResult? Function(Data data)? empty,
+  }) {
+    return empty?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Data data)? $default, {
+    TResult Function(Data data)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Jadwal value) $default, {
+    required TResult Function(_JadwalEmpty value) empty,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Jadwal value)? $default, {
+    TResult? Function(_JadwalEmpty value)? empty,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Jadwal value)? $default, {
+    TResult Function(_JadwalEmpty value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_JadwalEmptyToJson(
+      this,
+    );
+  }
+}
+
+abstract class _JadwalEmpty implements Jadwal {
+  const factory _JadwalEmpty({final Data data}) = _$_JadwalEmpty;
+
+  factory _JadwalEmpty.fromJson(Map<String, dynamic> json) =
+      _$_JadwalEmpty.fromJson;
+
+  @override
+  Data get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$_JadwalEmptyCopyWith<_$_JadwalEmpty> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

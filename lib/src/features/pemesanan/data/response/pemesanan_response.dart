@@ -30,7 +30,7 @@ class PemesananResponse with _$PemesananResponse {
 @freezed
 class ListPemesananResponse with _$ListPemesananResponse {
   const factory ListPemesananResponse({
-    @Default([]) List<PemesananResponse> list,
+    @JsonKey(name: "data", defaultValue: []) List<PemesananResponse>? list,
   }) = _ListPemesananResponse;
 
   factory ListPemesananResponse.fromJson(Map<String, dynamic> json) =>

@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moci_petcare/src/features/home/domain/jadwal.dart';
+import 'package:moci_petcare/src/services/remote/config/config.dart';
 
 import '../data/jadwal_repository.dart';
 import 'jadwal_mapper.dart';
@@ -9,22 +10,10 @@ class JadwalService {
 
   JadwalService(this.jadwalRepository);
 
-  Future<Jadwal> jadwal() async {
+  Future<Result<Jadwal>> jadwal() async {
     final responseJadwal = await jadwalRepository.jadwal();
     final resultJadwal = JadwalMapper.mapToJadwal(responseJadwal);
-
-    const dataNull = Jadwal(
-      data: Data(
-        layananGrouming: [],
-        layananKesehatan: [],
-        layananKonsultasi: [],
-      ),
-    );
-
-    return resultJadwal.whenOrNull(
-          success: (data) => data,
-        ) ??
-        dataNull;
+    return resultJadwal;
   }
 }
 
