@@ -10,7 +10,7 @@ class PemesananApi {
 
   PemesananApi(this._dioClient);
 
-  Future<Result<PemesananResponse>> pemesanan(
+  Future<Result<PemesananResponse>> createPemesanan(
       PemesananRequest pemesananRequest) async {
     try {
       final response = await _dioClient.post(
@@ -18,6 +18,36 @@ class PemesananApi {
         data: pemesananRequest.toJson(),
       );
       return Result.success(response['data']);
+    } catch (e, st) {
+      return Result.failure(
+        NetworkExceptions.getDioException(e, st),
+        st,
+      );
+    }
+  }
+
+  Future<Result<PemesananResponse>> editPemesanan(
+      PemesananRequest pemesananRequest, String id) async {
+    try {
+      final response = await _dioClient.put(
+        "${Endpoint.pemesanan}/$id",
+        data: pemesananRequest,
+      );
+      return Result.success(PemesananResponse.fromJson(response['data']));
+    } catch (e, st) {
+      return Result.failure(
+        NetworkExceptions.getDioException(e, st),
+        st,
+      );
+    }
+  }
+
+  Future<Result<PemesananResponse>> deletePemesanan(String id) async {
+    try {
+      final response = await _dioClient.delete(
+        "${Endpoint.pemesanan}/$id",
+      );
+      return Result.success(PemesananResponse.fromJson(response['data']));
     } catch (e, st) {
       return Result.failure(
         NetworkExceptions.getDioException(e, st),
@@ -46,7 +76,7 @@ class PemesananApi {
       final response = await _dioClient.get(
         "${Endpoint.pemesanan}/$id",
       );
-      return Result.success(response['data']);
+      return Result.success(PemesananResponse.fromJson(response['data']));
     } catch (e, st) {
       return Result.failure(
         NetworkExceptions.getDioException(e, st),

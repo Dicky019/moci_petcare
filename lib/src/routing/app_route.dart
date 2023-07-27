@@ -1,21 +1,31 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../features/authentication/presentation/login_screen.dart';
-import '../features/home/presentation/home_screen.dart';
-import '../features/pemesanan/presentation/pemesanan_screen.dart';
-import '../features/profile/presentation/profile_screen.dart';
 import '/src/features/authentication/data/authentication_repository.dart';
 import 'sell_router_dasboard.dart';
+
+import '../features/authentication/presentation/login_screen.dart';
+import '../features/home/presentation/home_screen.dart';
+import '../features/pemesanan/presentation/pemesanan_add_screen.dart';
+import '../features/pemesanan/presentation/pemesanan_detail_screen.dart';
+import '../features/pemesanan/presentation/pemesanan_edit_screen.dart';
+import '../features/pemesanan/presentation/pemesanan_list_screen.dart';
+import '../features/profile/presentation/profile_screen.dart';
 
 enum Routes {
   init("/", "home"),
   login("/login", "login"),
-  pemesanan("/pemesanan", "pemesanan"),
+  pemesananHistory("/pemesanan-history", "pemesanan history"),
+  pemesananAdd("/pemesanan-add", "pemesanan add"),
+  pemesananEdit("/pemesanan-edit/:id", "pemesanan edit"),
+  pemesananDetail("/pemesanan-detail/:id", "pemesanan detail"),
   profile("/profile", "profile");
 
   const Routes(this.path, this.name);
   final String path, name;
+
+  static String pemesananEditPath(String id) => "/pemesanan-edit/$id"; 
+  static String pemesananDetailPath(String id) => "/pemesanan-detail/$id"; 
 }
 
 final goRouterProvider = Provider<GoRouter>(
@@ -41,9 +51,9 @@ final goRouterProvider = Provider<GoRouter>(
                 builder: (context, state) => const HomeScreen(),
               ),
               GoRoute(
-                path: Routes.pemesanan.path,
-                name: Routes.pemesanan.name,
-                builder: (context, state) => const PemesananScreen(),
+                path: Routes.pemesananHistory.path,
+                name: Routes.pemesananHistory.name,
+                builder: (context, state) => const PemesananListScreen(),
               ),
               GoRoute(
                 path: Routes.profile.path,
@@ -51,6 +61,25 @@ final goRouterProvider = Provider<GoRouter>(
                 builder: (context, state) => const ProfileScreen(),
               ),
             ],
+          ),
+        ),
+        GoRoute(
+          path: Routes.pemesananAdd.path,
+          name: Routes.pemesananAdd.name,
+          builder: (context, state) => const PemesananAddScreen(),
+        ),
+        GoRoute(
+          path: Routes.pemesananEdit.path,
+          name: Routes.pemesananEdit.name,
+          builder: (context, state) => PemesananEditScreen(
+            id: state.pathParameters['id'] ?? "-",
+          ),
+        ),
+        GoRoute(
+          path: Routes.pemesananDetail.path,
+          name: Routes.pemesananDetail.name,
+          builder: (context, state) =>  PemesananDetailScreen(
+            id: state.pathParameters['id'] ?? "-",
           ),
         ),
         GoRoute(

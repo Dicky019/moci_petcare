@@ -52,7 +52,7 @@ class PemesananMapper {
             )
             .toList();
         return Result.success(
-          ListPemesanan(list: list),
+          ListPemesanan(values: list),
         );
       },
       failure: (error, stacktrace) {

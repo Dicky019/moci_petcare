@@ -28,28 +28,10 @@ class HomeLayananWidget extends StatelessWidget {
             ),
           ),
           for (var i = 0; i < layanan.length; i++)
-            ListTile(
-              leading: CircleAvatar(
-                backgroundColor: ColorApp.purpleDark,
-                child: Text(
-                  "${i + 1}",
-                  style: TypographyTheme.body2.copyWith(
-                    color: ColorApp.pureWhite,
-                    fontWeight: FontWeight.w600, // Color Primary,
-                  ),
-                ),
-              ),
-              title: Text(
-                layanan[i].hari.toUpperCase(),
-                style: TypographyTheme.body2.copyWith(
-                  color: ColorApp.purpleDark,
-                  fontWeight: FontWeight.w600, // Color Primary,
-                ),
-              ),
-              subtitle: Text(
-                layanan[i].jam,
-                style: const TextStyle(color: ColorApp.purpleLight),
-              ),
+            ListTileWidget(
+              number: "${i + 1}",
+              title: layanan[i].hari,
+              subtitle: layanan[i].jam,
             ),
         ],
       ),

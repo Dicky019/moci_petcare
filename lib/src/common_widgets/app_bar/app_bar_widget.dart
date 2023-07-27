@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '/src/constants/constants.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarWidget({super.key, required this.title});
+  const AppBarWidget({super.key, required this.title, this.onClick});
 
   final String title;
+  final VoidCallback? onClick;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +18,9 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           color: ColorApp.pureWhite,
         ),
       ),
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back),
-        onPressed: () {
-          context.pop();
-        },
-      ),
+      leading: onClick != null
+          ? IconButton(icon: const Icon(Icons.arrow_back), onPressed: onClick)
+          : const SizedBox(),
     );
   }
 

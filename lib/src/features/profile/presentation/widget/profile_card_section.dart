@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moci_petcare/src/utils/extension/string_extension.dart';
 
 import '../../../../../gen/assets.gen.dart';
 import '../profile_controller.dart';
@@ -14,9 +15,10 @@ class ProfileCardSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.read(profileControllerProvider);
 
-    final email = controller.getUser?.email ?? "";
+    final name = controller.getUser?.name.toEmpty;
+    final email = controller.getUser?.email.toEmpty;
+    final noHP = controller.getUser?.noHP.toEmpty;
     final image = controller.getUser?.image;
-    final name = controller.getUser?.name ?? "";
 
     getImage() => image == null
         ? Assets.images.kucing.image(
@@ -32,6 +34,7 @@ class ProfileCardSection extends ConsumerWidget {
     return CardWidget.primary(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Center(
             child: ClipRRect(
@@ -50,6 +53,13 @@ class ProfileCardSection extends ConsumerWidget {
           TitleValueTextWidget(
             title: "Email :",
             value: email,
+          ),
+          Divider(
+            thickness: 2.h,
+          ),
+          TitleValueTextWidget(
+            title: "No.HP :",
+            value: noHP,
           ),
           Divider(
             thickness: 2.h,

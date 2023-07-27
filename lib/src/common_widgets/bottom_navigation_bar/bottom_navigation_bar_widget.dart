@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icons.dart';
 
+import '../../routing/app_route.dart';
 import '../../constants/constants.dart';
 
 final selectedIndexProvider = StateProvider<int>((ref) {
@@ -22,13 +23,13 @@ class BottomNavigationBarWidget extends ConsumerWidget {
       selectedIndexNotifier.update((state) => newValue);
       switch (newValue) {
         case 0:
-          context.go('/');
+          context.go(Routes.init.path);
           break;
         case 1:
-          context.go('/pemesanan');
+          context.go(Routes.pemesananHistory.path);
           break;
         case 2:
-          context.go('/profile');
+          context.go(Routes.profile.path);
           break;
         default:
       }
@@ -53,7 +54,7 @@ class BottomNavigationBarWidget extends ConsumerWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(LineIcons.calendarPlus),
+            icon: Icon(LineIcons.calendar),
             label: 'Pemesanan',
           ),
           BottomNavigationBarItem(

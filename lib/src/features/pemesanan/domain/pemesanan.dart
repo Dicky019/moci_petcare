@@ -19,6 +19,19 @@ class Pemesanan with _$Pemesanan {
     required String status,
   }) = _Pemesanan;
 
+  factory Pemesanan.empty({
+    @Default("-") String id,
+    @Default("-") String jenisLayanan,
+    @Default("-") String namaHewan,
+    @Default("-") String kategoriHewan,
+    @Default("-") String umurHewan,
+    @Default("-") String jenisKelaminHewan,
+    @Default("-") String keluhan,
+    @Default("-") String hari,
+    @Default("-") String jam,
+    @Default("-") String status,
+  }) = _PemesananEmpty;
+
   factory Pemesanan.fromJson(Map<String, dynamic> json) =>
       _$PemesananFromJson(json);
 }
@@ -26,8 +39,7 @@ class Pemesanan with _$Pemesanan {
 @freezed
 class ListPemesanan with _$ListPemesanan {
   const ListPemesanan._();
-  factory ListPemesanan({required List<Pemesanan> list}) = _ListPemesanan;
-  // factory ListPemesanan.empty({@Default([]) List<Pemesanan> list}) = _ListPemesananEmpty;
+  factory ListPemesanan({required List<Pemesanan> values}) = _ListPemesanan;
 
   factory ListPemesanan.fromJson(Map<String, dynamic> json) =>
       _$ListPemesananFromJson(json);

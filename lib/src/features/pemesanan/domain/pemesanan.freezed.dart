@@ -15,7 +15,16 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Pemesanan _$PemesananFromJson(Map<String, dynamic> json) {
-  return _Pemesanan.fromJson(json);
+  switch (json['runtimeType']) {
+    case 'default':
+      return _Pemesanan.fromJson(json);
+    case 'empty':
+      return _PemesananEmpty.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'Pemesanan',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
@@ -30,7 +39,110 @@ mixin _$Pemesanan {
   String get hari => throw _privateConstructorUsedError;
   String get jam => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
-
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)
+        $default, {
+    required TResult Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)
+        empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)?
+        $default, {
+    TResult? Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)?
+        empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)?
+        $default, {
+    TResult Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)?
+        empty,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Pemesanan value) $default, {
+    required TResult Function(_PemesananEmpty value) empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Pemesanan value)? $default, {
+    TResult? Function(_PemesananEmpty value)? empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Pemesanan value)? $default, {
+    TResult Function(_PemesananEmpty value)? empty,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PemesananCopyWith<Pemesanan> get copyWith =>
@@ -224,8 +336,10 @@ class _$_Pemesanan extends _Pemesanan {
       required this.keluhan,
       required this.hari,
       required this.jam,
-      required this.status})
-      : super._();
+      required this.status,
+      final String? $type})
+      : $type = $type ?? 'default',
+        super._();
 
   factory _$_Pemesanan.fromJson(Map<String, dynamic> json) =>
       _$$_PemesananFromJson(json);
@@ -250,6 +364,9 @@ class _$_Pemesanan extends _Pemesanan {
   final String jam;
   @override
   final String status;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -288,6 +405,137 @@ class _$_Pemesanan extends _Pemesanan {
   @pragma('vm:prefer-inline')
   _$$_PemesananCopyWith<_$_Pemesanan> get copyWith =>
       __$$_PemesananCopyWithImpl<_$_Pemesanan>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)
+        $default, {
+    required TResult Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)
+        empty,
+  }) {
+    return $default(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
+        jenisKelaminHewan, keluhan, hari, jam, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)?
+        $default, {
+    TResult? Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)?
+        empty,
+  }) {
+    return $default?.call(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
+        jenisKelaminHewan, keluhan, hari, jam, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)?
+        $default, {
+    TResult Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)?
+        empty,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
+          jenisKelaminHewan, keluhan, hari, jam, status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Pemesanan value) $default, {
+    required TResult Function(_PemesananEmpty value) empty,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Pemesanan value)? $default, {
+    TResult? Function(_PemesananEmpty value)? empty,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Pemesanan value)? $default, {
+    TResult Function(_PemesananEmpty value)? empty,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -340,13 +588,376 @@ abstract class _Pemesanan extends Pemesanan {
       throw _privateConstructorUsedError;
 }
 
+/// @nodoc
+abstract class _$$_PemesananEmptyCopyWith<$Res>
+    implements $PemesananCopyWith<$Res> {
+  factory _$$_PemesananEmptyCopyWith(
+          _$_PemesananEmpty value, $Res Function(_$_PemesananEmpty) then) =
+      __$$_PemesananEmptyCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String jenisLayanan,
+      String namaHewan,
+      String kategoriHewan,
+      String umurHewan,
+      String jenisKelaminHewan,
+      String keluhan,
+      String hari,
+      String jam,
+      String status});
+}
+
+/// @nodoc
+class __$$_PemesananEmptyCopyWithImpl<$Res>
+    extends _$PemesananCopyWithImpl<$Res, _$_PemesananEmpty>
+    implements _$$_PemesananEmptyCopyWith<$Res> {
+  __$$_PemesananEmptyCopyWithImpl(
+      _$_PemesananEmpty _value, $Res Function(_$_PemesananEmpty) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? jenisLayanan = null,
+    Object? namaHewan = null,
+    Object? kategoriHewan = null,
+    Object? umurHewan = null,
+    Object? jenisKelaminHewan = null,
+    Object? keluhan = null,
+    Object? hari = null,
+    Object? jam = null,
+    Object? status = null,
+  }) {
+    return _then(_$_PemesananEmpty(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      jenisLayanan: null == jenisLayanan
+          ? _value.jenisLayanan
+          : jenisLayanan // ignore: cast_nullable_to_non_nullable
+              as String,
+      namaHewan: null == namaHewan
+          ? _value.namaHewan
+          : namaHewan // ignore: cast_nullable_to_non_nullable
+              as String,
+      kategoriHewan: null == kategoriHewan
+          ? _value.kategoriHewan
+          : kategoriHewan // ignore: cast_nullable_to_non_nullable
+              as String,
+      umurHewan: null == umurHewan
+          ? _value.umurHewan
+          : umurHewan // ignore: cast_nullable_to_non_nullable
+              as String,
+      jenisKelaminHewan: null == jenisKelaminHewan
+          ? _value.jenisKelaminHewan
+          : jenisKelaminHewan // ignore: cast_nullable_to_non_nullable
+              as String,
+      keluhan: null == keluhan
+          ? _value.keluhan
+          : keluhan // ignore: cast_nullable_to_non_nullable
+              as String,
+      hari: null == hari
+          ? _value.hari
+          : hari // ignore: cast_nullable_to_non_nullable
+              as String,
+      jam: null == jam
+          ? _value.jam
+          : jam // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_PemesananEmpty extends _PemesananEmpty {
+  _$_PemesananEmpty(
+      {this.id = "-",
+      this.jenisLayanan = "-",
+      this.namaHewan = "-",
+      this.kategoriHewan = "-",
+      this.umurHewan = "-",
+      this.jenisKelaminHewan = "-",
+      this.keluhan = "-",
+      this.hari = "-",
+      this.jam = "-",
+      this.status = "-",
+      final String? $type})
+      : $type = $type ?? 'empty',
+        super._();
+
+  factory _$_PemesananEmpty.fromJson(Map<String, dynamic> json) =>
+      _$$_PemesananEmptyFromJson(json);
+
+  @override
+  @JsonKey()
+  final String id;
+  @override
+  @JsonKey()
+  final String jenisLayanan;
+  @override
+  @JsonKey()
+  final String namaHewan;
+  @override
+  @JsonKey()
+  final String kategoriHewan;
+  @override
+  @JsonKey()
+  final String umurHewan;
+  @override
+  @JsonKey()
+  final String jenisKelaminHewan;
+  @override
+  @JsonKey()
+  final String keluhan;
+  @override
+  @JsonKey()
+  final String hari;
+  @override
+  @JsonKey()
+  final String jam;
+  @override
+  @JsonKey()
+  final String status;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'Pemesanan.empty(id: $id, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, hari: $hari, jam: $jam, status: $status)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PemesananEmpty &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.jenisLayanan, jenisLayanan) ||
+                other.jenisLayanan == jenisLayanan) &&
+            (identical(other.namaHewan, namaHewan) ||
+                other.namaHewan == namaHewan) &&
+            (identical(other.kategoriHewan, kategoriHewan) ||
+                other.kategoriHewan == kategoriHewan) &&
+            (identical(other.umurHewan, umurHewan) ||
+                other.umurHewan == umurHewan) &&
+            (identical(other.jenisKelaminHewan, jenisKelaminHewan) ||
+                other.jenisKelaminHewan == jenisKelaminHewan) &&
+            (identical(other.keluhan, keluhan) || other.keluhan == keluhan) &&
+            (identical(other.hari, hari) || other.hari == hari) &&
+            (identical(other.jam, jam) || other.jam == jam) &&
+            (identical(other.status, status) || other.status == status));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, jenisLayanan, namaHewan,
+      kategoriHewan, umurHewan, jenisKelaminHewan, keluhan, hari, jam, status);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PemesananEmptyCopyWith<_$_PemesananEmpty> get copyWith =>
+      __$$_PemesananEmptyCopyWithImpl<_$_PemesananEmpty>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)
+        $default, {
+    required TResult Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)
+        empty,
+  }) {
+    return empty(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
+        jenisKelaminHewan, keluhan, hari, jam, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)?
+        $default, {
+    TResult? Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)?
+        empty,
+  }) {
+    return empty?.call(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
+        jenisKelaminHewan, keluhan, hari, jam, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)?
+        $default, {
+    TResult Function(
+            String id,
+            String jenisLayanan,
+            String namaHewan,
+            String kategoriHewan,
+            String umurHewan,
+            String jenisKelaminHewan,
+            String keluhan,
+            String hari,
+            String jam,
+            String status)?
+        empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
+          jenisKelaminHewan, keluhan, hari, jam, status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Pemesanan value) $default, {
+    required TResult Function(_PemesananEmpty value) empty,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Pemesanan value)? $default, {
+    TResult? Function(_PemesananEmpty value)? empty,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Pemesanan value)? $default, {
+    TResult Function(_PemesananEmpty value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PemesananEmptyToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PemesananEmpty extends Pemesanan {
+  factory _PemesananEmpty(
+      {final String id,
+      final String jenisLayanan,
+      final String namaHewan,
+      final String kategoriHewan,
+      final String umurHewan,
+      final String jenisKelaminHewan,
+      final String keluhan,
+      final String hari,
+      final String jam,
+      final String status}) = _$_PemesananEmpty;
+  _PemesananEmpty._() : super._();
+
+  factory _PemesananEmpty.fromJson(Map<String, dynamic> json) =
+      _$_PemesananEmpty.fromJson;
+
+  @override
+  String get id;
+  @override
+  String get jenisLayanan;
+  @override
+  String get namaHewan;
+  @override
+  String get kategoriHewan;
+  @override
+  String get umurHewan;
+  @override
+  String get jenisKelaminHewan;
+  @override
+  String get keluhan;
+  @override
+  String get hari;
+  @override
+  String get jam;
+  @override
+  String get status;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PemesananEmptyCopyWith<_$_PemesananEmpty> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 ListPemesanan _$ListPemesananFromJson(Map<String, dynamic> json) {
   return _ListPemesanan.fromJson(json);
 }
 
 /// @nodoc
 mixin _$ListPemesanan {
-  List<Pemesanan> get list => throw _privateConstructorUsedError;
+  List<Pemesanan> get values => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -360,7 +971,7 @@ abstract class $ListPemesananCopyWith<$Res> {
           ListPemesanan value, $Res Function(ListPemesanan) then) =
       _$ListPemesananCopyWithImpl<$Res, ListPemesanan>;
   @useResult
-  $Res call({List<Pemesanan> list});
+  $Res call({List<Pemesanan> values});
 }
 
 /// @nodoc
@@ -376,12 +987,12 @@ class _$ListPemesananCopyWithImpl<$Res, $Val extends ListPemesanan>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? list = null,
+    Object? values = null,
   }) {
     return _then(_value.copyWith(
-      list: null == list
-          ? _value.list
-          : list // ignore: cast_nullable_to_non_nullable
+      values: null == values
+          ? _value.values
+          : values // ignore: cast_nullable_to_non_nullable
               as List<Pemesanan>,
     ) as $Val);
   }
@@ -395,7 +1006,7 @@ abstract class _$$_ListPemesananCopyWith<$Res>
       __$$_ListPemesananCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Pemesanan> list});
+  $Res call({List<Pemesanan> values});
 }
 
 /// @nodoc
@@ -409,12 +1020,12 @@ class __$$_ListPemesananCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? list = null,
+    Object? values = null,
   }) {
     return _then(_$_ListPemesanan(
-      list: null == list
-          ? _value._list
-          : list // ignore: cast_nullable_to_non_nullable
+      values: null == values
+          ? _value._values
+          : values // ignore: cast_nullable_to_non_nullable
               as List<Pemesanan>,
     ));
   }
@@ -423,24 +1034,24 @@ class __$$_ListPemesananCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ListPemesanan extends _ListPemesanan {
-  _$_ListPemesanan({required final List<Pemesanan> list})
-      : _list = list,
+  _$_ListPemesanan({required final List<Pemesanan> values})
+      : _values = values,
         super._();
 
   factory _$_ListPemesanan.fromJson(Map<String, dynamic> json) =>
       _$$_ListPemesananFromJson(json);
 
-  final List<Pemesanan> _list;
+  final List<Pemesanan> _values;
   @override
-  List<Pemesanan> get list {
-    if (_list is EqualUnmodifiableListView) return _list;
+  List<Pemesanan> get values {
+    if (_values is EqualUnmodifiableListView) return _values;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_list);
+    return EqualUnmodifiableListView(_values);
   }
 
   @override
   String toString() {
-    return 'ListPemesanan(list: $list)';
+    return 'ListPemesanan(values: $values)';
   }
 
   @override
@@ -448,13 +1059,13 @@ class _$_ListPemesanan extends _ListPemesanan {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ListPemesanan &&
-            const DeepCollectionEquality().equals(other._list, _list));
+            const DeepCollectionEquality().equals(other._values, _values));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_list));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_values));
 
   @JsonKey(ignore: true)
   @override
@@ -471,7 +1082,7 @@ class _$_ListPemesanan extends _ListPemesanan {
 }
 
 abstract class _ListPemesanan extends ListPemesanan {
-  factory _ListPemesanan({required final List<Pemesanan> list}) =
+  factory _ListPemesanan({required final List<Pemesanan> values}) =
       _$_ListPemesanan;
   _ListPemesanan._() : super._();
 
@@ -479,7 +1090,7 @@ abstract class _ListPemesanan extends ListPemesanan {
       _$_ListPemesanan.fromJson;
 
   @override
-  List<Pemesanan> get list;
+  List<Pemesanan> get values;
   @override
   @JsonKey(ignore: true)
   _$$_ListPemesananCopyWith<_$_ListPemesanan> get copyWith =>

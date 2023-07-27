@@ -32,7 +32,7 @@ class InputFormWidget extends StatelessWidget {
               return Column(
                 children: [
                   widget,
-                  Gap.h16,
+                  Gap.h12,
                 ],
               );
             },
@@ -43,7 +43,7 @@ class InputFormWidget extends StatelessWidget {
             isLoading: isLoading,
             onTap: onSubmit,
           ),
-          // Gap.h8,
+          Gap.h8,
         ],
       ),
     );

@@ -7,14 +7,16 @@ class TextFieldWidget extends StatelessWidget {
     super.key,
     required this.textEditingController,
     required this.hintText,
-    this.validator, this.onClick,
+    this.validator,
+    this.onClick,
   }) : _isSearch = false;
 
   const TextFieldWidget.search({
     super.key,
     required this.textEditingController,
     required this.hintText,
-    this.validator, this.onClick,
+    this.validator,
+    this.onClick,
   }) : _isSearch = true;
 
   final TextEditingController textEditingController;
@@ -23,14 +25,7 @@ class TextFieldWidget extends StatelessWidget {
   final bool _isSearch;
   final VoidCallback? onClick;
 
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: textEditingController,
-      validator: validator,
-      onTap: onClick,
-      readOnly: onClick != null,
-      decoration: InputDecoration(
+  static inputDecoration(String hintText, bool isSearch) => InputDecoration(
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
           borderSide: BorderSide(
@@ -40,17 +35,25 @@ class TextFieldWidget extends StatelessWidget {
         ),
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
-          borderSide: BorderSide(
-            width: 2,
-            color: ColorApp.purpleLight // Color Primary,
-          ),
+          borderSide:
+              BorderSide(width: 2, color: ColorApp.purpleLight // Color Primary,
+                  ),
         ),
         hintText: hintText,
         hintStyle: const TextStyle(
           color: Colors.black,
         ),
-        suffixIcon: _isSearch == true ? const Icon(Icons.search) : null,
-      ),
+        suffixIcon: isSearch == true ? const Icon(Icons.search) : null,
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: textEditingController,
+      validator: validator,
+      onTap: onClick,
+      readOnly: onClick != null,
+      decoration: inputDecoration(hintText, _isSearch),
     );
   }
 }

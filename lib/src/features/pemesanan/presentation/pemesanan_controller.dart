@@ -1,13 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:moci_petcare/src/features/pemesanan/data/request/pemesanan_request.dart';
-import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan.dart';
-import 'package:moci_petcare/src/features/pemesanan/presentation/pemesanan_state.dart';
 
+import '../data/request/pemesanan_request.dart';
 import '../application/pemesanan_service.dart';
+import '../domain/pemesanan.dart';
+import 'pemesanan_state.dart';
 
-class PemesananControllerNotifier extends StateNotifier<PemesananState> {
-  PemesananControllerNotifier(this._pemesananService)
+class PemesananAddController extends StateNotifier<PemesananState> {
+  PemesananAddController(this._pemesananService)
       : super(const PemesananState());
 
   final PemesananService _pemesananService;
@@ -66,25 +68,76 @@ class PemesananControllerNotifier extends StateNotifier<PemesananState> {
       value: const AsyncData(null),
     );
   }
+
+  void fetchEditPemesanan(String id) async {
+    state = state.copyWith(value: const AsyncLoading());
+    final pemesananRequest = PemesananRequest(
+      jenisLayanan: jenisLayanan,
+      namaHewan: namaHewan,
+      kategoriHewan: kategoriHewan,
+      umurHewan: umurHewan,
+      jenisKelaminHewan: jenisKelaminHewan,
+      keluhan: keluhan,
+      noHP: noHP,
+      hari: hari,
+      jam: jam,
+    );
+
+    final result = await _pemesananService.editPemesanan(pemesananRequest,id);
+
+    result.when(
+      success: (data) {
+        state = state.copyWith(
+          value: const AsyncData(true),
+        );
+      },
+      failure: (error, stackTrace) {
+        state = state.copyWith(
+          value: AsyncValue.error(error, stackTrace),
+        );
+      },
+    );
+
+    state = state.copyWith(
+      value: const AsyncData(null),
+    );
+  }
 }
 
-final pemesananControllerProvider = StateNotifierProvider.autoDispose<
-    PemesananControllerNotifier, PemesananState>(
+final pemesananAddControllerProvider = StateNotifierProvider.autoDispose<
+    PemesananAddController, PemesananState>(
   (ref) {
-    return PemesananControllerNotifier(
+    return PemesananAddController(
       ref.read(pemesananServiceProvider),
     );
   },
 );
 
-final listPemesananControllerProvider =
-    FutureProvider.autoDispose<ListPemesanan>(
+
+final pemesananListFutureProvider = FutureProvider<ListPemesanan>(
   (ref) async {
     final data = await ref.read(pemesananServiceProvider).getAllPemesanan();
     return data.when(
       success: (data) => data,
       failure: (error, stackTrace) {
-        return ListPemesanan(list: []);
+        return ListPemesanan(values: []);
+      },
+    );
+  },
+);
+
+
+final pemesananDetailFutureProvider =
+    FutureProvider.autoDispose.family<Pemesanan, String>(
+  (ref, id) async {
+    final data = await ref.read(pemesananServiceProvider).getPemesanan(id);
+    return data.when(
+      success: (data) => data,
+      failure: (error, stackTrace) {
+        log(error.toString());
+        return Pemesanan.empty(
+          id: id,
+        );
       },
     );
   },

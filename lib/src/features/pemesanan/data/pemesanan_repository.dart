@@ -15,13 +15,36 @@ class PemesananRepository {
   Future<Result<PemesananResponse>> createPemesanan(
     PemesananRequest pemesananRequest,
   ) async {
-    final result = await _pemesananApi.pemesanan(pemesananRequest);
+    final result = await _pemesananApi.createPemesanan(pemesananRequest);
+
+    return result;
+  }
+
+  Future<Result<PemesananResponse>> editPemesanan(
+    PemesananRequest pemesananRequest,
+    String id,
+  ) async {
+    final result = await _pemesananApi.editPemesanan(pemesananRequest, id);
+
+    return result;
+  }
+
+  Future<Result<PemesananResponse>> deletePemesanan(
+    String id,
+  ) async {
+    final result = await _pemesananApi.deletePemesanan(id);
 
     return result;
   }
 
   Future<Result<ListPemesananResponse>> getAllPemesanan() async {
     final result = await _pemesananApi.getAllPemesanan();
+
+    return result;
+  }
+
+  Future<Result<PemesananResponse>> getPemesanan(String id) async {
+    final result = await _pemesananApi.getPemesanan(id);
 
     return result;
   }
