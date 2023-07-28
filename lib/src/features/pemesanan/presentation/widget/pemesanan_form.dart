@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moci_petcare/src/features/authentication/application/authentication_service.dart';
 import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan.dart';
+import 'package:moci_petcare/src/utils/extension/dynamic_extension.dart';
+import 'package:moci_petcare/src/utils/extension/list_extension.dart';
 
 import '/src/common_widgets/common_widgets.dart';
 import '/src/constants/constants.dart';
@@ -21,7 +23,7 @@ class PemesananFormWidget extends ConsumerWidget {
     WidgetRef ref,
   ) {
     ref.listen<PemesananState>(
-      pemesananAddControllerProvider,
+      pemesananControllerProvider,
       (_, state) {
         state.value.whenOrNull(
           data: (data) {
@@ -40,11 +42,12 @@ class PemesananFormWidget extends ConsumerWidget {
     );
   }
 
-  void _init(PemesananAddController controller, WidgetRef ref) {
+  void _init(PemesananController controller, WidgetRef ref) {
     final authService = ref.read(authServiceProvider);
+
     controller.noHPController.text = authService.getCurrentUser()?.noHP ?? "";
 
-    if (pemesanan == null) {
+    if (pemesanan.isNull) {
       return;
     }
 
@@ -60,8 +63,8 @@ class PemesananFormWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.read(pemesananAddControllerProvider.notifier);
-    final state = ref.watch(pemesananAddControllerProvider);
+    final controller = ref.read(pemesananControllerProvider.notifier);
+    final state = ref.watch(pemesananControllerProvider);
 
     _createPemesananListen(context, ref);
     _init(controller, ref);
@@ -71,9 +74,11 @@ class PemesananFormWidget extends ConsumerWidget {
         Expanded(
           child: SingleChildScrollView(
             child: InputFormWidget(
-              title: pemesanan != null ? "Create" : "Edit",
+              title: pemesanan.isNull ? "Create" : "Edit",
               isLoading: state.isLoading,
-              onSubmit: pemesanan != null ?  controller.fetchCreatePemesanan : controller.fetchCreatePemesanan,
+              onSubmit: pemesanan.isNull
+                  ? controller.fetchCreatePemesanan
+                  : () => controller.fetchEditPemesanan(pemesanan!.id),
               keyForm: controller.keyForm,
               children: [
                 TextFieldWidget(
@@ -84,9 +89,10 @@ class PemesananFormWidget extends ConsumerWidget {
                   textEditingController: controller.umurHewanController,
                   hintText: "Umur Hewan",
                 ),
-                TextFieldWidget(
-                  textEditingController: controller.jenisKelaminHewanController,
-                  hintText: "Jenis Kelamin Hewan",
+                TextFieldDropdownWidget(
+                  controller: controller.jenisKelaminHewanController,
+                  hintText: 'Jenis Kelamin Hewan',
+                  dropdownItems: controller.listJenisKelamin.dropdownItems(),
                 ),
                 TextFieldWidget(
                   textEditingController: controller.kategoriHewanController,
@@ -96,9 +102,11 @@ class PemesananFormWidget extends ConsumerWidget {
                   textEditingController: controller.noHPController,
                   hintText: "No HP",
                 ),
-                TextFieldWidget(
-                  textEditingController: controller.jenisLayananController,
+                TextFieldDropdownWidget(
+                  controller: controller.jenisLayananController,
                   hintText: "Jenis Layanan",
+                  dropdownItems: controller.listJenisLayanan.dropdownItems(),
+                  onChanged: controller.onChangeJenisLayanan,
                 ),
                 Row(
                   children: [
@@ -112,7 +120,7 @@ class PemesananFormWidget extends ConsumerWidget {
                       child: TextFieldDropdownWidget(
                         controller: controller.jamController,
                         hintText: 'Jam',
-                        dropdownItems: dropdownItems,
+                        dropdownItems: controller.getlist,
                       ),
                     ),
                   ],
@@ -127,15 +135,5 @@ class PemesananFormWidget extends ConsumerWidget {
         ),
       ],
     );
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItems {
-    const menuItems = [
-      DropdownMenuItem(value: "USA", child: Text("USA")),
-      DropdownMenuItem(value: "Canada", child: Text("Canada")),
-      DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
-      DropdownMenuItem(value: "England", child: Text("England")),
-    ];
-    return menuItems;
   }
 }

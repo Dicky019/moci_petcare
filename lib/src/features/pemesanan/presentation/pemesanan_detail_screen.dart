@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../../../common_widgets/common_widgets.dart';
 import '../../../constants/constants.dart';
 import '../../../routing/app_route.dart';
-import 'widget/pemesanan_list.dart';
+import '../domain/pemesanan.dart';
+import 'widget/pemesanan_detail.dart';
+import 'pemesanan_controller.dart';
 
 class PemesananDetailScreen extends ConsumerWidget {
   final String id;
@@ -16,10 +18,13 @@ class PemesananDetailScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: ColorApp.pureWhite,
       appBar: AppBarWidget(
-        title: "Pemesanan",
+        title: "Detail Pemesanan",
         onClick: () => context.go(Routes.pemesananHistory.path),
       ),
-      body: const PemesananList(),
+      body: StateWidget<Pemesanan>(
+        stream: ref.watch(pemesananDetailFutureProvider(id)),
+        data: (pemesanan) => PemesananDetailWidget(pemesanan: pemesanan),
+      ),
     );
   }
 }

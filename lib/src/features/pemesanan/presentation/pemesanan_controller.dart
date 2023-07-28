@@ -2,15 +2,16 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:moci_petcare/src/utils/extension/dynamic_extension.dart';
+import 'package:moci_petcare/src/utils/extension/list_extension.dart';
 
 import '../data/request/pemesanan_request.dart';
 import '../application/pemesanan_service.dart';
 import '../domain/pemesanan.dart';
 import 'pemesanan_state.dart';
 
-class PemesananAddController extends StateNotifier<PemesananState> {
-  PemesananAddController(this._pemesananService)
-      : super(const PemesananState());
+class PemesananController extends StateNotifier<PemesananState> {
+  PemesananController(this._pemesananService) : super(const PemesananState());
 
   final PemesananService _pemesananService;
 
@@ -34,6 +35,41 @@ class PemesananAddController extends StateNotifier<PemesananState> {
   String get jam => jamController.text;
   String get jenisLayanan => jenisLayananController.text;
   String get keluhan => keluhanController.text;
+
+  final listJamKesehatanKonsultasi = [
+    "jam09_10",
+    "jam10_11",
+    "jam12_13",
+    "jam13_14",
+    "jam14_15",
+    "jam15_16",
+    "jam16_17",
+    "jam17_18",
+    "jam18_19",
+    "jam19_20",
+    "jam20_21",
+  ];
+  final listJamGrooming = ["jam09_12", "jam10_14", "jam14_17", "jam16_19"];
+
+  final listJenisLayanan = ["grooming", "kesehatan", "konsultasi"];
+  final listJenisKelamin = ["jantan", "betina"];
+
+  List<DropdownMenuItem<String>> get getlist {
+    final list = (state.jenisLayanan == JenisLayanan.grooming
+        ? listJamGrooming
+        : listJamKesehatanKonsultasi);
+    return list.dropdownItems(true);
+  }
+
+  void onChangeJenisLayanan(String? value) {
+    if (value.isNull) {
+      return;
+    }
+    final jenisLayanan =
+        JenisLayanan.values.firstWhere((element) => element.name == value);
+
+    state = state.copyWith(jenisLayanan: jenisLayanan);
+  }
 
   void fetchCreatePemesanan() async {
     state = state.copyWith(value: const AsyncLoading());
@@ -83,7 +119,7 @@ class PemesananAddController extends StateNotifier<PemesananState> {
       jam: jam,
     );
 
-    final result = await _pemesananService.editPemesanan(pemesananRequest,id);
+    final result = await _pemesananService.editPemesanan(pemesananRequest, id);
 
     result.when(
       success: (data) {
@@ -104,15 +140,14 @@ class PemesananAddController extends StateNotifier<PemesananState> {
   }
 }
 
-final pemesananAddControllerProvider = StateNotifierProvider.autoDispose<
-    PemesananAddController, PemesananState>(
+final pemesananControllerProvider =
+    StateNotifierProvider.autoDispose<PemesananController, PemesananState>(
   (ref) {
-    return PemesananAddController(
+    return PemesananController(
       ref.read(pemesananServiceProvider),
     );
   },
 );
-
 
 final pemesananListFutureProvider = FutureProvider<ListPemesanan>(
   (ref) async {
@@ -125,7 +160,6 @@ final pemesananListFutureProvider = FutureProvider<ListPemesanan>(
     );
   },
 );
-
 
 final pemesananDetailFutureProvider =
     FutureProvider.autoDispose.family<Pemesanan, String>(

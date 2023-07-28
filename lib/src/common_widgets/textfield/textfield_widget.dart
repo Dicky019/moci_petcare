@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
@@ -8,7 +9,7 @@ class TextFieldWidget extends StatelessWidget {
     required this.textEditingController,
     required this.hintText,
     this.validator,
-    this.onClick,
+    this.onClick, this.onChange,
   }) : _isSearch = false;
 
   const TextFieldWidget.search({
@@ -16,12 +17,13 @@ class TextFieldWidget extends StatelessWidget {
     required this.textEditingController,
     required this.hintText,
     this.validator,
-    this.onClick,
+    this.onClick, this.onChange,
   }) : _isSearch = true;
 
   final TextEditingController textEditingController;
   final String hintText;
-  final String? Function(String?)? validator;
+  final String? Function(String? value)? validator;
+  final Function(String value)? onChange;
   final bool _isSearch;
   final VoidCallback? onClick;
 
@@ -52,6 +54,7 @@ class TextFieldWidget extends StatelessWidget {
       controller: textEditingController,
       validator: validator,
       onTap: onClick,
+      onChanged: onChange,
       readOnly: onClick != null,
       decoration: inputDecoration(hintText, _isSearch),
     );

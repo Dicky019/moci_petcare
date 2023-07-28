@@ -14,6 +14,9 @@ class PemesananList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    void toDetailPage(String id) => context.go(Routes.pemesananDetailPath(id));
+    void toEditPage(String id) => context.go(Routes.pemesananEditPath(id));
+
     return StateWidget<ListPemesanan>(
       stream: ref.watch(pemesananListFutureProvider),
       loadingColor: ColorApp.purpleDark,
@@ -38,12 +41,10 @@ class PemesananList extends ConsumerWidget {
                 title: title,
                 subtitle: subtitle,
                 trailing: IconButton.filledTonal(
-                  onPressed: () => context.go(Routes.pemesananEditPath(id)),
+                  onPressed: () => toEditPage(id),
                   icon: const Icon(LineIcons.editAlt),
                 ),
-                onTap: () {
-                  context.go(Routes.pemesananDetail.path);
-                },
+                onTap: () => toDetailPage(id),
               ),
               if (index == listPemesanan.values.length - 1) Gap.h16,
             ],
