@@ -29,7 +29,7 @@ class PemesananDetailWidget extends StatelessWidget {
         ),
         TitleAndValue(
           title: "Tanggal :".toUpperCase(),
-          value: "${pemesanan.hari}\n${pemesanan.jam}".toUpperCase(),
+          value: "${pemesanan.tanggal}\n${pemesanan.jam}".toUpperCase(),
         ),
         const Divider(
           color: ColorApp.purpleBlue,

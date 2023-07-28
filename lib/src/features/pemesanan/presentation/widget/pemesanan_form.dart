@@ -1,16 +1,14 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:moci_petcare/src/features/authentication/application/authentication_service.dart';
-import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan.dart';
-import 'package:moci_petcare/src/utils/extension/dynamic_extension.dart';
-import 'package:moci_petcare/src/utils/extension/list_extension.dart';
 
 import '/src/common_widgets/common_widgets.dart';
 import '/src/constants/constants.dart';
 import '/src/services/remote/config/config.dart';
 import '/src/utils/extension/build_context_extension.dart';
-
+import '../../domain/pemesanan.dart';
+import '../../../../utils/extension/dynamic_extension.dart';
+import '../../../../utils/extension/list_extension.dart';
 import '../pemesanan_controller.dart';
 import '../pemesanan_state.dart';
 
@@ -42,11 +40,7 @@ class PemesananFormWidget extends ConsumerWidget {
     );
   }
 
-  void _init(PemesananController controller, WidgetRef ref) {
-    final authService = ref.read(authServiceProvider);
-
-    controller.noHPController.text = authService.getCurrentUser()?.noHP ?? "";
-
+  void _init(PemesananController controller) {
     if (pemesanan.isNull) {
       return;
     }
@@ -56,7 +50,7 @@ class PemesananFormWidget extends ConsumerWidget {
     controller.jenisKelaminHewanController.text = pemesanan!.jenisKelaminHewan;
     controller.kategoriHewanController.text = pemesanan!.kategoriHewan;
     controller.jenisLayananController.text = pemesanan!.jenisLayanan;
-    controller.hariController.text = pemesanan!.hari;
+    controller.tanggalController.text = pemesanan!.tanggal;
     controller.jamController.text = pemesanan!.jam;
     controller.keluhanController.text = pemesanan!.keluhan;
   }
@@ -67,7 +61,7 @@ class PemesananFormWidget extends ConsumerWidget {
     final state = ref.watch(pemesananControllerProvider);
 
     _createPemesananListen(context, ref);
-    _init(controller, ref);
+    _init(controller);
 
     return Column(
       children: [
@@ -76,9 +70,7 @@ class PemesananFormWidget extends ConsumerWidget {
             child: InputFormWidget(
               title: pemesanan.isNull ? "Create" : "Edit",
               isLoading: state.isLoading,
-              onSubmit: pemesanan.isNull
-                  ? controller.fetchCreatePemesanan
-                  : () => controller.fetchEditPemesanan(pemesanan!.id),
+              onSubmit: () => controller.fetchPemesanan(pemesanan?.id),
               keyForm: controller.keyForm,
               children: [
                 TextFieldWidget(
@@ -112,7 +104,7 @@ class PemesananFormWidget extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: TextFieldWeekWidget(
-                        controller: controller.hariController,
+                        controller: controller.tanggalController,
                       ),
                     ),
                     Gap.w12,
@@ -120,7 +112,7 @@ class PemesananFormWidget extends ConsumerWidget {
                       child: TextFieldDropdownWidget(
                         controller: controller.jamController,
                         hintText: 'Jam',
-                        dropdownItems: controller.getlist,
+                        dropdownItems: controller.getlistJamByJenisLayanan,
                       ),
                     ),
                   ],

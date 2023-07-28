@@ -2,18 +2,26 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:moci_petcare/src/utils/extension/dynamic_extension.dart';
-import 'package:moci_petcare/src/utils/extension/list_extension.dart';
 
+import '../../authentication/application/authentication_service.dart';
+import '../../../utils/extension/dynamic_extension.dart';
+import '../../../utils/extension/list_extension.dart';
 import '../data/request/pemesanan_request.dart';
 import '../application/pemesanan_service.dart';
 import '../domain/pemesanan.dart';
 import 'pemesanan_state.dart';
 
 class PemesananController extends StateNotifier<PemesananState> {
-  PemesananController(this._pemesananService) : super(const PemesananState());
+  PemesananController(this._pemesananService, this._ref)
+      : super(const PemesananState());
 
   final PemesananService _pemesananService;
+  final StateNotifierProviderRef<PemesananController, PemesananState> _ref;
+
+  void invalidateList() async {
+    _ref.invalidate(pemesananListFutureProvider);
+    _ref.invalidate(pemesananControllerProvider);
+  }
 
   final jenisLayananController = TextEditingController();
   final namaHewanController = TextEditingController();
@@ -22,7 +30,7 @@ class PemesananController extends StateNotifier<PemesananState> {
   final jenisKelaminHewanController = TextEditingController();
   final keluhanController = TextEditingController();
   final noHPController = TextEditingController();
-  final hariController = TextEditingController();
+  final tanggalController = TextEditingController();
   final jamController = TextEditingController();
   final GlobalKey<FormState> keyForm = GlobalKey<FormState>();
 
@@ -31,7 +39,7 @@ class PemesananController extends StateNotifier<PemesananState> {
   String get jenisKelaminHewan => jenisKelaminHewanController.text;
   String get umurHewan => umurHewanController.text;
   String get noHP => noHPController.text;
-  String get hari => hariController.text;
+  String get tanggal => tanggalController.text;
   String get jam => jamController.text;
   String get jenisLayanan => jenisLayananController.text;
   String get keluhan => keluhanController.text;
@@ -54,7 +62,7 @@ class PemesananController extends StateNotifier<PemesananState> {
   final listJenisLayanan = ["grooming", "kesehatan", "konsultasi"];
   final listJenisKelamin = ["jantan", "betina"];
 
-  List<DropdownMenuItem<String>> get getlist {
+  List<DropdownMenuItem<String>> get getlistJamByJenisLayanan {
     final list = (state.jenisLayanan == JenisLayanan.grooming
         ? listJamGrooming
         : listJamKesehatanKonsultasi);
@@ -71,41 +79,21 @@ class PemesananController extends StateNotifier<PemesananState> {
     state = state.copyWith(jenisLayanan: jenisLayanan);
   }
 
-  void fetchCreatePemesanan() async {
-    state = state.copyWith(value: const AsyncLoading());
-    final pemesananRequest = PemesananRequest(
-      jenisLayanan: jenisLayanan,
-      namaHewan: namaHewan,
-      kategoriHewan: kategoriHewan,
-      umurHewan: umurHewan,
-      jenisKelaminHewan: jenisKelaminHewan,
-      keluhan: keluhan,
-      noHP: noHP,
-      hari: hari,
-      jam: jam,
-    );
-
-    final result = await _pemesananService.createPemesanan(pemesananRequest);
+  void deletePemesanan(String id) async {
+    final result = await _pemesananService.deletePemesanan(id);
 
     result.when(
       success: (data) {
-        state = state.copyWith(
-          value: const AsyncData(true),
-        );
+        invalidateList();
       },
       failure: (error, stackTrace) {
-        state = state.copyWith(
-          value: AsyncValue.error(error, stackTrace),
-        );
+        // invalidateList();
+        log(error.toString());
       },
-    );
-
-    state = state.copyWith(
-      value: const AsyncData(null),
     );
   }
 
-  void fetchEditPemesanan(String id) async {
+  void fetchPemesanan(String? id) async {
     state = state.copyWith(value: const AsyncLoading());
     final pemesananRequest = PemesananRequest(
       jenisLayanan: jenisLayanan,
@@ -115,17 +103,20 @@ class PemesananController extends StateNotifier<PemesananState> {
       jenisKelaminHewan: jenisKelaminHewan,
       keluhan: keluhan,
       noHP: noHP,
-      hari: hari,
+      tanggal: tanggal,
       jam: jam,
     );
 
-    final result = await _pemesananService.editPemesanan(pemesananRequest, id);
+    final result = id.isNull
+        ? await _pemesananService.createPemesanan(pemesananRequest)
+        : await _pemesananService.editPemesanan(pemesananRequest, id!);
 
     result.when(
       success: (data) {
         state = state.copyWith(
           value: const AsyncData(true),
         );
+        // invalidateList();
       },
       failure: (error, stackTrace) {
         state = state.copyWith(
@@ -143,9 +134,15 @@ class PemesananController extends StateNotifier<PemesananState> {
 final pemesananControllerProvider =
     StateNotifierProvider.autoDispose<PemesananController, PemesananState>(
   (ref) {
-    return PemesananController(
+    final pemesananController = PemesananController(
       ref.read(pemesananServiceProvider),
+      ref,
     );
+
+    pemesananController.noHPController.text =
+        ref.read(authServiceProvider).getCurrentUser()?.noHP ?? "-";
+
+    return pemesananController;
   },
 );
 

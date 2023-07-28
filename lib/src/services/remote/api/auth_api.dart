@@ -26,7 +26,7 @@ class AuthApi {
         'email': sign.user?.email,
         'image': sign.user?.photoURL,
         'name': sign.user?.displayName,
-        'noHP': sign.user?.phoneNumber ?? "-",
+        // 'noHP': sign.user?.phoneNumber ?? "-",
       };
 
       log(data.toString(), name: "data");

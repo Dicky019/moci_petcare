@@ -27,7 +27,7 @@ class TextFieldWeekWidget extends StatelessWidget {
           selectableBitwiseOperator: BitwiseOperator.or,
         ).show();
         if (selectedDay != null) {
-          final result = DateFormat("EEEE, d MMMM").format(selectedDay);
+          final result = DateFormat("EEEE, d MMMM y").format(selectedDay);
           controller.text = result;
         }
       },

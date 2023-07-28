@@ -28,7 +28,7 @@ mixin _$PemesananRequest {
   String get keluhan => throw _privateConstructorUsedError;
   String get noHP => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
-  String get hari => throw _privateConstructorUsedError;
+  String get tanggal => throw _privateConstructorUsedError;
   String get jam => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ abstract class $PemesananRequestCopyWith<$Res> {
       String keluhan,
       String noHP,
       String status,
-      String hari,
+      String tanggal,
       String jam});
 }
 
@@ -77,7 +77,7 @@ class _$PemesananRequestCopyWithImpl<$Res, $Val extends PemesananRequest>
     Object? keluhan = null,
     Object? noHP = null,
     Object? status = null,
-    Object? hari = null,
+    Object? tanggal = null,
     Object? jam = null,
   }) {
     return _then(_value.copyWith(
@@ -113,9 +113,9 @@ class _$PemesananRequestCopyWithImpl<$Res, $Val extends PemesananRequest>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      hari: null == hari
-          ? _value.hari
-          : hari // ignore: cast_nullable_to_non_nullable
+      tanggal: null == tanggal
+          ? _value.tanggal
+          : tanggal // ignore: cast_nullable_to_non_nullable
               as String,
       jam: null == jam
           ? _value.jam
@@ -142,7 +142,7 @@ abstract class _$$_PemesananRequestCopyWith<$Res>
       String keluhan,
       String noHP,
       String status,
-      String hari,
+      String tanggal,
       String jam});
 }
 
@@ -165,7 +165,7 @@ class __$$_PemesananRequestCopyWithImpl<$Res>
     Object? keluhan = null,
     Object? noHP = null,
     Object? status = null,
-    Object? hari = null,
+    Object? tanggal = null,
     Object? jam = null,
   }) {
     return _then(_$_PemesananRequest(
@@ -201,9 +201,9 @@ class __$$_PemesananRequestCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      hari: null == hari
-          ? _value.hari
-          : hari // ignore: cast_nullable_to_non_nullable
+      tanggal: null == tanggal
+          ? _value.tanggal
+          : tanggal // ignore: cast_nullable_to_non_nullable
               as String,
       jam: null == jam
           ? _value.jam
@@ -225,7 +225,7 @@ class _$_PemesananRequest implements _PemesananRequest {
       required this.keluhan,
       required this.noHP,
       this.status = "pending",
-      required this.hari,
+      required this.tanggal,
       required this.jam});
 
   factory _$_PemesananRequest.fromJson(Map<String, dynamic> json) =>
@@ -249,13 +249,13 @@ class _$_PemesananRequest implements _PemesananRequest {
   @JsonKey()
   final String status;
   @override
-  final String hari;
+  final String tanggal;
   @override
   final String jam;
 
   @override
   String toString() {
-    return 'PemesananRequest(jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, noHP: $noHP, status: $status, hari: $hari, jam: $jam)';
+    return 'PemesananRequest(jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, noHP: $noHP, status: $status, tanggal: $tanggal, jam: $jam)';
   }
 
   @override
@@ -276,7 +276,7 @@ class _$_PemesananRequest implements _PemesananRequest {
             (identical(other.keluhan, keluhan) || other.keluhan == keluhan) &&
             (identical(other.noHP, noHP) || other.noHP == noHP) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.hari, hari) || other.hari == hari) &&
+            (identical(other.tanggal, tanggal) || other.tanggal == tanggal) &&
             (identical(other.jam, jam) || other.jam == jam));
   }
 
@@ -292,7 +292,7 @@ class _$_PemesananRequest implements _PemesananRequest {
       keluhan,
       noHP,
       status,
-      hari,
+      tanggal,
       jam);
 
   @JsonKey(ignore: true)
@@ -319,7 +319,7 @@ abstract class _PemesananRequest implements PemesananRequest {
       required final String keluhan,
       required final String noHP,
       final String status,
-      required final String hari,
+      required final String tanggal,
       required final String jam}) = _$_PemesananRequest;
 
   factory _PemesananRequest.fromJson(Map<String, dynamic> json) =
@@ -342,7 +342,7 @@ abstract class _PemesananRequest implements PemesananRequest {
   @override
   String get status;
   @override
-  String get hari;
+  String get tanggal;
   @override
   String get jam;
   @override

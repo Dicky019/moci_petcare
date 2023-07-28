@@ -17,7 +17,7 @@ class PemesananApi {
         Endpoint.pemesanan,
         data: pemesananRequest.toJson(),
       );
-      return Result.success(response['data']);
+      return Result.success(PemesananResponse.fromJson(response['data']));
     } catch (e, st) {
       return Result.failure(
         NetworkExceptions.getDioException(e, st),

@@ -14,7 +14,7 @@ class Pemesanan with _$Pemesanan {
     required String umurHewan,
     required String jenisKelaminHewan,
     required String keluhan,
-    required String hari,
+    required String tanggal,
     required String jam,
     required String status,
   }) = _Pemesanan;
@@ -27,7 +27,7 @@ class Pemesanan with _$Pemesanan {
     @Default("-") String umurHewan,
     @Default("-") String jenisKelaminHewan,
     @Default("-") String keluhan,
-    @Default("-") String hari,
+    @Default("-") String tanggal,
     @Default("-") String jam,
     @Default("-") String status,
   }) = _PemesananEmpty;

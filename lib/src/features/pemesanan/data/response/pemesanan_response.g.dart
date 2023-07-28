@@ -19,7 +19,7 @@ _$_PemesananResponse _$$_PemesananResponseFromJson(Map<String, dynamic> json) =>
       jenisKelaminHewan: json['jenisKelaminHewan'] as String?,
       keluhan: json['keluhan'] as String?,
       status: json['status'] as String?,
-      hari: json['hari'] as String?,
+      tanggal: json['tanggal'] as String?,
       jam: json['jam'] as String?,
     );
 
@@ -37,7 +37,7 @@ Map<String, dynamic> _$$_PemesananResponseToJson(
       'jenisKelaminHewan': instance.jenisKelaminHewan,
       'keluhan': instance.keluhan,
       'status': instance.status,
-      'hari': instance.hari,
+      'tanggal': instance.tanggal,
       'jam': instance.jam,
     };
 

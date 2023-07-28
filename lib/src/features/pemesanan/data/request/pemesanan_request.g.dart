@@ -16,7 +16,7 @@ _$_PemesananRequest _$$_PemesananRequestFromJson(Map<String, dynamic> json) =>
       keluhan: json['keluhan'] as String,
       noHP: json['noHP'] as String,
       status: json['status'] as String? ?? "pending",
-      hari: json['hari'] as String,
+      tanggal: json['tanggal'] as String,
       jam: json['jam'] as String,
     );
 
@@ -30,6 +30,6 @@ Map<String, dynamic> _$$_PemesananRequestToJson(_$_PemesananRequest instance) =>
       'keluhan': instance.keluhan,
       'noHP': instance.noHP,
       'status': instance.status,
-      'hari': instance.hari,
+      'tanggal': instance.tanggal,
       'jam': instance.jam,
     };

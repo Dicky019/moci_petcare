@@ -13,7 +13,7 @@ class PemesananMapper {
         return Result.success(
           Pemesanan(
             id: data.id.toEmpty,
-            hari: data.hari.toEmpty,
+            tanggal: data.tanggal.toEmpty,
             jam: data.jam.toEmpty,
             jenisKelaminHewan: data.jenisKelaminHewan.toEmpty,
             jenisLayanan: data.jenisLayanan.toEmpty,
@@ -45,7 +45,7 @@ class PemesananMapper {
                 umurHewan: e.umurHewan.toEmpty,
                 jenisKelaminHewan: e.jenisKelaminHewan.toEmpty,
                 keluhan: e.keluhan.toEmpty,
-                hari: e.hari.toEmpty,
+                tanggal: e.tanggal.toEmpty,
                 jam: e.jam.toEmpty,
                 status: e.status.toEmpty,
               ),

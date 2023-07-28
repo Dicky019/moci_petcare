@@ -21,6 +21,16 @@ class PemesananService {
     return result;
   }
 
+  Future<Result<Pemesanan>> deletePemesanan(
+    String id,
+  ) async {
+    final response = await pemesananRepository.deletePemesanan(
+      id,
+    );
+    final result = PemesananMapper.mapToPemesanan(response);
+    return result;
+  }
+
   Future<Result<Pemesanan>> editPemesanan(
     PemesananRequest pemesananRequest,
     String id,

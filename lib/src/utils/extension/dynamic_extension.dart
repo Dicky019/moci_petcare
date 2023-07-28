@@ -7,6 +7,9 @@ extension XDynamic on dynamic {
 
   /// [INFO]
   /// Use this for check if its null
+  /// bool get isNull {
+  ///  return this == null;
+  /// }
   bool get isNull {
     return this == null;
   }

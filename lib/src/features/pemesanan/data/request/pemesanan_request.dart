@@ -16,7 +16,7 @@ class PemesananRequest with _$PemesananRequest {
     required String keluhan,
     required String noHP,
     @Default("pending") String status,
-    required String hari,
+    required String tanggal,
     required String jam,
   }) = _PemesananRequest;
 
