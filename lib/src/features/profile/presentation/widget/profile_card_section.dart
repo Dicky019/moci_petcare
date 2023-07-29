@@ -59,7 +59,7 @@ class ProfileCardSection extends ConsumerWidget {
           ),
           TitleValueTextWidget(
             title: "No.HP :",
-            value: noHP,
+            value: noHP.isNullOrEmpty ? "-" : noHP,
           ),
           Divider(
             thickness: 2.h,

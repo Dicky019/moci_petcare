@@ -20,7 +20,7 @@ class HiveService {
     // check if hiveJson is empty then just return null
     try {
       final hiveJson = hiveUser.get(HiveKey.user);
-      if (hiveJson.isNullOrEmpty()) return null;
+      if (hiveJson.isNullOrEmpty) return null;
 
       final userJson = json.decode(hiveJson!);
       return User.fromJson(userJson);

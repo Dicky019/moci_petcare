@@ -27,20 +27,19 @@ class PemesananList extends ConsumerWidget {
         itemBuilder: (context, index) {
           final data = listPemesanan.values[index];
 
-          final number = "${index + 1}";
           final jam = data.jam;
           final tanggal = data.tanggal;
           final jenisLayanan = data.jenisLayanan;
           final status = data.status;
 
           final title = "$status / $jenisLayanan";
-          final subtitle = '${tanggal.toUpperCase()}, $jam';
+          final subtitle = '${tanggal.toUpperCase()}\nJam $jam';
           final id = data.id;
           return Column(
             children: [
               if (index == 0) Gap.h8,
               ListTileWidget(
-                number: number,
+                // number: number,
                 title: title,
                 subtitle: subtitle,
                 trailing: SizedBox(

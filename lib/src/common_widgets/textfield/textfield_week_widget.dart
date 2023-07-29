@@ -11,7 +11,7 @@ class TextFieldWeekWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFieldWidget(
-      textEditingController: controller,
+      controller: controller,
       hintText: "Hari",
       onClick: () async {
         final now = DateTime.now();

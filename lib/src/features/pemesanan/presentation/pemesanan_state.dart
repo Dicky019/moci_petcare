@@ -4,18 +4,18 @@ enum JenisLayanan { grooming, kesehatan, konsultasi }
 
 class PemesananState {
   final AsyncValue<bool?> value;
-  final JenisLayanan jenisLayanan;
+  // final JenisLayanan jenisLayanan;
 
   const PemesananState({
     this.value = const AsyncData(null),
-    this.jenisLayanan = JenisLayanan.grooming,
+    // this.jenisLayanan = JenisLayanan.grooming,
   });
 
   PemesananState copyWith(
       {AsyncValue<bool?>? value, JenisLayanan? jenisLayanan}) {
     return PemesananState(
       value: value ?? this.value,
-      jenisLayanan: jenisLayanan ?? this.jenisLayanan,
+      // jenisLayanan: jenisLayanan ?? this.jenisLayanan,
     );
   }
 

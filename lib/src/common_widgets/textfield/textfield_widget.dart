@@ -6,7 +6,7 @@ import '../../constants/constants.dart';
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget({
     super.key,
-    required this.textEditingController,
+    required this.controller,
     required this.hintText,
     this.validator,
     this.onClick, this.onChange,
@@ -14,13 +14,13 @@ class TextFieldWidget extends StatelessWidget {
 
   const TextFieldWidget.search({
     super.key,
-    required this.textEditingController,
+    required this.controller,
     required this.hintText,
     this.validator,
     this.onClick, this.onChange,
   }) : _isSearch = true;
 
-  final TextEditingController textEditingController;
+  final TextEditingController controller;
   final String hintText;
   final String? Function(String? value)? validator;
   final Function(String value)? onChange;
@@ -51,7 +51,7 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: textEditingController,
+      controller: controller,
       validator: validator,
       onTap: onClick,
       onChanged: onChange,

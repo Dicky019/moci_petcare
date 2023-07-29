@@ -22,21 +22,18 @@ class PemesananEditScreen extends ConsumerWidget {
         title: "Edit Pemesanan",
         onClick: () => context.go(Routes.pemesananHistory.path),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: ListView(
         children: [
-          Gap.h16,
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: StateWidget<Pemesanan>(
-                loadingColor: ColorApp.purpleDark,
-                stream: ref.watch(pemesananDetailFutureProvider(id)),
-                data: (pemesanan) => PemesananFormWidget(pemesanan: pemesanan),
-              ),
+          Gap.h12,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: StateWidget<Pemesanan>(
+              loadingColor: ColorApp.purpleDark,
+              stream: ref.watch(pemesananDetailFutureProvider(id)),
+              data: (pemesanan) => PemesananFormWidget(pemesanan: pemesanan),
             ),
           ),
-          Gap.h36,
+          Gap.h12,
         ],
       ),
     );

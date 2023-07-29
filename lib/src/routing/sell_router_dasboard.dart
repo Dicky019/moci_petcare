@@ -8,16 +8,19 @@ import '../common_widgets/common_widgets.dart';
 
 final sellRouterDasboard = Provider.family<ShellRoute, List<GoRoute>>(
   (ref, routes) {
+    bool isPemesanan(GoRouterState state) =>
+        state.matchedLocation == "/pemesanan";
     return ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) {
         return Scaffold(
           body: child,
           bottomNavigationBar: const BottomNavigationBarWidget(),
-          floatingActionButton: ref.read(selectedIndexProvider) == 1
-              ? FloatingActionButtonWidget(
-                  onPressed: () => context.replace(Routes.pemesananAdd.path),
-                )
-              : const SizedBox(),
+          floatingActionButton:
+              isPemesanan(state) && ref.read(selectedIndexProvider) == 1
+                  ? FloatingActionButtonWidget(
+                      onPressed: () => context.go(Routes.pemesananAddPath()),
+                    )
+                  : const SizedBox(),
         );
       },
       routes: routes,

@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../authentication/application/authentication_service.dart';
 import '../../../utils/extension/dynamic_extension.dart';
-import '../../../utils/extension/list_extension.dart';
 import '../data/request/pemesanan_request.dart';
 import '../application/pemesanan_service.dart';
 import '../domain/pemesanan.dart';
@@ -17,10 +16,14 @@ class PemesananController extends StateNotifier<PemesananState> {
 
   final PemesananService _pemesananService;
   final StateNotifierProviderRef<PemesananController, PemesananState> _ref;
+  // final
 
-  void invalidateList() async {
-    _ref.invalidate(pemesananListFutureProvider);
-    _ref.invalidate(pemesananControllerProvider);
+  void invalidateList() {
+    final state = _ref.refresh(pemesananListFutureProvider);
+    state.mapOrNull(
+      data: (data) => log(data.value.values.toString(), name: "mapOrNull"),
+    );
+    // _ref.refresh(pemesananControllerProvider);
   }
 
   final jenisLayananController = TextEditingController();
@@ -44,31 +47,6 @@ class PemesananController extends StateNotifier<PemesananState> {
   String get jenisLayanan => jenisLayananController.text;
   String get keluhan => keluhanController.text;
 
-  final listJamKesehatanKonsultasi = [
-    "jam09_10",
-    "jam10_11",
-    "jam12_13",
-    "jam13_14",
-    "jam14_15",
-    "jam15_16",
-    "jam16_17",
-    "jam17_18",
-    "jam18_19",
-    "jam19_20",
-    "jam20_21",
-  ];
-  final listJamGrooming = ["jam09_12", "jam10_14", "jam14_17", "jam16_19"];
-
-  final listJenisLayanan = ["grooming", "kesehatan", "konsultasi"];
-  final listJenisKelamin = ["jantan", "betina"];
-
-  List<DropdownMenuItem<String>> get getlistJamByJenisLayanan {
-    final list = (state.jenisLayanan == JenisLayanan.grooming
-        ? listJamGrooming
-        : listJamKesehatanKonsultasi);
-    return list.dropdownItems(true);
-  }
-
   void onChangeJenisLayanan(String? value) {
     if (value.isNull) {
       return;
@@ -76,7 +54,11 @@ class PemesananController extends StateNotifier<PemesananState> {
     final jenisLayanan =
         JenisLayanan.values.firstWhere((element) => element.name == value);
 
-    state = state.copyWith(jenisLayanan: jenisLayanan);
+    jamController.text = "";
+
+    log(jenisLayanan.name, name: "onChangeJenisLayanan");
+
+    _ref.read(jenisLayananState.notifier).update((state) => jenisLayanan);
   }
 
   void deletePemesanan(String id) async {
@@ -87,7 +69,7 @@ class PemesananController extends StateNotifier<PemesananState> {
         invalidateList();
       },
       failure: (error, stackTrace) {
-        // invalidateList();
+        invalidateList();
         log(error.toString());
       },
     );
@@ -112,11 +94,12 @@ class PemesananController extends StateNotifier<PemesananState> {
         : await _pemesananService.editPemesanan(pemesananRequest, id!);
 
     result.when(
-      success: (data) {
+      success: (data) async {
+        await _ref.read(authServiceProvider).getAndSaveLogin();
         state = state.copyWith(
           value: const AsyncData(true),
         );
-        // invalidateList();
+        invalidateList();
       },
       failure: (error, stackTrace) {
         state = state.copyWith(
@@ -129,7 +112,37 @@ class PemesananController extends StateNotifier<PemesananState> {
       value: const AsyncData(null),
     );
   }
+
+  void init(Pemesanan? pemesanan) {
+    if (pemesanan == null) {
+      return;
+    }
+
+    namaHewanController.text = pemesanan.namaHewan;
+    umurHewanController.text = pemesanan.umurHewan;
+    jenisKelaminHewanController.text = pemesanan.jenisKelaminHewan;
+    kategoriHewanController.text = pemesanan.kategoriHewan;
+    jenisLayananController.text = pemesanan.jenisLayanan;
+    tanggalController.text = pemesanan.tanggal;
+    jamController.text = pemesanan.jam;
+    keluhanController.text = pemesanan.keluhan;
+  }
 }
+
+final jenisLayananState = StateProvider.autoDispose<JenisLayanan>((ref) {
+  const jenisLayananMap = {
+    "kesehatan": JenisLayanan.kesehatan,
+    "grooming": JenisLayanan.grooming,
+    "konsultasi": JenisLayanan.konsultasi,
+  };
+
+  final jenisLayanan =
+      ref.read(pemesananControllerProvider.notifier).jenisLayanan;
+
+  return jenisLayananMap[jenisLayanan] ?? JenisLayanan.grooming;
+});
+
+
 
 final pemesananControllerProvider =
     StateNotifierProvider.autoDispose<PemesananController, PemesananState>(
@@ -157,6 +170,7 @@ final pemesananListFutureProvider = FutureProvider<ListPemesanan>(
     );
   },
 );
+
 
 final pemesananDetailFutureProvider =
     FutureProvider.autoDispose.family<Pemesanan, String>(

@@ -1,7 +1,7 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:moci_petcare/src/utils/extension/dynamic_extension.dart';
+import 'package:line_icons/line_icons.dart';
 
+import '../../utils/extension/dynamic_extension.dart';
 import '../common_widgets.dart';
 
 class TextFieldDropdownWidget extends StatelessWidget {
@@ -23,8 +23,10 @@ class TextFieldDropdownWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
       items: dropdownItems,
+      value: controller.text == "" ? null : controller.text,
+      icon: const Icon(LineIcons.list),
       onChanged: (String? value) {
-        log(value ?? "-");
+        // log(value ?? "-");
         controller.text = value ?? "";
         if (onChanged.isNotNull) {
           onChanged!(value);

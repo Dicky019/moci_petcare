@@ -1,20 +1,31 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:moci_petcare/src/constants/data/list-data.dart';
 
 import '/src/common_widgets/common_widgets.dart';
 import '/src/constants/constants.dart';
 import '/src/services/remote/config/config.dart';
-import '/src/utils/extension/build_context_extension.dart';
 import '../../domain/pemesanan.dart';
 import '../../../../utils/extension/dynamic_extension.dart';
 import '../../../../utils/extension/list_extension.dart';
 import '../pemesanan_controller.dart';
 import '../pemesanan_state.dart';
 
-class PemesananFormWidget extends ConsumerWidget {
+class PemesananFormWidget extends ConsumerStatefulWidget {
   final Pemesanan? pemesanan;
-  const PemesananFormWidget({Key? key, this.pemesanan}) : super(key: key);
+  const PemesananFormWidget({
+    super.key,
+    this.pemesanan,
+  });
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _PemesananFormWidgetState();
+}
+
+class _PemesananFormWidgetState extends ConsumerState<PemesananFormWidget> {
 
   void _createPemesananListen(
     BuildContext context,
@@ -26,7 +37,7 @@ class PemesananFormWidget extends ConsumerWidget {
         state.value.whenOrNull(
           data: (data) {
             if (data != null) {
-              context.goToHomeScreen(ref);
+              context.replace("/pemesanan");
             }
           },
           error: (error, stackTrace) {
@@ -40,90 +51,85 @@ class PemesananFormWidget extends ConsumerWidget {
     );
   }
 
-  void _init(PemesananController controller) {
-    if (pemesanan.isNull) {
-      return;
-    }
-
-    controller.namaHewanController.text = pemesanan!.namaHewan;
-    controller.umurHewanController.text = pemesanan!.umurHewan;
-    controller.jenisKelaminHewanController.text = pemesanan!.jenisKelaminHewan;
-    controller.kategoriHewanController.text = pemesanan!.kategoriHewan;
-    controller.jenisLayananController.text = pemesanan!.jenisLayanan;
-    controller.tanggalController.text = pemesanan!.tanggal;
-    controller.jamController.text = pemesanan!.jam;
-    controller.keluhanController.text = pemesanan!.keluhan;
+  @override
+  void initState() {
+    final controller = ref.read(pemesananControllerProvider.notifier);
+    controller.init(widget.pemesanan);
+    super.initState();
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final controller = ref.read(pemesananControllerProvider.notifier);
     final state = ref.watch(pemesananControllerProvider);
-
     _createPemesananListen(context, ref);
-    _init(controller);
 
-    return Column(
+    return InputFormWidget(
+      title: widget.pemesanan.isNull ? "Create" : "Edit",
+      isLoading: state.isLoading,
+      onSubmit: () => controller.fetchPemesanan(widget.pemesanan?.id),
+      keyForm: controller.keyForm,
       children: [
-        Expanded(
-          child: SingleChildScrollView(
-            child: InputFormWidget(
-              title: pemesanan.isNull ? "Create" : "Edit",
-              isLoading: state.isLoading,
-              onSubmit: () => controller.fetchPemesanan(pemesanan?.id),
-              keyForm: controller.keyForm,
-              children: [
-                TextFieldWidget(
-                  textEditingController: controller.namaHewanController,
-                  hintText: "Nama Hewan",
-                ),
-                TextFieldWidget(
-                  textEditingController: controller.umurHewanController,
-                  hintText: "Umur Hewan",
-                ),
-                TextFieldDropdownWidget(
-                  controller: controller.jenisKelaminHewanController,
-                  hintText: 'Jenis Kelamin Hewan',
-                  dropdownItems: controller.listJenisKelamin.dropdownItems(),
-                ),
-                TextFieldWidget(
-                  textEditingController: controller.kategoriHewanController,
-                  hintText: "Kategori Hewan",
-                ),
-                TextFieldWidget(
-                  textEditingController: controller.noHPController,
-                  hintText: "No HP",
-                ),
-                TextFieldDropdownWidget(
-                  controller: controller.jenisLayananController,
-                  hintText: "Jenis Layanan",
-                  dropdownItems: controller.listJenisLayanan.dropdownItems(),
-                  onChanged: controller.onChangeJenisLayanan,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextFieldWeekWidget(
-                        controller: controller.tanggalController,
-                      ),
-                    ),
-                    Gap.w12,
-                    Expanded(
-                      child: TextFieldDropdownWidget(
-                        controller: controller.jamController,
-                        hintText: 'Jam',
-                        dropdownItems: controller.getlistJamByJenisLayanan,
-                      ),
-                    ),
-                  ],
-                ),
-                TextFieldWidget(
-                  textEditingController: controller.keluhanController,
-                  hintText: "Keluhan",
-                ),
-              ],
+        TextFieldWidget(
+          controller: controller.namaHewanController,
+          hintText: "Nama Hewan",
+        ),
+        TextFieldWidget(
+          controller: controller.umurHewanController,
+          hintText: "Umur Hewan",
+        ),
+        TextFieldDropdownWidget(
+          controller: controller.jenisKelaminHewanController,
+          hintText: 'Jenis Kelamin Hewan',
+          dropdownItems: ListData.listJenisKelamin.dropdownItems(),
+        ),
+        TextFieldWidget(
+          controller: controller.kategoriHewanController,
+          hintText: "Kategori Hewan",
+        ),
+        TextFieldWidget(
+          controller: controller.noHPController,
+          hintText: "No HP",
+        ),
+        TextFieldWeekWidget(
+          controller: controller.tanggalController,
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: TextFieldDropdownWidget(
+                controller: controller.jenisLayananController,
+                hintText: "Jenis Layanan",
+                dropdownItems: ListData.listJenisLayanan.dropdownItems(),
+                onChanged: controller.onChangeJenisLayanan,
+              ),
             ),
-          ),
+            Gap.w12,
+            Expanded(child: Consumer(
+              builder: (context, ref, child) {
+                final state = ref.watch(jenisLayananState);
+                log("TextFieldDropdownWidget");
+
+                final list = (state == JenisLayanan.grooming
+                    ? ListData.listJamGrooming
+                    : ListData.listJamKesehatanKonsultasi);
+
+                if (controller.jamController.text == "") {
+                  controller.jamController.text = list.first;
+                }
+
+                return TextFieldDropdownWidget(
+                  controller: controller.jamController,
+                  hintText: "Jam",
+                  dropdownItems: list.dropdownItems(true),
+                );
+              },
+            )),
+          ],
+        ),
+        TextFieldWidget(
+          controller: controller.keluhanController,
+          hintText: "Keluhan",
         ),
       ],
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan.dart';
+import 'package:moci_petcare/src/utils/extension/string_extension.dart';
 
 import '../../../../constants/constants.dart';
 
@@ -21,15 +22,8 @@ class PemesananDetailWidget extends StatelessWidget {
           color: ColorApp.purpleBlue,
         ),
         TitleAndValue(
-          title: "Jenis Layanan :".toUpperCase(),
-          value: pemesanan.jenisLayanan.toUpperCase(),
-        ),
-        const Divider(
-          color: ColorApp.purpleBlue,
-        ),
-        TitleAndValue(
-          title: "Tanggal :".toUpperCase(),
-          value: "${pemesanan.tanggal}\n${pemesanan.jam}".toUpperCase(),
+          title: "Umur :".toUpperCase(),
+          value: pemesanan.umurHewan.toUpperCase(),
         ),
         const Divider(
           color: ColorApp.purpleBlue,
@@ -42,8 +36,22 @@ class PemesananDetailWidget extends StatelessWidget {
           color: ColorApp.purpleBlue,
         ),
         TitleAndValue(
-          title: "Kategori Hewan :".toUpperCase(),
+          title: "Kategori :".toUpperCase(),
           value: pemesanan.kategoriHewan.toUpperCase(),
+        ),
+        const Divider(
+          color: ColorApp.purpleBlue,
+        ),
+        TitleAndValue(
+          title: "Jenis Layanan :".toUpperCase(),
+          value: pemesanan.jenisLayanan.toUpperCase(),
+        ),
+        const Divider(
+          color: ColorApp.purpleBlue,
+        ),
+        TitleAndValue(
+          title: "Tanggal :".toUpperCase(),
+          value: "${pemesanan.tanggal}\nJam ${pemesanan.jam.displayJam}".toUpperCase(),
         ),
         const Divider(
           color: ColorApp.purpleBlue,
@@ -78,15 +86,17 @@ class TitleAndValue extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
+            flex: 4,
             child: Text(
               title,
               style: TypographyTheme.body2.copyWith(
                 color: ColorApp.purpleDark,
-                fontWeight: FontWeight.w600, // Color Primary,
+                fontWeight: FontWeight.w500, // Color Primary,
               ),
             ),
           ),
           Expanded(
+            flex: 6,
             child: Text(
               value,
               style: TypographyTheme.body2.copyWith(

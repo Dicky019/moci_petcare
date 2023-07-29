@@ -58,7 +58,7 @@ class ButtonWidget extends StatelessWidget {
     } else {
       return EdgeInsets.symmetric(
         horizontal: 8.w,
-        vertical: 8.h,
+        vertical: 12.h,
       );
     }
   }

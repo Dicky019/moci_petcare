@@ -22,6 +22,7 @@ class StateWidget<T> extends StatelessWidget {
       loading: () => Center(
         child: CircularProgressIndicator(color: loadingColor),
       ),
+      
     );
   }
 }

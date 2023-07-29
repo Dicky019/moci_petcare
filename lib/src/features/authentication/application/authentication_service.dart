@@ -27,7 +27,7 @@ class AuthenticationService {
       // );
       authRepository.saveUserToken(token);
 
-      await _getAndSaveLogin();
+      await getAndSaveLogin();
     });
 
     return resultLogin;
@@ -37,7 +37,7 @@ class AuthenticationService {
   User? getCurrentUser() => authRepository.getCurrentUser();
 
 //  TODO: For get user
-  Future _getAndSaveLogin() async {
+  Future getAndSaveLogin() async {
     final responseProfile = await authRepository.loginResponse();
     final resultProfile = AuthenticationMapper.mapToUser(responseProfile);
     resultProfile.when(

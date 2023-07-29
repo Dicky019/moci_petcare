@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:moci_petcare/src/utils/extension/dynamic_extension.dart';
 
 import '../../constants/constants.dart';
 
 class ListTileWidget extends StatelessWidget {
   const ListTileWidget({
     super.key,
-    required this.number,
+    this.number,
     required this.title,
     required this.subtitle,
     this.onTap,
     this.trailing,
   });
 
-  final String number;
+  final String? number;
   final String title;
   final String subtitle;
   final VoidCallback? onTap;
@@ -22,10 +23,10 @@ class ListTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: onTap,
-      leading: CircleAvatar(
+      leading: number.isNull ? null  : CircleAvatar(
         backgroundColor: ColorApp.purpleDark,
         child: Text(
-          number,
+          number ?? "-",
           style: TypographyTheme.body2.copyWith(
             color: ColorApp.pureWhite,
             fontWeight: FontWeight.w600, // Color Primary,
