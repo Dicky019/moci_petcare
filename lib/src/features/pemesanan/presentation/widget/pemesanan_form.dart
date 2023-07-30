@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:moci_petcare/src/constants/data/list-data.dart';
+import 'package:moci_petcare/src/constants/data/list_data.dart';
 
 import '/src/common_widgets/common_widgets.dart';
 import '/src/constants/constants.dart';
@@ -26,7 +26,6 @@ class PemesananFormWidget extends ConsumerStatefulWidget {
 }
 
 class _PemesananFormWidgetState extends ConsumerState<PemesananFormWidget> {
-
   void _createPemesananListen(
     BuildContext context,
     WidgetRef ref,
@@ -83,9 +82,10 @@ class _PemesananFormWidgetState extends ConsumerState<PemesananFormWidget> {
           hintText: 'Jenis Kelamin Hewan',
           dropdownItems: ListData.listJenisKelamin.dropdownItems(),
         ),
-        TextFieldWidget(
+        TextFieldDropdownWidget(
           controller: controller.kategoriHewanController,
           hintText: "Kategori Hewan",
+          dropdownItems:  ListData.listKategori.dropdownItems(),
         ),
         TextFieldWidget(
           controller: controller.noHPController,
@@ -105,31 +105,40 @@ class _PemesananFormWidgetState extends ConsumerState<PemesananFormWidget> {
               ),
             ),
             Gap.w12,
-            Expanded(child: Consumer(
-              builder: (context, ref, child) {
-                final state = ref.watch(jenisLayananState);
-                log("TextFieldDropdownWidget");
+            Expanded(
+              child: Consumer(
+                builder: (context, ref, child) {
+                  final state = ref.watch(jenisLayananState);
 
-                final list = (state == JenisLayanan.grooming
-                    ? ListData.listJamGrooming
-                    : ListData.listJamKesehatanKonsultasi);
+                  final list = (state == JenisLayanan.grooming
+                      ? ListData.listJamGrooming
+                      : ListData.listJamKesehatanKonsultasi);
 
-                if (controller.jamController.text == "") {
-                  controller.jamController.text = list.first;
-                }
+                  if (controller.jamController.text == "") {
+                    controller.jamController.text = list.first;
+                  }
 
-                return TextFieldDropdownWidget(
-                  controller: controller.jamController,
-                  hintText: "Jam",
-                  dropdownItems: list.dropdownItems(true),
-                );
-              },
-            )),
+                  return TextFieldDropdownWidget(
+                    controller: controller.jamController,
+                    hintText: "Jam",
+                    dropdownItems: list.dropdownItems(true),
+                  );
+                },
+              ),
+            ),
           ],
         ),
-        TextFieldWidget(
-          controller: controller.keluhanController,
-          hintText: "Keluhan",
+        Consumer(
+          builder: (context, ref, child) {
+            final state = ref.watch(jenisLayananState);
+
+            return state != JenisLayanan.grooming
+                ? TextFieldWidget(
+                    controller: controller.keluhanController,
+                    hintText: "Keluhan",
+                  )
+                : const SizedBox();
+          },
         ),
       ],
     );

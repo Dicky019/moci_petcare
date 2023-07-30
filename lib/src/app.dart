@@ -18,7 +18,7 @@ class MyApp extends ConsumerWidget {
         minTextAdapt: true,
         builder: (context, child) {
           return MaterialApp.router(
-            title: 'Moci Petcate',
+            title: 'Mocy Petcare',
             locale: const Locale("id"),
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,

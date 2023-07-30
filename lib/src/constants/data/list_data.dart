@@ -21,4 +21,5 @@ class ListData {
 
   static const listJenisLayanan = ["grooming", "kesehatan", "konsultasi"];
   static const listJenisKelamin = ["jantan", "betina"];
+  static const listKategori = ["anjing ","kucing","kelinci", "burung" ,"hamster"];
 }

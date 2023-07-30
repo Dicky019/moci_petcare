@@ -29,7 +29,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             children: [
               Gap.h16,
               HomeLayananWidget(
-                title: "Grouming",
+                title: "Grooming",
                 layanan: layananGrouming,
               ),
               Gap.h12,
