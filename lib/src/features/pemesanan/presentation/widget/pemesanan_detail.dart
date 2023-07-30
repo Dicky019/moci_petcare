@@ -56,6 +56,7 @@ class PemesananDetailWidget extends StatelessWidget {
         const Divider(
           color: ColorApp.purpleBlue,
         ),
+        if(pemesanan.keluhan.trim() != '')
         TitleAndValue(
           title: "Keluhan :".toUpperCase(),
           value: pemesanan.keluhan.toUpperCase(),
