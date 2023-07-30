@@ -18,7 +18,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWidget(title: "Home"),
+      appBar: const AppBarWidget(title: "Jadwal"),
       body: StateWidget<Jadwal>(
         stream: ref.watch(homeControllerProvider),
         data: (value) {
