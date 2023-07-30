@@ -50,8 +50,8 @@ class BottomNavigationBarWidget extends ConsumerWidget {
       child: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(LineIcons.home),
-            label: 'Home',
+            icon: Icon(LineIcons.ioxhost),
+            label: 'Jadwal',
           ),
           BottomNavigationBarItem(
             icon: Icon(LineIcons.calendar),
