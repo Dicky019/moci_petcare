@@ -84,8 +84,8 @@ class _PemesananFormWidgetState extends ConsumerState<PemesananFormWidget> {
         ),
         TextFieldDropdownWidget(
           controller: controller.kategoriHewanController,
-          hintText: "Kategori Hewan",
-          dropdownItems:  ListData.listKategori.dropdownItems(),
+          hintText: 'Kategori Hewan',
+          dropdownItems: ListData.ketegoriHewan.dropdownItems(),
         ),
         TextFieldWidget(
           controller: controller.noHPController,
@@ -101,7 +101,10 @@ class _PemesananFormWidgetState extends ConsumerState<PemesananFormWidget> {
                 controller: controller.jenisLayananController,
                 hintText: "Jenis Layanan",
                 dropdownItems: ListData.listJenisLayanan.dropdownItems(),
-                onChanged: controller.onChangeJenisLayanan,
+                onChanged: (v) {
+                  controller.onChangeJenisLayanan(v);
+                  setState(() {});
+                },
               ),
             ),
             Gap.w12,
@@ -128,18 +131,11 @@ class _PemesananFormWidgetState extends ConsumerState<PemesananFormWidget> {
             ),
           ],
         ),
-        Consumer(
-          builder: (context, ref, child) {
-            final state = ref.watch(jenisLayananState);
-
-            return state != JenisLayanan.grooming
-                ? TextFieldWidget(
-                    controller: controller.keluhanController,
-                    hintText: "Keluhan",
-                  )
-                : const SizedBox();
-          },
-        ),
+        if (controller.jenisLayananController.text != "grooming")
+          TextFieldWidget(
+            controller: controller.keluhanController,
+            hintText: "Keluhan",
+          ),
       ],
     );
   }

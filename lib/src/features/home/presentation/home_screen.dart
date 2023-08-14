@@ -25,25 +25,30 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           final layananGrouming = value.data.layananGrouming;
           final layananKesehatan = value.data.layananKesehatan;
           final layananKonsultasi = value.data.layananKonsultasi;
-          return ListView(
-            children: [
-              Gap.h16,
-              HomeLayananWidget(
-                title: "Grooming",
-                layanan: layananGrouming,
-              ),
-              Gap.h12,
-              HomeLayananWidget(
-                title: "Kesehatan",
-                layanan: layananKesehatan,
-              ),
-              Gap.h12,
-              HomeLayananWidget(
-                title: "Konsultasi ",
-                layanan: layananKonsultasi,
-              ),
-              Gap.h16,
-            ],
+          return RefreshIndicator(
+            onRefresh: () async {
+              ref.invalidate(homeControllerProvider);
+            },
+            child: ListView(
+              children: [
+                Gap.h16,
+                HomeLayananWidget(
+                  title: "Grouming",
+                  layanan: layananGrouming,
+                ),
+                Gap.h12,
+                HomeLayananWidget(
+                  title: "Kesehatan",
+                  layanan: layananKesehatan,
+                ),
+                Gap.h12,
+                HomeLayananWidget(
+                  title: "Konsultasi ",
+                  layanan: layananKonsultasi,
+                ),
+                Gap.h16,
+              ],
+            ),
           );
         },
       ),

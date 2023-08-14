@@ -11,8 +11,10 @@ class PemesananState {
     // this.jenisLayanan = JenisLayanan.grooming,
   });
 
-  PemesananState copyWith(
-      {AsyncValue<bool?>? value, JenisLayanan? jenisLayanan}) {
+  PemesananState copyWith({
+    AsyncValue<bool?>? value,
+    // JenisLayanan? jenisLayanan,
+  }) {
     return PemesananState(
       value: value ?? this.value,
       // jenisLayanan: jenisLayanan ?? this.jenisLayanan,

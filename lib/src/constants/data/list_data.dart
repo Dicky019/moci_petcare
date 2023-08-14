@@ -12,12 +12,15 @@ class ListData {
     "jam19_20",
     "jam20_21",
   ];
+
   static const listJamGrooming = [
     "jam09_12",
     "jam10_14",
     "jam14_17",
     "jam16_19"
   ];
+
+  static const ketegoriHewan = ["kucing", "anjing", "hamster", "burung"];
 
   static const listJenisLayanan = ["grooming", "kesehatan", "konsultasi"];
   static const listJenisKelamin = ["jantan", "betina"];

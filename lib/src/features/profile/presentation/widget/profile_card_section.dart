@@ -67,7 +67,34 @@ class ProfileCardSection extends ConsumerWidget {
           Gap.h16,
           ButtonWidget(
             text: 'Logout',
-            onTap: () => controller.logout(context),
+            onTap: () async {
+              final data = await showDialog<BuildContext>(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Logout'),
+                  content: const Text('Apakah Anda Yakin?'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('TIDAK'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, context),
+                      child: const Text(
+                        'YA',
+                        style: TextStyle(color: Colors.redAccent),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+
+              if (data != null) {
+                // ignore: use_build_context_synchronously
+                controller.logout(data);
+              }
+            },
+            // onTap: () => controller.logout(context),
           ),
         ],
       ),
