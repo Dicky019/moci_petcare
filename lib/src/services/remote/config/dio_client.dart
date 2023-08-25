@@ -21,9 +21,9 @@ class DioClient {
     String baseUrl;
 
     if (Platform.isIOS) {
-      baseUrl = 'https://petcare-web-zeta.vercel.app/';
+      baseUrl = 'https://petcare-web-zeta.vercel.app/api';
     } else {
-      baseUrl = 'https://petcare-web-zeta.vercel.app/';
+      baseUrl = 'https://petcare-web-zeta.vercel.app/api';
     }
 
     return baseUrl;

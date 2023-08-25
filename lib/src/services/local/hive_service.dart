@@ -11,8 +11,7 @@ class HiveService {
   final hiveUser = Hive.box<String>(HiveKey.userBox);
   final hiveUserToken = Hive.box<String>(HiveKey.userTokenBox);
   final firstInstall = Hive.box<String>(HiveKey.firstInstallBox);
-  final hiveEmail = Hive.box<String>(HiveKey.emailBox);
-  final hivePassword = Hive.box<String>(HiveKey.passwordBox);
+
 
   /// Get Current User
   User? getCurrentUser() {
@@ -61,19 +60,7 @@ class HiveService {
   void deleteUserToken() => hiveUserToken.delete(HiveKey.userToken);
 
   /// Set User Credential
-  void saveUserCredential({
-    required String email,
-    // required String password,
-  }) {
-    hiveEmail.put(HiveKey.email, email);
-    // hivePassword.put(HiveKey.password, password);
-  }
 
-  /// Get Credential Email
-  String? getCredentialEmail() => hiveEmail.get(HiveKey.email);
-
-  /// Get Credential Password
-  String? getCredentialPassword() => hivePassword.get(HiveKey.password);
 
   /// Set logout
   void logout() {

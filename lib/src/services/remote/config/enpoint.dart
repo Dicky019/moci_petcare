@@ -1,6 +1,6 @@
 class Endpoint {
-  static const String login = '/api/register';
-  static const String user = '/api/user';
-  static const String pemesanan = '/api/pemesanan';
-  static const String jadwal = '/api/jadwal';
+  static const String login = '/register';
+  static const String user = '/user';
+  static const String pemesanan = '/pemesanan';
+  static const String jadwal = '/jadwal';
 }

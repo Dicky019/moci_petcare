@@ -43,6 +43,7 @@ class AuthApi {
 
   Future<Result<void>> logout() async {
     await firebaseAuth.signOut();
+    await GoogleSignIn().signOut();
     return const Result.success(null);
   }
 
@@ -61,6 +62,7 @@ class AuthApi {
 
   Future<firebase_auth.UserCredential> signInWithGoogle() async {
     await firebaseAuth.signOut();
+    await GoogleSignIn().signOut();
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 

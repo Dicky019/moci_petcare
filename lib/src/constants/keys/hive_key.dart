@@ -8,9 +8,4 @@ class HiveKey {
   static const String firstInstallBox = 'firstInstallBox';
   static const String firstInstall = 'firstInstall';
 
-  static const String emailBox = 'emailBox';
-  static const String email = 'email';
-
-  static const String passwordBox = 'passwordBox';
-  static const String password = 'password';
 }

@@ -32,17 +32,7 @@ class AuthenticationRepository {
     return await _authApi.loginResponse();
   }
 
-  void saveUserCredential({
-    required String email,
-  }) {
-    _hiveService.saveUserCredential(email: email);
-  }
-
   String? get currentUser => _hiveService.getUserToken();
-
-  String? getCredentialEmail() => _hiveService.getCredentialEmail();
-
-  String? getCredentialPassword() => _hiveService.getCredentialPassword();
 
   User? getCurrentUser() => _hiveService.getCurrentUser();
 
