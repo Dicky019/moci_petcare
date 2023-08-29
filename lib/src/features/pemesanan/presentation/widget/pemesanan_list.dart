@@ -24,7 +24,14 @@ class PemesananList extends ConsumerWidget {
         onRefresh: () async {
           ref.invalidate(pemesananListFutureProvider);
         },
-        child: ListPemesananWidget(listPemesanan: listPemesanan),
+        child: listPemesanan.values.isEmpty
+            ? ListView(
+                children: [
+                  Gap.h40,
+                  Center(child: Text("Masih Kosong...",style: Theme.of(context).textTheme.headlineSmall,),)
+                ],
+              )
+            : ListPemesananWidget(listPemesanan: listPemesanan),
       ),
     );
   }
@@ -40,7 +47,6 @@ class ListPemesananWidget extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-
     void toDetailPage(String id) => context.go(Routes.pemesananDetailPath(id));
     void toEditPage(String id) => context.go(Routes.pemesananEditPath(id));
     final controller = ref.read(pemesananControllerProvider.notifier);
