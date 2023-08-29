@@ -27,8 +27,13 @@ class PemesananList extends ConsumerWidget {
         child: listPemesanan.values.isEmpty
             ? ListView(
                 children: [
-                  Gap.h40,
-                  Center(child: Text("Masih Kosong...",style: Theme.of(context).textTheme.headlineSmall,),)
+                  Gap.h48,
+                  Center(
+                    child: Text(
+                      "Belum Ada Pemesanan...",
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                  )
                 ],
               )
             : ListPemesananWidget(listPemesanan: listPemesanan),
