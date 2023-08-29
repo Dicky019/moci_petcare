@@ -30,7 +30,7 @@ class PemesananList extends ConsumerWidget {
                   Gap.h48,
                   Center(
                     child: Text(
-                      "Belum Ada Pemesanan...",
+                      "Belum Ada Pemesanan",
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   )
