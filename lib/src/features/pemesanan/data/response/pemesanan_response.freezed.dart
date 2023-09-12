@@ -40,6 +40,8 @@ mixin _$PemesananResponse {
   String? get jenisKelaminHewan => throw _privateConstructorUsedError;
   @JsonKey(name: "keluhan")
   String? get keluhan => throw _privateConstructorUsedError;
+  @JsonKey(name: "hasilKonsultasi")
+  String? get hasilKonsultasi => throw _privateConstructorUsedError;
   @JsonKey(name: "status")
   String? get status => throw _privateConstructorUsedError;
   @JsonKey(name: "tanggal")
@@ -70,6 +72,7 @@ abstract class $PemesananResponseCopyWith<$Res> {
       @JsonKey(name: "umurHewan") String? umurHewan,
       @JsonKey(name: "jenisKelaminHewan") String? jenisKelaminHewan,
       @JsonKey(name: "keluhan") String? keluhan,
+      @JsonKey(name: "hasilKonsultasi") String? hasilKonsultasi,
       @JsonKey(name: "status") String? status,
       @JsonKey(name: "tanggal") String? tanggal,
       @JsonKey(name: "jam") String? jam});
@@ -98,6 +101,7 @@ class _$PemesananResponseCopyWithImpl<$Res, $Val extends PemesananResponse>
     Object? umurHewan = freezed,
     Object? jenisKelaminHewan = freezed,
     Object? keluhan = freezed,
+    Object? hasilKonsultasi = freezed,
     Object? status = freezed,
     Object? tanggal = freezed,
     Object? jam = freezed,
@@ -143,6 +147,10 @@ class _$PemesananResponseCopyWithImpl<$Res, $Val extends PemesananResponse>
           ? _value.keluhan
           : keluhan // ignore: cast_nullable_to_non_nullable
               as String?,
+      hasilKonsultasi: freezed == hasilKonsultasi
+          ? _value.hasilKonsultasi
+          : hasilKonsultasi // ignore: cast_nullable_to_non_nullable
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -178,6 +186,7 @@ abstract class _$$_PemesananResponseCopyWith<$Res>
       @JsonKey(name: "umurHewan") String? umurHewan,
       @JsonKey(name: "jenisKelaminHewan") String? jenisKelaminHewan,
       @JsonKey(name: "keluhan") String? keluhan,
+      @JsonKey(name: "hasilKonsultasi") String? hasilKonsultasi,
       @JsonKey(name: "status") String? status,
       @JsonKey(name: "tanggal") String? tanggal,
       @JsonKey(name: "jam") String? jam});
@@ -204,6 +213,7 @@ class __$$_PemesananResponseCopyWithImpl<$Res>
     Object? umurHewan = freezed,
     Object? jenisKelaminHewan = freezed,
     Object? keluhan = freezed,
+    Object? hasilKonsultasi = freezed,
     Object? status = freezed,
     Object? tanggal = freezed,
     Object? jam = freezed,
@@ -249,6 +259,10 @@ class __$$_PemesananResponseCopyWithImpl<$Res>
           ? _value.keluhan
           : keluhan // ignore: cast_nullable_to_non_nullable
               as String?,
+      hasilKonsultasi: freezed == hasilKonsultasi
+          ? _value.hasilKonsultasi
+          : hasilKonsultasi // ignore: cast_nullable_to_non_nullable
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -279,6 +293,7 @@ class _$_PemesananResponse implements _PemesananResponse {
       @JsonKey(name: "umurHewan") this.umurHewan,
       @JsonKey(name: "jenisKelaminHewan") this.jenisKelaminHewan,
       @JsonKey(name: "keluhan") this.keluhan,
+      @JsonKey(name: "hasilKonsultasi") this.hasilKonsultasi,
       @JsonKey(name: "status") this.status,
       @JsonKey(name: "tanggal") this.tanggal,
       @JsonKey(name: "jam") this.jam});
@@ -317,6 +332,9 @@ class _$_PemesananResponse implements _PemesananResponse {
   @JsonKey(name: "keluhan")
   final String? keluhan;
   @override
+  @JsonKey(name: "hasilKonsultasi")
+  final String? hasilKonsultasi;
+  @override
   @JsonKey(name: "status")
   final String? status;
   @override
@@ -328,7 +346,7 @@ class _$_PemesananResponse implements _PemesananResponse {
 
   @override
   String toString() {
-    return 'PemesananResponse(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, status: $status, tanggal: $tanggal, jam: $jam)';
+    return 'PemesananResponse(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, hasilKonsultasi: $hasilKonsultasi, status: $status, tanggal: $tanggal, jam: $jam)';
   }
 
   @override
@@ -353,6 +371,8 @@ class _$_PemesananResponse implements _PemesananResponse {
             (identical(other.jenisKelaminHewan, jenisKelaminHewan) ||
                 other.jenisKelaminHewan == jenisKelaminHewan) &&
             (identical(other.keluhan, keluhan) || other.keluhan == keluhan) &&
+            (identical(other.hasilKonsultasi, hasilKonsultasi) ||
+                other.hasilKonsultasi == hasilKonsultasi) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.tanggal, tanggal) || other.tanggal == tanggal) &&
             (identical(other.jam, jam) || other.jam == jam));
@@ -372,6 +392,7 @@ class _$_PemesananResponse implements _PemesananResponse {
       umurHewan,
       jenisKelaminHewan,
       keluhan,
+      hasilKonsultasi,
       status,
       tanggal,
       jam);
@@ -403,6 +424,7 @@ abstract class _PemesananResponse implements PemesananResponse {
       @JsonKey(name: "umurHewan") final String? umurHewan,
       @JsonKey(name: "jenisKelaminHewan") final String? jenisKelaminHewan,
       @JsonKey(name: "keluhan") final String? keluhan,
+      @JsonKey(name: "hasilKonsultasi") final String? hasilKonsultasi,
       @JsonKey(name: "status") final String? status,
       @JsonKey(name: "tanggal") final String? tanggal,
       @JsonKey(name: "jam") final String? jam}) = _$_PemesananResponse;
@@ -440,6 +462,9 @@ abstract class _PemesananResponse implements PemesananResponse {
   @override
   @JsonKey(name: "keluhan")
   String? get keluhan;
+  @override
+  @JsonKey(name: "hasilKonsultasi")
+  String? get hasilKonsultasi;
   @override
   @JsonKey(name: "status")
   String? get status;

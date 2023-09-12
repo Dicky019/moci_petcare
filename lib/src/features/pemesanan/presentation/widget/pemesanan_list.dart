@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,6 +69,9 @@ class ListPemesananWidget extends ConsumerWidget {
         final title = "$status / $jenisLayanan";
         final subtitle = '${tanggal.toUpperCase()}\nJam $jam';
         final id = data.id;
+        final isSuccess = status == "success";
+        final isProcessing = status == "processing";
+
         return Column(
           children: [
             if (index == 0) Gap.h8,
@@ -75,51 +79,60 @@ class ListPemesananWidget extends ConsumerWidget {
               // number: number,
               title: title,
               subtitle: subtitle,
-              trailing: SizedBox(
-                width: 100.w,
-                child: Row(
-                  children: [
-                    IconButton.filled(
-                      onPressed: () => toEditPage(id),
-                      focusColor: Colors.transparent,
-                      color: Colors.blueAccent,
-                      icon: const Icon(LineIcons.editAlt),
-                    ),
-                    IconButton.filledTonal(
-                      // onPressed: () => controller.deletePemesanan(id),
-                      onPressed: () async {
-                        final data = await showDialog<String>(
-                          context: context,
-                          builder: (BuildContext context) => AlertDialog(
-                            title: const Text('Hapus'),
-                            content: const Text('Apakah Anda Yakin?'),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text('TIDAK'),
-                              ),
-                              TextButton(
-                                onPressed: () => Navigator.pop(context, id),
-                                child: const Text(
-                                  'YA',
-                                  style: TextStyle(color: Colors.redAccent),
-                                ),
-                              ),
-                            ],
+              trailing: isSuccess || isProcessing
+                  ? Icon(
+                      isProcessing
+                          ? Icons.watch_later_outlined
+                          : Icons.check_circle_outline_outlined,
+                      color: ColorApp.purpleLight,
+                    )
+                  : SizedBox(
+                      width: 100.w,
+                      child: Row(
+                        children: [
+                          IconButton.filled(
+                            onPressed: () => toEditPage(id),
+                            focusColor: Colors.transparent,
+                            color: Colors.blueAccent,
+                            icon: const Icon(LineIcons.editAlt),
                           ),
-                        );
+                          IconButton.filledTonal(
+                            // onPressed: () => controller.deletePemesanan(id),
+                            onPressed: () async {
+                              final data = await showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Hapus'),
+                                  content: const Text('Apakah Anda Yakin?'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: const Text('TIDAK'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, id),
+                                      child: const Text(
+                                        'YA',
+                                        style:
+                                            TextStyle(color: Colors.redAccent),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
 
-                        if (data != null) {
-                          controller.deletePemesanan(id);
-                        }
-                      },
-                      focusColor: Colors.transparent,
-                      color: Colors.redAccent,
-                      icon: const Icon(LineIcons.trash),
+                              if (data != null) {
+                                controller.deletePemesanan(id);
+                              }
+                            },
+                            focusColor: Colors.transparent,
+                            color: Colors.redAccent,
+                            icon: const Icon(LineIcons.trash),
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
               onTap: () => toDetailPage(id),
             ),
             if (index == listPemesanan.values.length - 1) Gap.h16,

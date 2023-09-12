@@ -19,6 +19,7 @@ class PemesananMapper {
             jenisLayanan: data.jenisLayanan.toEmpty,
             kategoriHewan: data.kategoriHewan.toEmpty,
             keluhan: data.keluhan.toEmpty,
+            hasilKonsultasi: data.hasilKonsultasi.toEmpty,
             namaHewan: data.namaHewan.toEmpty,
             status: data.status.toEmpty,
             umurHewan: data.umurHewan.toEmpty,
@@ -45,6 +46,7 @@ class PemesananMapper {
                 umurHewan: e.umurHewan.toEmpty,
                 jenisKelaminHewan: e.jenisKelaminHewan.toEmpty,
                 keluhan: e.keluhan.toEmpty,
+                hasilKonsultasi: e.hasilKonsultasi.toEmpty,
                 tanggal: e.tanggal.toEmpty,
                 jam: e.jam.toEmpty,
                 status: e.status.toEmpty,
@@ -60,21 +62,4 @@ class PemesananMapper {
       },
     );
   }
-
-  // static PemesananRequest mapToPemesananResponse(
-  //   Pemesanan pemesanan,
-  // ) {
-  //   return PemesananRequest(
-  //     hari: pemesanan.hari.toEmpty,
-  //     status: pemesanan.status.toEmpty,
-  //     noHP: pemesanan.noHP.toEmpty,
-  //     jam: pemesanan.jam.toEmpty,
-  //     jenisKelaminHewan: pemesanan.jenisKelaminHewan.toEmpty,
-  //     jenisLayanan: pemesanan.jenisLayanan.toEmpty,
-  //     kategoriHewan: pemesanan.kategoriHewan.toEmpty,
-  //     keluhan: pemesanan.keluhan.toEmpty,
-  //     namaHewan: pemesanan.namaHewan.toEmpty,
-  //     umurHewan: pemesanan.umurHewan.toEmpty,
-  //   );
-  // }
 }

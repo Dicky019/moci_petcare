@@ -18,6 +18,7 @@ class PemesananResponse with _$PemesananResponse {
     @JsonKey(name: "umurHewan") String? umurHewan,
     @JsonKey(name: "jenisKelaminHewan") String? jenisKelaminHewan,
     @JsonKey(name: "keluhan") String? keluhan,
+    @JsonKey(name: "hasilKonsultasi") String? hasilKonsultasi,
     @JsonKey(name: "status") String? status,
     @JsonKey(name: "tanggal") String? tanggal,
     @JsonKey(name: "jam") String? jam,

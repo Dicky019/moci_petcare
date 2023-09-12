@@ -14,6 +14,7 @@ class PemesananRequest with _$PemesananRequest {
     required String umurHewan,
     required String jenisKelaminHewan,
     required String keluhan,
+    // required String hasilKeluhan,
     required String noHP,
     @Default("pending") String status,
     required String tanggal,

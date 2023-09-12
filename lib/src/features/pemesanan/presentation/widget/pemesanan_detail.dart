@@ -51,19 +51,34 @@ class PemesananDetailWidget extends StatelessWidget {
         ),
         TitleAndValue(
           title: "Tanggal :".toUpperCase(),
-          value: "${pemesanan.tanggal}\nJam ${pemesanan.jam.displayJam}".toUpperCase(),
+          value: "${pemesanan.tanggal}\nJam ${pemesanan.jam.displayJam}"
+              .toUpperCase(),
         ),
         const Divider(
           color: ColorApp.purpleBlue,
         ),
-        if(pemesanan.keluhan.trim() != '')
-        TitleAndValue(
-          title: "Keluhan :".toUpperCase(),
-          value: pemesanan.keluhan.toUpperCase(),
-        ),
-        const Divider(
-          color: ColorApp.purpleBlue,
-        ),
+        if (pemesanan.keluhan.trim() != '' || pemesanan.keluhan == "-") ...[
+          TitleAndValue(
+            title: "Keluhan :".toUpperCase(),
+            value: pemesanan.keluhan.toUpperCase(),
+          ),
+          const Divider(
+            color: ColorApp.purpleBlue,
+          ),
+        ],
+        if (pemesanan.hasilKonsultasi.trim() != '' ||
+            pemesanan.hasilKonsultasi == "-") ...[
+          // const Divider(
+          //   color: ColorApp.purpleBlue,
+          // ),
+          TitleAndValue(
+            title: "Hasil Keluhan :".toUpperCase(),
+            value: pemesanan.hasilKonsultasi.toUpperCase(),
+          ),
+          const Divider(
+            color: ColorApp.purpleBlue,
+          ),
+        ],
         Gap.h12,
       ],
     );

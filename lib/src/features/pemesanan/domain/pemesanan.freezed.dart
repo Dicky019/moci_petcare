@@ -36,6 +36,7 @@ mixin _$Pemesanan {
   String get umurHewan => throw _privateConstructorUsedError;
   String get jenisKelaminHewan => throw _privateConstructorUsedError;
   String get keluhan => throw _privateConstructorUsedError;
+  String get hasilKonsultasi => throw _privateConstructorUsedError;
   String get tanggal => throw _privateConstructorUsedError;
   String get jam => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
@@ -49,6 +50,7 @@ mixin _$Pemesanan {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)
@@ -61,6 +63,7 @@ mixin _$Pemesanan {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)
@@ -77,6 +80,7 @@ mixin _$Pemesanan {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)?
@@ -89,6 +93,7 @@ mixin _$Pemesanan {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)?
@@ -105,6 +110,7 @@ mixin _$Pemesanan {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)?
@@ -117,6 +123,7 @@ mixin _$Pemesanan {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)?
@@ -162,6 +169,7 @@ abstract class $PemesananCopyWith<$Res> {
       String umurHewan,
       String jenisKelaminHewan,
       String keluhan,
+      String hasilKonsultasi,
       String tanggal,
       String jam,
       String status});
@@ -187,6 +195,7 @@ class _$PemesananCopyWithImpl<$Res, $Val extends Pemesanan>
     Object? umurHewan = null,
     Object? jenisKelaminHewan = null,
     Object? keluhan = null,
+    Object? hasilKonsultasi = null,
     Object? tanggal = null,
     Object? jam = null,
     Object? status = null,
@@ -220,6 +229,10 @@ class _$PemesananCopyWithImpl<$Res, $Val extends Pemesanan>
           ? _value.keluhan
           : keluhan // ignore: cast_nullable_to_non_nullable
               as String,
+      hasilKonsultasi: null == hasilKonsultasi
+          ? _value.hasilKonsultasi
+          : hasilKonsultasi // ignore: cast_nullable_to_non_nullable
+              as String,
       tanggal: null == tanggal
           ? _value.tanggal
           : tanggal // ignore: cast_nullable_to_non_nullable
@@ -251,6 +264,7 @@ abstract class _$$_PemesananCopyWith<$Res> implements $PemesananCopyWith<$Res> {
       String umurHewan,
       String jenisKelaminHewan,
       String keluhan,
+      String hasilKonsultasi,
       String tanggal,
       String jam,
       String status});
@@ -274,6 +288,7 @@ class __$$_PemesananCopyWithImpl<$Res>
     Object? umurHewan = null,
     Object? jenisKelaminHewan = null,
     Object? keluhan = null,
+    Object? hasilKonsultasi = null,
     Object? tanggal = null,
     Object? jam = null,
     Object? status = null,
@@ -307,6 +322,10 @@ class __$$_PemesananCopyWithImpl<$Res>
           ? _value.keluhan
           : keluhan // ignore: cast_nullable_to_non_nullable
               as String,
+      hasilKonsultasi: null == hasilKonsultasi
+          ? _value.hasilKonsultasi
+          : hasilKonsultasi // ignore: cast_nullable_to_non_nullable
+              as String,
       tanggal: null == tanggal
           ? _value.tanggal
           : tanggal // ignore: cast_nullable_to_non_nullable
@@ -334,6 +353,7 @@ class _$_Pemesanan extends _Pemesanan {
       required this.umurHewan,
       required this.jenisKelaminHewan,
       required this.keluhan,
+      required this.hasilKonsultasi,
       required this.tanggal,
       required this.jam,
       required this.status,
@@ -359,6 +379,8 @@ class _$_Pemesanan extends _Pemesanan {
   @override
   final String keluhan;
   @override
+  final String hasilKonsultasi;
+  @override
   final String tanggal;
   @override
   final String jam;
@@ -370,7 +392,7 @@ class _$_Pemesanan extends _Pemesanan {
 
   @override
   String toString() {
-    return 'Pemesanan(id: $id, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, tanggal: $tanggal, jam: $jam, status: $status)';
+    return 'Pemesanan(id: $id, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, hasilKonsultasi: $hasilKonsultasi, tanggal: $tanggal, jam: $jam, status: $status)';
   }
 
   @override
@@ -390,6 +412,8 @@ class _$_Pemesanan extends _Pemesanan {
             (identical(other.jenisKelaminHewan, jenisKelaminHewan) ||
                 other.jenisKelaminHewan == jenisKelaminHewan) &&
             (identical(other.keluhan, keluhan) || other.keluhan == keluhan) &&
+            (identical(other.hasilKonsultasi, hasilKonsultasi) ||
+                other.hasilKonsultasi == hasilKonsultasi) &&
             (identical(other.tanggal, tanggal) || other.tanggal == tanggal) &&
             (identical(other.jam, jam) || other.jam == jam) &&
             (identical(other.status, status) || other.status == status));
@@ -406,6 +430,7 @@ class _$_Pemesanan extends _Pemesanan {
       umurHewan,
       jenisKelaminHewan,
       keluhan,
+      hasilKonsultasi,
       tanggal,
       jam,
       status);
@@ -427,6 +452,7 @@ class _$_Pemesanan extends _Pemesanan {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)
@@ -439,13 +465,14 @@ class _$_Pemesanan extends _Pemesanan {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)
         empty,
   }) {
     return $default(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
-        jenisKelaminHewan, keluhan, tanggal, jam, status);
+        jenisKelaminHewan, keluhan, hasilKonsultasi, tanggal, jam, status);
   }
 
   @override
@@ -459,6 +486,7 @@ class _$_Pemesanan extends _Pemesanan {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)?
@@ -471,13 +499,14 @@ class _$_Pemesanan extends _Pemesanan {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)?
         empty,
   }) {
     return $default?.call(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
-        jenisKelaminHewan, keluhan, tanggal, jam, status);
+        jenisKelaminHewan, keluhan, hasilKonsultasi, tanggal, jam, status);
   }
 
   @override
@@ -491,6 +520,7 @@ class _$_Pemesanan extends _Pemesanan {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)?
@@ -503,6 +533,7 @@ class _$_Pemesanan extends _Pemesanan {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)?
@@ -511,7 +542,7 @@ class _$_Pemesanan extends _Pemesanan {
   }) {
     if ($default != null) {
       return $default(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
-          jenisKelaminHewan, keluhan, tanggal, jam, status);
+          jenisKelaminHewan, keluhan, hasilKonsultasi, tanggal, jam, status);
     }
     return orElse();
   }
@@ -564,6 +595,7 @@ abstract class _Pemesanan extends Pemesanan {
       required final String umurHewan,
       required final String jenisKelaminHewan,
       required final String keluhan,
+      required final String hasilKonsultasi,
       required final String tanggal,
       required final String jam,
       required final String status}) = _$_Pemesanan;
@@ -586,6 +618,8 @@ abstract class _Pemesanan extends Pemesanan {
   String get jenisKelaminHewan;
   @override
   String get keluhan;
+  @override
+  String get hasilKonsultasi;
   @override
   String get tanggal;
   @override
@@ -614,6 +648,7 @@ abstract class _$$_PemesananEmptyCopyWith<$Res>
       String umurHewan,
       String jenisKelaminHewan,
       String keluhan,
+      String hasilKonsultasi,
       String tanggal,
       String jam,
       String status});
@@ -637,6 +672,7 @@ class __$$_PemesananEmptyCopyWithImpl<$Res>
     Object? umurHewan = null,
     Object? jenisKelaminHewan = null,
     Object? keluhan = null,
+    Object? hasilKonsultasi = null,
     Object? tanggal = null,
     Object? jam = null,
     Object? status = null,
@@ -670,6 +706,10 @@ class __$$_PemesananEmptyCopyWithImpl<$Res>
           ? _value.keluhan
           : keluhan // ignore: cast_nullable_to_non_nullable
               as String,
+      hasilKonsultasi: null == hasilKonsultasi
+          ? _value.hasilKonsultasi
+          : hasilKonsultasi // ignore: cast_nullable_to_non_nullable
+              as String,
       tanggal: null == tanggal
           ? _value.tanggal
           : tanggal // ignore: cast_nullable_to_non_nullable
@@ -697,6 +737,7 @@ class _$_PemesananEmpty extends _PemesananEmpty {
       this.umurHewan = "-",
       this.jenisKelaminHewan = "-",
       this.keluhan = "-",
+      this.hasilKonsultasi = "-",
       this.tanggal = "-",
       this.jam = "-",
       this.status = "-",
@@ -730,6 +771,9 @@ class _$_PemesananEmpty extends _PemesananEmpty {
   final String keluhan;
   @override
   @JsonKey()
+  final String hasilKonsultasi;
+  @override
+  @JsonKey()
   final String tanggal;
   @override
   @JsonKey()
@@ -743,7 +787,7 @@ class _$_PemesananEmpty extends _PemesananEmpty {
 
   @override
   String toString() {
-    return 'Pemesanan.empty(id: $id, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, tanggal: $tanggal, jam: $jam, status: $status)';
+    return 'Pemesanan.empty(id: $id, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, hasilKonsultasi: $hasilKonsultasi, tanggal: $tanggal, jam: $jam, status: $status)';
   }
 
   @override
@@ -763,6 +807,8 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             (identical(other.jenisKelaminHewan, jenisKelaminHewan) ||
                 other.jenisKelaminHewan == jenisKelaminHewan) &&
             (identical(other.keluhan, keluhan) || other.keluhan == keluhan) &&
+            (identical(other.hasilKonsultasi, hasilKonsultasi) ||
+                other.hasilKonsultasi == hasilKonsultasi) &&
             (identical(other.tanggal, tanggal) || other.tanggal == tanggal) &&
             (identical(other.jam, jam) || other.jam == jam) &&
             (identical(other.status, status) || other.status == status));
@@ -779,6 +825,7 @@ class _$_PemesananEmpty extends _PemesananEmpty {
       umurHewan,
       jenisKelaminHewan,
       keluhan,
+      hasilKonsultasi,
       tanggal,
       jam,
       status);
@@ -800,6 +847,7 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)
@@ -812,13 +860,14 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)
         empty,
   }) {
     return empty(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
-        jenisKelaminHewan, keluhan, tanggal, jam, status);
+        jenisKelaminHewan, keluhan, hasilKonsultasi, tanggal, jam, status);
   }
 
   @override
@@ -832,6 +881,7 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)?
@@ -844,13 +894,14 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)?
         empty,
   }) {
     return empty?.call(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
-        jenisKelaminHewan, keluhan, tanggal, jam, status);
+        jenisKelaminHewan, keluhan, hasilKonsultasi, tanggal, jam, status);
   }
 
   @override
@@ -864,6 +915,7 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)?
@@ -876,6 +928,7 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             String umurHewan,
             String jenisKelaminHewan,
             String keluhan,
+            String hasilKonsultasi,
             String tanggal,
             String jam,
             String status)?
@@ -884,7 +937,7 @@ class _$_PemesananEmpty extends _PemesananEmpty {
   }) {
     if (empty != null) {
       return empty(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
-          jenisKelaminHewan, keluhan, tanggal, jam, status);
+          jenisKelaminHewan, keluhan, hasilKonsultasi, tanggal, jam, status);
     }
     return orElse();
   }
@@ -937,6 +990,7 @@ abstract class _PemesananEmpty extends Pemesanan {
       final String umurHewan,
       final String jenisKelaminHewan,
       final String keluhan,
+      final String hasilKonsultasi,
       final String tanggal,
       final String jam,
       final String status}) = _$_PemesananEmpty;
@@ -959,6 +1013,8 @@ abstract class _PemesananEmpty extends Pemesanan {
   String get jenisKelaminHewan;
   @override
   String get keluhan;
+  @override
+  String get hasilKonsultasi;
   @override
   String get tanggal;
   @override

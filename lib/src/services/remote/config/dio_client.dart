@@ -8,8 +8,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/src/services/local/hive_service.dart';
 
-const _defaultConnectTimeout = Duration(milliseconds: 15000);
-const _defaultReceiveTimeout = Duration(milliseconds: 15000);
+// const _defaultConnectTimeout = Duration(milliseconds: 15000);
+// const _defaultReceiveTimeout = Duration(milliseconds: 15000);
 
 class DioClient {
   // final String baseUrl = 'http://localhost:1337/';
@@ -39,8 +39,8 @@ class DioClient {
     _dio = dio;
     _dio
       ..options.baseUrl = setBaseUrl
-      ..options.connectTimeout = _defaultConnectTimeout
-      ..options.receiveTimeout = _defaultReceiveTimeout
+      // ..options.connectTimeout = _defaultConnectTimeout
+      // ..options.receiveTimeout = _defaultReceiveTimeout
       ..httpClientAdapter
       ..options.headers = {
         'Content-Type': 'application/json; charset=UTF-8',

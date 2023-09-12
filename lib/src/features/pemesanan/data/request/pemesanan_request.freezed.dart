@@ -25,7 +25,8 @@ mixin _$PemesananRequest {
   String get kategoriHewan => throw _privateConstructorUsedError;
   String get umurHewan => throw _privateConstructorUsedError;
   String get jenisKelaminHewan => throw _privateConstructorUsedError;
-  String get keluhan => throw _privateConstructorUsedError;
+  String get keluhan =>
+      throw _privateConstructorUsedError; // required String hasilKeluhan,
   String get noHP => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get tanggal => throw _privateConstructorUsedError;
@@ -243,6 +244,7 @@ class _$_PemesananRequest implements _PemesananRequest {
   final String jenisKelaminHewan;
   @override
   final String keluhan;
+// required String hasilKeluhan,
   @override
   final String noHP;
   @override
@@ -337,7 +339,7 @@ abstract class _PemesananRequest implements PemesananRequest {
   String get jenisKelaminHewan;
   @override
   String get keluhan;
-  @override
+  @override // required String hasilKeluhan,
   String get noHP;
   @override
   String get status;
