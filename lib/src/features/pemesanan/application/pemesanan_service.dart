@@ -43,6 +43,18 @@ class PemesananService {
     return result;
   }
 
+  Future<Result<void>> setPemesananTambahan(
+    PemesananRequest pemesananRequest,
+    String id,
+  ) async {
+    final response = await pemesananRepository.setPemesananTambahan(
+      pemesananRequest,
+      id,
+    );
+    final result = PemesananMapper.mapToPemesanan(response);
+    return result;
+  }
+
   Future<Result<ListPemesanan>> getAllPemesanan() async {
     final response = await pemesananRepository.getAllPemesanan();
     final result = PemesananMapper.mapToListPemesanan(response);

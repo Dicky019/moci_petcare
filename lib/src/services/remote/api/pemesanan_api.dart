@@ -42,6 +42,22 @@ class PemesananApi {
     }
   }
 
+  Future<Result<PemesananResponse>> setPemesananTambahan(
+      PemesananRequest pemesananRequest, String id) async {
+    try {
+      final response = await _dioClient.put(
+        "${Endpoint.pemesanan}/tambahan/$id",
+        data: pemesananRequest,
+      );
+      return Result.success(PemesananResponse.fromJson(response['data']));
+    } catch (e, st) {
+      return Result.failure(
+        NetworkExceptions.getDioException(e, st),
+        st,
+      );
+    }
+  }
+
   Future<Result<PemesananResponse>> deletePemesanan(String id) async {
     try {
       final response = await _dioClient.delete(

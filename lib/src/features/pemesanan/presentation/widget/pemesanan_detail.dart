@@ -12,7 +12,10 @@ class PemesananDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final listTambahan = ListData.listPemesananGrooming;
+    const listTambahanGrooming = ListData.listPemesananGrooming;
+    const listTambahanKesehatan = ListData.listPemesananKesehatan;
+    const listTambahanKonsultasi = ListData.listPemesananKonsultasi;
+
     return ListView(
       children: [
         Gap.h12,
@@ -70,9 +73,6 @@ class PemesananDetailWidget extends StatelessWidget {
         ],
         if (pemesanan.hasilKonsultasi.trim() != '' ||
             pemesanan.hasilKonsultasi == "-") ...[
-          // const Divider(
-          //   color: ColorApp.purpleBlue,
-          // ),
           TitleAndValue(
             title: "Hasil Keluhan :".toUpperCase(),
             value: pemesanan.hasilKonsultasi.toUpperCase(),
@@ -93,7 +93,21 @@ class PemesananDetailWidget extends StatelessWidget {
           color: ColorApp.purpleBlue,
         ),
         if (pemesanan.jenisLayanan.toUpperCase() == "GROOMING")
-          for (var tambahan in listTambahan)
+          for (var tambahan in listTambahanGrooming)
+            ExpansionTile(
+              title: Text(tambahan),
+              trailing: const Icon(Icons.add),
+              // children: [],
+            ),
+        if (pemesanan.jenisLayanan.toUpperCase() == "Kesehatan".toUpperCase())
+          for (var tambahan in listTambahanKesehatan)
+            ExpansionTile(
+              title: Text(tambahan),
+              trailing: const Icon(Icons.add),
+              // children: [],
+            ),
+        if (pemesanan.jenisLayanan.toUpperCase() == "KONSULTASI")
+          for (var tambahan in listTambahanKonsultasi)
             ExpansionTile(
               title: Text(tambahan),
               trailing: const Icon(Icons.add),
