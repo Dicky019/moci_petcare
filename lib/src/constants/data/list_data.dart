@@ -24,5 +24,33 @@ class ListData {
 
   static const listJenisLayanan = ["grooming", "kesehatan", "konsultasi"];
   static const listJenisKelamin = ["jantan", "betina"];
-  static const listKategori = ["anjing ","kucing","kelinci", "burung" ,"hamster"];
+  static const listKategori = [
+    "anjing ",
+    "kucing",
+    "kelinci",
+    "burung",
+    "hamster"
+  ];
+
+  static const listPemesananGrooming = [
+    "Mandi & Potong Bulu",
+    "Mandi & Potong Kuku",
+    "Mandi & Potong Bulu & Potong Kuku",
+    "Mandi & Obat Kutu",
+    "Mandi & Obat Jamur"
+  ];
+
+  static const listPemesananKesehatan = ["Vaksin rabies", "Vaksin pertahap"];
+
+  static const listPemesananKesehatanPertahap = [
+    "6 Minggu/2 bulan",
+    "3 bulan",
+    "1 tahun",
+  ];
+
+  static const listPemesananKonsultasi = [
+    "Obat Cacing",
+    "Obat Flu",
+    "Obat Diare"
+  ];
 }

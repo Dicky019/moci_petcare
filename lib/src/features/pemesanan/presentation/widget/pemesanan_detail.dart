@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moci_petcare/src/constants/data/list_data.dart';
 import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan.dart';
 import 'package:moci_petcare/src/utils/extension/string_extension.dart';
 
@@ -11,6 +12,7 @@ class PemesananDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final listTambahan = ListData.listPemesananGrooming;
     return ListView(
       children: [
         Gap.h12,
@@ -80,6 +82,23 @@ class PemesananDetailWidget extends StatelessWidget {
           ),
         ],
         Gap.h12,
+        const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            "Tambahan Pemesanan : ",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+        ),
+        const Divider(
+          color: ColorApp.purpleBlue,
+        ),
+        if (pemesanan.jenisLayanan.toUpperCase() == "GROOMING")
+          for (var tambahan in listTambahan)
+            ExpansionTile(
+              title: Text(tambahan),
+              trailing: const Icon(Icons.add),
+              // children: [],
+            ),
       ],
     );
   }
