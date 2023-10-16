@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moci_petcare/src/constants/data/list_data.dart';
+import 'package:moci_petcare/src/features/pemesanan/data/request/pemesanan_tambahan_request.dart';
 import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan.dart';
+import 'package:moci_petcare/src/features/pemesanan/presentation/pemesanan_controller.dart';
 import 'package:moci_petcare/src/utils/extension/string_extension.dart';
 
+import '../../../../common_widgets/common_widgets.dart';
 import '../../../../constants/constants.dart';
 
-class PemesananDetailWidget extends StatelessWidget {
+class PemesananDetailWidget extends ConsumerWidget {
   final Pemesanan pemesanan;
   const PemesananDetailWidget({super.key, required this.pemesanan});
 
   @override
-  Widget build(BuildContext context) {
-    const listTambahanGrooming = ListData.listPemesananGrooming;
-    const listTambahanKesehatan = ListData.listPemesananKesehatan;
-    const listTambahanKonsultasi = ListData.listPemesananKonsultasi;
-
+  Widget build(BuildContext context, ref) {
+    final tambahanPemesanan = ref.watch(pemesananTambahanProvider).join(", ");
     return ListView(
       children: [
         Gap.h12,
@@ -81,38 +82,128 @@ class PemesananDetailWidget extends StatelessWidget {
             color: ColorApp.purpleBlue,
           ),
         ],
-        Gap.h12,
-        const Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Text(
-            "Tambahan Pemesanan : ",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
+        TitleAndValue(
+          title: "Tambahan Pemesanan :".toUpperCase(),
+          value:
+              tambahanPemesanan == "" ? "-" : tambahanPemesanan.toUpperCase(),
         ),
         const Divider(
           color: ColorApp.purpleBlue,
         ),
+        PemesananTambahanWidget(pemesanan: pemesanan),
+        Gap.h24,
+      ],
+    );
+  }
+}
+
+class PemesananTambahanWidget extends ConsumerWidget {
+  final Pemesanan pemesanan;
+  const PemesananTambahanWidget({super.key, required this.pemesanan});
+
+  @override
+  Widget build(BuildContext context, ref) {
+    const listTambahanGrooming = ListData.listPemesananGrooming;
+    const listTambahanKesehatan = ListData.listPemesananKesehatan;
+    const listTambahanKonsultasi = ListData.listPemesananKonsultasi;
+    const listPemesananKesehatanPertahap =
+        ListData.listPemesananKesehatanPertahap;
+    //
+    final controller = ref.read(pemesananControllerProvider.notifier);
+    final tambahanPemesanan = ref.watch(pemesananTambahanProvider).join(", ");
+    final controllerTambahanPemesanan =
+        ref.read(pemesananTambahanProvider.notifier);
+    bool isActive(String tambahan) => !tambahanPemesanan.contains(tambahan);
+
+    onSetTambahan() {
+      final pemesananTambahan = PemesananTambahanRequest(
+        tambahanPemesanan: tambahanPemesanan,
+      );
+      return controller.setPemesanan(pemesananTambahan, pemesanan.id);
+    }
+
+    onPemesananTambahan(String value) {
+      controllerTambahanPemesanan.update((state) {
+        final oldData = state;
+        final cekData = oldData.remove(value);
+        // if (oldData.contains("Vaksin Rabies")) {
+          for (var element in listPemesananKesehatanPertahap) {
+            oldData.remove(element);
+          }
+        // }
+
+        if (cekData) {
+          return oldData.skipWhile((newData) => newData == value).toList();
+        }
+
+        return [...oldData, value];
+      });
+    }
+
+    return ExpansionTile(
+      title: const Text(
+        "Tambahan Pemesanan",
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+      children: [
         if (pemesanan.jenisLayanan.toUpperCase() == "GROOMING")
           for (var tambahan in listTambahanGrooming)
-            ExpansionTile(
+            ListTile(
               title: Text(tambahan),
-              trailing: const Icon(Icons.add),
-              // children: [],
+              trailing: Icon(
+                isActive(tambahan) ? Icons.add : Icons.minimize_outlined,
+              ),
+              onTap: () => onPemesananTambahan(tambahan),
             ),
+        //
         if (pemesanan.jenisLayanan.toUpperCase() == "Kesehatan".toUpperCase())
-          for (var tambahan in listTambahanKesehatan)
-            ExpansionTile(
-              title: Text(tambahan),
-              trailing: const Icon(Icons.add),
-              // children: [],
-            ),
+          for (var tambahan in listTambahanKesehatan) ...[
+            if (tambahan != "Vaksin Pertahap")
+              ListTile(
+                title: Text(tambahan),
+                trailing: Icon(
+                  isActive(tambahan) ? Icons.add : Icons.minimize_outlined,
+                ),
+                onTap: () => onPemesananTambahan(tambahan),
+              ),
+            if (tambahan == "Vaksin Pertahap")
+              ExpansionTile(
+                title: Text(tambahan),
+                initiallyExpanded:
+                    listPemesananKesehatanPertahap.contains(tambahanPemesanan),
+                children: [
+                  for (var tambahan in listPemesananKesehatanPertahap)
+                    ListTile(
+                      title: Text(tambahan),
+                      trailing: Icon(
+                        isActive(tambahan)
+                            ? Icons.add
+                            : Icons.minimize_outlined,
+                      ),
+                      onTap: () => onPemesananTambahan(tambahan),
+                    )
+                ],
+              ),
+          ],
+        //
         if (pemesanan.jenisLayanan.toUpperCase() == "KONSULTASI")
           for (var tambahan in listTambahanKonsultasi)
-            ExpansionTile(
+            ListTile(
               title: Text(tambahan),
-              trailing: const Icon(Icons.add),
-              // children: [],
+              trailing: Icon(
+                isActive(tambahan) ? Icons.add : Icons.minimize_outlined,
+              ),
+              onTap: () => onPemesananTambahan(tambahan),
             ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+          child: ButtonWidget(
+            text: "Save",
+            isSmall: true,
+            isLoading: false,
+            onTap: onSetTambahan,
+          ),
+        ),
       ],
     );
   }

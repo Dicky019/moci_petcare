@@ -23,6 +23,7 @@ class PemesananMapper {
             namaHewan: data.namaHewan.toEmpty,
             status: data.status.toEmpty,
             umurHewan: data.umurHewan.toEmpty,
+            tambahanPemesanan: data.tambahanPemesanan.toEmpty,
           ),
         );
       },
@@ -50,6 +51,7 @@ class PemesananMapper {
                 tanggal: e.tanggal.toEmpty,
                 jam: e.jam.toEmpty,
                 status: e.status.toEmpty,
+                tambahanPemesanan: e.tambahanPemesanan.toEmpty,
               ),
             )
             .toList();

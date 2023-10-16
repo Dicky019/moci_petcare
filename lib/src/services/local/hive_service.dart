@@ -15,7 +15,7 @@ class HiveService {
 
   /// Get Current User
   User? getCurrentUser() {
-    // TODO : revisit, update, and testing in any cases
+    // 
     // check if hiveJson is empty then just return null
     try {
       final hiveJson = hiveUser.get(HiveKey.user);

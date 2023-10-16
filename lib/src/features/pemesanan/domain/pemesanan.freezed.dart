@@ -40,6 +40,7 @@ mixin _$Pemesanan {
   String get tanggal => throw _privateConstructorUsedError;
   String get jam => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  String get tambahanPemesanan => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
@@ -53,7 +54,8 @@ mixin _$Pemesanan {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)
+            String status,
+            String tambahanPemesanan)
         $default, {
     required TResult Function(
             String id,
@@ -66,7 +68,8 @@ mixin _$Pemesanan {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)
+            String status,
+            String tambahanPemesanan)
         empty,
   }) =>
       throw _privateConstructorUsedError;
@@ -83,7 +86,8 @@ mixin _$Pemesanan {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)?
+            String status,
+            String tambahanPemesanan)?
         $default, {
     TResult? Function(
             String id,
@@ -96,7 +100,8 @@ mixin _$Pemesanan {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)?
+            String status,
+            String tambahanPemesanan)?
         empty,
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +118,8 @@ mixin _$Pemesanan {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)?
+            String status,
+            String tambahanPemesanan)?
         $default, {
     TResult Function(
             String id,
@@ -126,7 +132,8 @@ mixin _$Pemesanan {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)?
+            String status,
+            String tambahanPemesanan)?
         empty,
     required TResult orElse(),
   }) =>
@@ -172,7 +179,8 @@ abstract class $PemesananCopyWith<$Res> {
       String hasilKonsultasi,
       String tanggal,
       String jam,
-      String status});
+      String status,
+      String tambahanPemesanan});
 }
 
 /// @nodoc
@@ -199,6 +207,7 @@ class _$PemesananCopyWithImpl<$Res, $Val extends Pemesanan>
     Object? tanggal = null,
     Object? jam = null,
     Object? status = null,
+    Object? tambahanPemesanan = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -245,6 +254,10 @@ class _$PemesananCopyWithImpl<$Res, $Val extends Pemesanan>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      tambahanPemesanan: null == tambahanPemesanan
+          ? _value.tambahanPemesanan
+          : tambahanPemesanan // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -267,7 +280,8 @@ abstract class _$$_PemesananCopyWith<$Res> implements $PemesananCopyWith<$Res> {
       String hasilKonsultasi,
       String tanggal,
       String jam,
-      String status});
+      String status,
+      String tambahanPemesanan});
 }
 
 /// @nodoc
@@ -292,6 +306,7 @@ class __$$_PemesananCopyWithImpl<$Res>
     Object? tanggal = null,
     Object? jam = null,
     Object? status = null,
+    Object? tambahanPemesanan = null,
   }) {
     return _then(_$_Pemesanan(
       id: null == id
@@ -338,6 +353,10 @@ class __$$_PemesananCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      tambahanPemesanan: null == tambahanPemesanan
+          ? _value.tambahanPemesanan
+          : tambahanPemesanan // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -357,6 +376,7 @@ class _$_Pemesanan extends _Pemesanan {
       required this.tanggal,
       required this.jam,
       required this.status,
+      required this.tambahanPemesanan,
       final String? $type})
       : $type = $type ?? 'default',
         super._();
@@ -386,13 +406,15 @@ class _$_Pemesanan extends _Pemesanan {
   final String jam;
   @override
   final String status;
+  @override
+  final String tambahanPemesanan;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'Pemesanan(id: $id, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, hasilKonsultasi: $hasilKonsultasi, tanggal: $tanggal, jam: $jam, status: $status)';
+    return 'Pemesanan(id: $id, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, hasilKonsultasi: $hasilKonsultasi, tanggal: $tanggal, jam: $jam, status: $status, tambahanPemesanan: $tambahanPemesanan)';
   }
 
   @override
@@ -416,7 +438,9 @@ class _$_Pemesanan extends _Pemesanan {
                 other.hasilKonsultasi == hasilKonsultasi) &&
             (identical(other.tanggal, tanggal) || other.tanggal == tanggal) &&
             (identical(other.jam, jam) || other.jam == jam) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.tambahanPemesanan, tambahanPemesanan) ||
+                other.tambahanPemesanan == tambahanPemesanan));
   }
 
   @JsonKey(ignore: true)
@@ -433,7 +457,8 @@ class _$_Pemesanan extends _Pemesanan {
       hasilKonsultasi,
       tanggal,
       jam,
-      status);
+      status,
+      tambahanPemesanan);
 
   @JsonKey(ignore: true)
   @override
@@ -455,7 +480,8 @@ class _$_Pemesanan extends _Pemesanan {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)
+            String status,
+            String tambahanPemesanan)
         $default, {
     required TResult Function(
             String id,
@@ -468,11 +494,23 @@ class _$_Pemesanan extends _Pemesanan {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)
+            String status,
+            String tambahanPemesanan)
         empty,
   }) {
-    return $default(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
-        jenisKelaminHewan, keluhan, hasilKonsultasi, tanggal, jam, status);
+    return $default(
+        id,
+        jenisLayanan,
+        namaHewan,
+        kategoriHewan,
+        umurHewan,
+        jenisKelaminHewan,
+        keluhan,
+        hasilKonsultasi,
+        tanggal,
+        jam,
+        status,
+        tambahanPemesanan);
   }
 
   @override
@@ -489,7 +527,8 @@ class _$_Pemesanan extends _Pemesanan {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)?
+            String status,
+            String tambahanPemesanan)?
         $default, {
     TResult? Function(
             String id,
@@ -502,11 +541,23 @@ class _$_Pemesanan extends _Pemesanan {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)?
+            String status,
+            String tambahanPemesanan)?
         empty,
   }) {
-    return $default?.call(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
-        jenisKelaminHewan, keluhan, hasilKonsultasi, tanggal, jam, status);
+    return $default?.call(
+        id,
+        jenisLayanan,
+        namaHewan,
+        kategoriHewan,
+        umurHewan,
+        jenisKelaminHewan,
+        keluhan,
+        hasilKonsultasi,
+        tanggal,
+        jam,
+        status,
+        tambahanPemesanan);
   }
 
   @override
@@ -523,7 +574,8 @@ class _$_Pemesanan extends _Pemesanan {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)?
+            String status,
+            String tambahanPemesanan)?
         $default, {
     TResult Function(
             String id,
@@ -536,13 +588,25 @@ class _$_Pemesanan extends _Pemesanan {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)?
+            String status,
+            String tambahanPemesanan)?
         empty,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
-          jenisKelaminHewan, keluhan, hasilKonsultasi, tanggal, jam, status);
+      return $default(
+          id,
+          jenisLayanan,
+          namaHewan,
+          kategoriHewan,
+          umurHewan,
+          jenisKelaminHewan,
+          keluhan,
+          hasilKonsultasi,
+          tanggal,
+          jam,
+          status,
+          tambahanPemesanan);
     }
     return orElse();
   }
@@ -598,7 +662,8 @@ abstract class _Pemesanan extends Pemesanan {
       required final String hasilKonsultasi,
       required final String tanggal,
       required final String jam,
-      required final String status}) = _$_Pemesanan;
+      required final String status,
+      required final String tambahanPemesanan}) = _$_Pemesanan;
   _Pemesanan._() : super._();
 
   factory _Pemesanan.fromJson(Map<String, dynamic> json) =
@@ -627,6 +692,8 @@ abstract class _Pemesanan extends Pemesanan {
   @override
   String get status;
   @override
+  String get tambahanPemesanan;
+  @override
   @JsonKey(ignore: true)
   _$$_PemesananCopyWith<_$_Pemesanan> get copyWith =>
       throw _privateConstructorUsedError;
@@ -651,7 +718,8 @@ abstract class _$$_PemesananEmptyCopyWith<$Res>
       String hasilKonsultasi,
       String tanggal,
       String jam,
-      String status});
+      String status,
+      String tambahanPemesanan});
 }
 
 /// @nodoc
@@ -676,6 +744,7 @@ class __$$_PemesananEmptyCopyWithImpl<$Res>
     Object? tanggal = null,
     Object? jam = null,
     Object? status = null,
+    Object? tambahanPemesanan = null,
   }) {
     return _then(_$_PemesananEmpty(
       id: null == id
@@ -722,6 +791,10 @@ class __$$_PemesananEmptyCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      tambahanPemesanan: null == tambahanPemesanan
+          ? _value.tambahanPemesanan
+          : tambahanPemesanan // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -741,6 +814,7 @@ class _$_PemesananEmpty extends _PemesananEmpty {
       this.tanggal = "-",
       this.jam = "-",
       this.status = "-",
+      this.tambahanPemesanan = "-",
       final String? $type})
       : $type = $type ?? 'empty',
         super._();
@@ -781,13 +855,16 @@ class _$_PemesananEmpty extends _PemesananEmpty {
   @override
   @JsonKey()
   final String status;
+  @override
+  @JsonKey()
+  final String tambahanPemesanan;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'Pemesanan.empty(id: $id, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, hasilKonsultasi: $hasilKonsultasi, tanggal: $tanggal, jam: $jam, status: $status)';
+    return 'Pemesanan.empty(id: $id, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, hasilKonsultasi: $hasilKonsultasi, tanggal: $tanggal, jam: $jam, status: $status, tambahanPemesanan: $tambahanPemesanan)';
   }
 
   @override
@@ -811,7 +888,9 @@ class _$_PemesananEmpty extends _PemesananEmpty {
                 other.hasilKonsultasi == hasilKonsultasi) &&
             (identical(other.tanggal, tanggal) || other.tanggal == tanggal) &&
             (identical(other.jam, jam) || other.jam == jam) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.tambahanPemesanan, tambahanPemesanan) ||
+                other.tambahanPemesanan == tambahanPemesanan));
   }
 
   @JsonKey(ignore: true)
@@ -828,7 +907,8 @@ class _$_PemesananEmpty extends _PemesananEmpty {
       hasilKonsultasi,
       tanggal,
       jam,
-      status);
+      status,
+      tambahanPemesanan);
 
   @JsonKey(ignore: true)
   @override
@@ -850,7 +930,8 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)
+            String status,
+            String tambahanPemesanan)
         $default, {
     required TResult Function(
             String id,
@@ -863,11 +944,23 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)
+            String status,
+            String tambahanPemesanan)
         empty,
   }) {
-    return empty(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
-        jenisKelaminHewan, keluhan, hasilKonsultasi, tanggal, jam, status);
+    return empty(
+        id,
+        jenisLayanan,
+        namaHewan,
+        kategoriHewan,
+        umurHewan,
+        jenisKelaminHewan,
+        keluhan,
+        hasilKonsultasi,
+        tanggal,
+        jam,
+        status,
+        tambahanPemesanan);
   }
 
   @override
@@ -884,7 +977,8 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)?
+            String status,
+            String tambahanPemesanan)?
         $default, {
     TResult? Function(
             String id,
@@ -897,11 +991,23 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)?
+            String status,
+            String tambahanPemesanan)?
         empty,
   }) {
-    return empty?.call(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
-        jenisKelaminHewan, keluhan, hasilKonsultasi, tanggal, jam, status);
+    return empty?.call(
+        id,
+        jenisLayanan,
+        namaHewan,
+        kategoriHewan,
+        umurHewan,
+        jenisKelaminHewan,
+        keluhan,
+        hasilKonsultasi,
+        tanggal,
+        jam,
+        status,
+        tambahanPemesanan);
   }
 
   @override
@@ -918,7 +1024,8 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)?
+            String status,
+            String tambahanPemesanan)?
         $default, {
     TResult Function(
             String id,
@@ -931,13 +1038,25 @@ class _$_PemesananEmpty extends _PemesananEmpty {
             String hasilKonsultasi,
             String tanggal,
             String jam,
-            String status)?
+            String status,
+            String tambahanPemesanan)?
         empty,
     required TResult orElse(),
   }) {
     if (empty != null) {
-      return empty(id, jenisLayanan, namaHewan, kategoriHewan, umurHewan,
-          jenisKelaminHewan, keluhan, hasilKonsultasi, tanggal, jam, status);
+      return empty(
+          id,
+          jenisLayanan,
+          namaHewan,
+          kategoriHewan,
+          umurHewan,
+          jenisKelaminHewan,
+          keluhan,
+          hasilKonsultasi,
+          tanggal,
+          jam,
+          status,
+          tambahanPemesanan);
     }
     return orElse();
   }
@@ -993,7 +1112,8 @@ abstract class _PemesananEmpty extends Pemesanan {
       final String hasilKonsultasi,
       final String tanggal,
       final String jam,
-      final String status}) = _$_PemesananEmpty;
+      final String status,
+      final String tambahanPemesanan}) = _$_PemesananEmpty;
   _PemesananEmpty._() : super._();
 
   factory _PemesananEmpty.fromJson(Map<String, dynamic> json) =
@@ -1021,6 +1141,8 @@ abstract class _PemesananEmpty extends Pemesanan {
   String get jam;
   @override
   String get status;
+  @override
+  String get tambahanPemesanan;
   @override
   @JsonKey(ignore: true)
   _$$_PemesananEmptyCopyWith<_$_PemesananEmpty> get copyWith =>

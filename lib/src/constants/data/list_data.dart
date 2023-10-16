@@ -40,12 +40,12 @@ class ListData {
     "Mandi & Obat Jamur"
   ];
 
-  static const listPemesananKesehatan = ["Vaksin rabies", "Vaksin pertahap"];
+  static const listPemesananKesehatan = ["Vaksin Rabies", "Vaksin Pertahap"];
 
   static const listPemesananKesehatanPertahap = [
-    "6 Minggu/2 bulan",
-    "3 bulan",
-    "1 tahun",
+    "Vaksin Pertahap 6 Minggu/2 bulan",
+    "Vaksin Pertahap 3 bulan",
+    "Vaksin Pertahap 1 tahun",
   ];
 
   static const listPemesananKonsultasi = [

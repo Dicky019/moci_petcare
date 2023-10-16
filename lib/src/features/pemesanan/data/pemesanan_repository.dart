@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/src/services/remote/config/config.dart';
 import '../../../services/remote/api/pemesanan_api.dart';
 import 'request/pemesanan_request.dart';
+import 'request/pemesanan_tambahan_request.dart';
 import 'response/pemesanan_response.dart';
 
 class PemesananRepository {
@@ -30,7 +31,7 @@ class PemesananRepository {
   }
 
   Future<Result<PemesananResponse>> setPemesananTambahan(
-    PemesananRequest pemesananRequest,
+    PemesananTambahanRequest pemesananRequest,
     String id,
   ) async {
     final result = await _pemesananApi.setPemesananTambahan(pemesananRequest, id);

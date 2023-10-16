@@ -7,6 +7,7 @@ import '../../authentication/application/authentication_service.dart';
 import '../../../utils/extension/dynamic_extension.dart';
 import '../data/request/pemesanan_request.dart';
 import '../application/pemesanan_service.dart';
+import '../data/request/pemesanan_tambahan_request.dart';
 import '../domain/pemesanan.dart';
 import 'pemesanan_state.dart';
 
@@ -24,6 +25,14 @@ class PemesananController extends StateNotifier<PemesananState> {
       data: (data) => log(data.value.values.toString(), name: "mapOrNull"),
     );
     // _ref.refresh(pemesananControllerProvider);
+  }
+
+  void invalidateDetail(String id) {
+    final state = _ref.refresh(pemesananDetailFutureProvider(id));
+    state.mapOrNull(
+      data: (data) => log(data.value.toString(), name: "mapOrNull"),
+    );
+    invalidateList();
   }
 
   final jenisLayananController = TextEditingController();
@@ -70,6 +79,20 @@ class PemesananController extends StateNotifier<PemesananState> {
       },
       failure: (error, stackTrace) {
         invalidateList();
+        log(error.toString());
+      },
+    );
+  }
+
+  void setPemesanan(PemesananTambahanRequest request, String id) async {
+    final result = await _pemesananService.setPemesananTambahan(request, id);
+
+    result.when(
+      success: (data) {
+        invalidateDetail(id);
+      },
+      failure: (error, stackTrace) {
+        invalidateDetail(id);
         log(error.toString());
       },
     );
@@ -129,6 +152,8 @@ class PemesananController extends StateNotifier<PemesananState> {
   }
 }
 
+final pemesananTambahanProvider = StateProvider((_) => <String>[]);
+
 final jenisLayananState = StateProvider.autoDispose<JenisLayanan>((ref) {
   const jenisLayananMap = {
     "kesehatan": JenisLayanan.kesehatan,
@@ -141,8 +166,6 @@ final jenisLayananState = StateProvider.autoDispose<JenisLayanan>((ref) {
 
   return jenisLayananMap[jenisLayanan] ?? JenisLayanan.grooming;
 });
-
-
 
 final pemesananControllerProvider =
     StateNotifierProvider.autoDispose<PemesananController, PemesananState>(
@@ -170,7 +193,6 @@ final pemesananListFutureProvider = FutureProvider<ListPemesanan>(
     );
   },
 );
-
 
 final pemesananDetailFutureProvider =
     FutureProvider.autoDispose.family<Pemesanan, String>(

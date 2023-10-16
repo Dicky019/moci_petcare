@@ -22,6 +22,7 @@ class PemesananResponse with _$PemesananResponse {
     @JsonKey(name: "status") String? status,
     @JsonKey(name: "tanggal") String? tanggal,
     @JsonKey(name: "jam") String? jam,
+    @JsonKey(name: "tambahanPemesanan") String? tambahanPemesanan,
   }) = _PemesananResponse;
 
   factory PemesananResponse.fromJson(Map<String, dynamic> json) =>

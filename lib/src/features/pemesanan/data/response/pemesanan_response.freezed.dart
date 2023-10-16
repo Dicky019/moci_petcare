@@ -48,6 +48,8 @@ mixin _$PemesananResponse {
   String? get tanggal => throw _privateConstructorUsedError;
   @JsonKey(name: "jam")
   String? get jam => throw _privateConstructorUsedError;
+  @JsonKey(name: "tambahanPemesanan")
+  String? get tambahanPemesanan => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,7 +77,8 @@ abstract class $PemesananResponseCopyWith<$Res> {
       @JsonKey(name: "hasilKonsultasi") String? hasilKonsultasi,
       @JsonKey(name: "status") String? status,
       @JsonKey(name: "tanggal") String? tanggal,
-      @JsonKey(name: "jam") String? jam});
+      @JsonKey(name: "jam") String? jam,
+      @JsonKey(name: "tambahanPemesanan") String? tambahanPemesanan});
 }
 
 /// @nodoc
@@ -105,6 +108,7 @@ class _$PemesananResponseCopyWithImpl<$Res, $Val extends PemesananResponse>
     Object? status = freezed,
     Object? tanggal = freezed,
     Object? jam = freezed,
+    Object? tambahanPemesanan = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -163,6 +167,10 @@ class _$PemesananResponseCopyWithImpl<$Res, $Val extends PemesananResponse>
           ? _value.jam
           : jam // ignore: cast_nullable_to_non_nullable
               as String?,
+      tambahanPemesanan: freezed == tambahanPemesanan
+          ? _value.tambahanPemesanan
+          : tambahanPemesanan // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -189,7 +197,8 @@ abstract class _$$_PemesananResponseCopyWith<$Res>
       @JsonKey(name: "hasilKonsultasi") String? hasilKonsultasi,
       @JsonKey(name: "status") String? status,
       @JsonKey(name: "tanggal") String? tanggal,
-      @JsonKey(name: "jam") String? jam});
+      @JsonKey(name: "jam") String? jam,
+      @JsonKey(name: "tambahanPemesanan") String? tambahanPemesanan});
 }
 
 /// @nodoc
@@ -217,6 +226,7 @@ class __$$_PemesananResponseCopyWithImpl<$Res>
     Object? status = freezed,
     Object? tanggal = freezed,
     Object? jam = freezed,
+    Object? tambahanPemesanan = freezed,
   }) {
     return _then(_$_PemesananResponse(
       id: freezed == id
@@ -275,6 +285,10 @@ class __$$_PemesananResponseCopyWithImpl<$Res>
           ? _value.jam
           : jam // ignore: cast_nullable_to_non_nullable
               as String?,
+      tambahanPemesanan: freezed == tambahanPemesanan
+          ? _value.tambahanPemesanan
+          : tambahanPemesanan // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -296,7 +310,8 @@ class _$_PemesananResponse implements _PemesananResponse {
       @JsonKey(name: "hasilKonsultasi") this.hasilKonsultasi,
       @JsonKey(name: "status") this.status,
       @JsonKey(name: "tanggal") this.tanggal,
-      @JsonKey(name: "jam") this.jam});
+      @JsonKey(name: "jam") this.jam,
+      @JsonKey(name: "tambahanPemesanan") this.tambahanPemesanan});
 
   factory _$_PemesananResponse.fromJson(Map<String, dynamic> json) =>
       _$$_PemesananResponseFromJson(json);
@@ -343,10 +358,13 @@ class _$_PemesananResponse implements _PemesananResponse {
   @override
   @JsonKey(name: "jam")
   final String? jam;
+  @override
+  @JsonKey(name: "tambahanPemesanan")
+  final String? tambahanPemesanan;
 
   @override
   String toString() {
-    return 'PemesananResponse(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, hasilKonsultasi: $hasilKonsultasi, status: $status, tanggal: $tanggal, jam: $jam)';
+    return 'PemesananResponse(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, hasilKonsultasi: $hasilKonsultasi, status: $status, tanggal: $tanggal, jam: $jam, tambahanPemesanan: $tambahanPemesanan)';
   }
 
   @override
@@ -375,7 +393,9 @@ class _$_PemesananResponse implements _PemesananResponse {
                 other.hasilKonsultasi == hasilKonsultasi) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.tanggal, tanggal) || other.tanggal == tanggal) &&
-            (identical(other.jam, jam) || other.jam == jam));
+            (identical(other.jam, jam) || other.jam == jam) &&
+            (identical(other.tambahanPemesanan, tambahanPemesanan) ||
+                other.tambahanPemesanan == tambahanPemesanan));
   }
 
   @JsonKey(ignore: true)
@@ -395,7 +415,8 @@ class _$_PemesananResponse implements _PemesananResponse {
       hasilKonsultasi,
       status,
       tanggal,
-      jam);
+      jam,
+      tambahanPemesanan);
 
   @JsonKey(ignore: true)
   @override
@@ -427,7 +448,9 @@ abstract class _PemesananResponse implements PemesananResponse {
       @JsonKey(name: "hasilKonsultasi") final String? hasilKonsultasi,
       @JsonKey(name: "status") final String? status,
       @JsonKey(name: "tanggal") final String? tanggal,
-      @JsonKey(name: "jam") final String? jam}) = _$_PemesananResponse;
+      @JsonKey(name: "jam") final String? jam,
+      @JsonKey(name: "tambahanPemesanan")
+      final String? tambahanPemesanan}) = _$_PemesananResponse;
 
   factory _PemesananResponse.fromJson(Map<String, dynamic> json) =
       _$_PemesananResponse.fromJson;
@@ -474,6 +497,9 @@ abstract class _PemesananResponse implements PemesananResponse {
   @override
   @JsonKey(name: "jam")
   String? get jam;
+  @override
+  @JsonKey(name: "tambahanPemesanan")
+  String? get tambahanPemesanan;
   @override
   @JsonKey(ignore: true)
   _$$_PemesananResponseCopyWith<_$_PemesananResponse> get copyWith =>

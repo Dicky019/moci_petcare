@@ -18,6 +18,7 @@ _$_Pemesanan _$$_PemesananFromJson(Map<String, dynamic> json) => _$_Pemesanan(
       tanggal: json['tanggal'] as String,
       jam: json['jam'] as String,
       status: json['status'] as String,
+      tambahanPemesanan: json['tambahanPemesanan'] as String,
       $type: json['runtimeType'] as String?,
     );
 
@@ -34,6 +35,7 @@ Map<String, dynamic> _$$_PemesananToJson(_$_Pemesanan instance) =>
       'tanggal': instance.tanggal,
       'jam': instance.jam,
       'status': instance.status,
+      'tambahanPemesanan': instance.tambahanPemesanan,
       'runtimeType': instance.$type,
     };
 
@@ -50,6 +52,7 @@ _$_PemesananEmpty _$$_PemesananEmptyFromJson(Map<String, dynamic> json) =>
       tanggal: json['tanggal'] as String? ?? "-",
       jam: json['jam'] as String? ?? "-",
       status: json['status'] as String? ?? "-",
+      tambahanPemesanan: json['tambahanPemesanan'] as String? ?? "-",
       $type: json['runtimeType'] as String?,
     );
 
@@ -66,6 +69,7 @@ Map<String, dynamic> _$$_PemesananEmptyToJson(_$_PemesananEmpty instance) =>
       'tanggal': instance.tanggal,
       'jam': instance.jam,
       'status': instance.status,
+      'tambahanPemesanan': instance.tambahanPemesanan,
       'runtimeType': instance.$type,
     };
 

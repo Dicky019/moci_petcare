@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,8 +54,26 @@ class ListPemesananWidget extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    void toDetailPage(String id) => context.go(Routes.pemesananDetailPath(id));
-    void toEditPage(String id) => context.go(Routes.pemesananEditPath(id));
+    final controllerTambahanPemesanan =
+        ref.read(pemesananTambahanProvider.notifier);
+
+    void toDetailPage(String id, String tambahanPemesanan) {
+      log(tambahanPemesanan, name: "tambahanPemesanan");
+      log(tambahanPemesanan.split(", ").toString(), name: "tambahanPemesanan");
+      if (tambahanPemesanan != "-") {
+        controllerTambahanPemesanan.update(
+          (state) => tambahanPemesanan.split(", "),
+        );
+      }else {
+        controllerTambahanPemesanan.update((state) => []);
+      }
+      context.go(Routes.pemesananDetailPath(id));
+    }
+
+    void toEditPage(String id) {
+      context.go(Routes.pemesananEditPath(id));
+    }
+
     final controller = ref.read(pemesananControllerProvider.notifier);
 
     return ListView.separated(
@@ -69,6 +88,7 @@ class ListPemesananWidget extends ConsumerWidget {
         final title = "$status / $jenisLayanan";
         final subtitle = '${tanggal.toUpperCase()}\nJam $jam';
         final id = data.id;
+        final tambahanPemesanan = data.tambahanPemesanan;
         final isSuccess = status == "success";
         final isProcessing = status == "processing";
 
@@ -89,51 +109,77 @@ class ListPemesananWidget extends ConsumerWidget {
                   : SizedBox(
                       width: 100.w,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          IconButton.filled(
-                            onPressed: () => toEditPage(id),
-                            focusColor: Colors.transparent,
-                            color: Colors.blueAccent,
-                            icon: const Icon(LineIcons.editAlt),
+                          SizedBox(
+                            height: 28,
+                            width: 28,
+                            child: IconButton(
+                              onPressed: () => toEditPage(
+                                id,
+                              ),
+                              splashRadius: 24,
+                              padding: const EdgeInsets.all(0),
+                              focusColor: Colors.transparent,
+                              color: Colors.blueAccent,
+                              icon: const Icon(LineIcons.editAlt),
+                            ),
                           ),
-                          IconButton.filledTonal(
-                            // onPressed: () => controller.deletePemesanan(id),
-                            onPressed: () async {
-                              final data = await showDialog<String>(
-                                context: context,
-                                builder: (BuildContext context) => AlertDialog(
-                                  title: const Text('Hapus'),
-                                  content: const Text('Apakah Anda Yakin?'),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      child: const Text('TIDAK'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(context, id),
-                                      child: const Text(
-                                        'YA',
-                                        style:
-                                            TextStyle(color: Colors.redAccent),
+                          const SizedBox(
+                            height: 28,
+                            width: 28,
+                            child: VerticalDivider(
+                              color: ColorApp.purpleDark,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 28,
+                            width: 28,
+                            child: IconButton(
+                              padding: const EdgeInsets.all(0),
+                              splashRadius: 24,
+                              // onPressed: () => controller.deletePemesanan(id),
+                              onPressed: () async {
+                                final data = await showDialog<String>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                    title: const Text('Hapus'),
+                                    content: const Text('Apakah Anda Yakin?'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: const Text('TIDAK'),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              );
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, id),
+                                        child: const Text(
+                                          'YA',
+                                          style: TextStyle(
+                                              color: Colors.redAccent),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
 
-                              if (data != null) {
-                                controller.deletePemesanan(id);
-                              }
-                            },
-                            focusColor: Colors.transparent,
-                            color: Colors.redAccent,
-                            icon: const Icon(LineIcons.trash),
+                                if (data != null) {
+                                  controller.deletePemesanan(id);
+                                }
+                              },
+                              focusColor: Colors.transparent,
+                              color: Colors.redAccent,
+                              icon: const Icon(LineIcons.trash),
+                            ),
                           ),
                         ],
                       ),
                     ),
-              onTap: () => toDetailPage(id),
+              onTap: () => toDetailPage(
+                id,
+                tambahanPemesanan,
+              ),
             ),
             if (index == listPemesanan.values.length - 1) Gap.h16,
           ],

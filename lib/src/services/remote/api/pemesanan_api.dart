@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moci_petcare/src/features/pemesanan/data/request/pemesanan_request.dart';
 import 'package:moci_petcare/src/features/pemesanan/data/response/pemesanan_response.dart';
+import '../../../features/pemesanan/data/request/pemesanan_tambahan_request.dart';
 import '/src/services/remote/config/config.dart';
 
 class PemesananApi {
@@ -43,7 +44,9 @@ class PemesananApi {
   }
 
   Future<Result<PemesananResponse>> setPemesananTambahan(
-      PemesananRequest pemesananRequest, String id) async {
+    PemesananTambahanRequest pemesananRequest,
+    String id,
+  ) async {
     try {
       final response = await _dioClient.put(
         "${Endpoint.pemesanan}/tambahan/$id",

@@ -18,6 +18,7 @@ class Pemesanan with _$Pemesanan {
     required String tanggal,
     required String jam,
     required String status,
+    required String tambahanPemesanan,
   }) = _Pemesanan;
 
   factory Pemesanan.empty({
@@ -32,6 +33,7 @@ class Pemesanan with _$Pemesanan {
     @Default("-") String tanggal,
     @Default("-") String jam,
     @Default("-") String status,
+    @Default("-") String tambahanPemesanan,
   }) = _PemesananEmpty;
 
   factory Pemesanan.fromJson(Map<String, dynamic> json) =>

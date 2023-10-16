@@ -36,7 +36,6 @@ class AuthenticationService {
   Future logout() async => authRepository.logout();
   User? getCurrentUser() => authRepository.getCurrentUser();
 
-//  TODO: For get user
   Future getAndSaveLogin() async {
     final responseProfile = await authRepository.loginResponse();
     final resultProfile = AuthenticationMapper.mapToUser(responseProfile);
