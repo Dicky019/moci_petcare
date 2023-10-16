@@ -29,6 +29,15 @@ class PemesananRepository {
     return result;
   }
 
+  Future<Result<PemesananResponse>> setPemesananTambahan(
+    PemesananRequest pemesananRequest,
+    String id,
+  ) async {
+    final result = await _pemesananApi.setPemesananTambahan(pemesananRequest, id);
+
+    return result;
+  }
+
   Future<Result<PemesananResponse>> deletePemesanan(
     String id,
   ) async {
