@@ -27,90 +27,92 @@ class PemesananDetailWidget extends ConsumerWidget {
     final tambahanPemesanan =
         ref.watch(pemesananTambahanProvider).map((e) => e.value).join(", ");
     return RefreshIndicator(
-        onRefresh: () async {
-          ref.invalidate(pemesananTambahanListFutureProvider);
-          ref.invalidate(pemesananDetailFutureProvider(pemesanan.id));
-        },
-        child: ListView(
-      children: [
-        Gap.h12,
-        TitleAndValue(
-          title: "Nama :".toUpperCase(),
-          value: pemesanan.namaHewan.toUpperCase(),
-        ),
-        const Divider(
-          color: ColorApp.purpleBlue,
-        ),
-        TitleAndValue(
-          title: "Umur :".toUpperCase(),
-          value: pemesanan.umurHewan.toUpperCase(),
-        ),
-        const Divider(
-          color: ColorApp.purpleBlue,
-        ),
-        TitleAndValue(
-          title: "Jenis Kelamin :".toUpperCase(),
-          value: pemesanan.jenisKelaminHewan.toUpperCase(),
-        ),
-        const Divider(
-          color: ColorApp.purpleBlue,
-        ),
-        TitleAndValue(
-          title: "Kategori :".toUpperCase(),
-          value: pemesanan.kategoriHewan.toUpperCase(),
-        ),
-        const Divider(
-          color: ColorApp.purpleBlue,
-        ),
-        TitleAndValue(
-          title: "Jenis Layanan :".toUpperCase(),
-          value: pemesanan.jenisLayanan.toUpperCase(),
-        ),
-        const Divider(
-          color: ColorApp.purpleBlue,
-        ),
-        TitleAndValue(
-          title: "Tanggal :".toUpperCase(),
-          value: "${pemesanan.tanggal}\nJam ${pemesanan.jam.displayJam}"
-              .toUpperCase(),
-        ),
-        const Divider(
-          color: ColorApp.purpleBlue,
-        ),
-        if (pemesanan.keluhan.trim() != '' || pemesanan.keluhan == "-") ...[
+      onRefresh: () async {
+        ref.read(pemesananControllerProvider.notifier).invalidateDetail(
+              pemesanan.id,
+            );
+      },
+      child: ListView(
+        children: [
+          Gap.h12,
           TitleAndValue(
-            title: "Keluhan :".toUpperCase(),
-            value: pemesanan.keluhan.toUpperCase(),
+            title: "Nama :".toUpperCase(),
+            value: pemesanan.namaHewan.toUpperCase(),
           ),
           const Divider(
             color: ColorApp.purpleBlue,
           ),
-        ],
-        if (pemesanan.hasilKonsultasi.trim() != '' ||
-            pemesanan.hasilKonsultasi == "-") ...[
           TitleAndValue(
-            title: "Hasil Keluhan :".toUpperCase(),
-            value: pemesanan.hasilKonsultasi.toUpperCase(),
+            title: "Umur :".toUpperCase(),
+            value: pemesanan.umurHewan.toUpperCase(),
           ),
           const Divider(
             color: ColorApp.purpleBlue,
           ),
+          TitleAndValue(
+            title: "Jenis Kelamin :".toUpperCase(),
+            value: pemesanan.jenisKelaminHewan.toUpperCase(),
+          ),
+          const Divider(
+            color: ColorApp.purpleBlue,
+          ),
+          TitleAndValue(
+            title: "Kategori :".toUpperCase(),
+            value: pemesanan.kategoriHewan.toUpperCase(),
+          ),
+          const Divider(
+            color: ColorApp.purpleBlue,
+          ),
+          TitleAndValue(
+            title: "Jenis Layanan :".toUpperCase(),
+            value: pemesanan.jenisLayanan.toUpperCase(),
+          ),
+          const Divider(
+            color: ColorApp.purpleBlue,
+          ),
+          TitleAndValue(
+            title: "Tanggal :".toUpperCase(),
+            value: "${pemesanan.tanggal}\nJam ${pemesanan.jam.displayJam}"
+                .toUpperCase(),
+          ),
+          const Divider(
+            color: ColorApp.purpleBlue,
+          ),
+          if (pemesanan.keluhan.trim() != '' || pemesanan.keluhan == "-") ...[
+            TitleAndValue(
+              title: "Keluhan :".toUpperCase(),
+              value: pemesanan.keluhan.toUpperCase(),
+            ),
+            const Divider(
+              color: ColorApp.purpleBlue,
+            ),
+          ],
+          if (pemesanan.hasilKonsultasi.trim() != '' ||
+              pemesanan.hasilKonsultasi == "-") ...[
+            TitleAndValue(
+              title: "Hasil Keluhan :".toUpperCase(),
+              value: pemesanan.hasilKonsultasi.toUpperCase(),
+            ),
+            const Divider(
+              color: ColorApp.purpleBlue,
+            ),
+          ],
+          TitleAndValue(
+            title: "Tambahan Pemesanan :".toUpperCase(),
+            value:
+                tambahanPemesanan == "" ? "-" : tambahanPemesanan.toUpperCase(),
+          ),
+          const Divider(
+            color: ColorApp.purpleBlue,
+          ),
+          PemesananTambahanWidget(
+            pemesanan: pemesanan,
+            listPemesananTambahan: listPemesananTambahan,
+          ),
+          Gap.h24,
         ],
-        TitleAndValue(
-          title: "Tambahan Pemesanan :".toUpperCase(),
-          value:
-              tambahanPemesanan == "" ? "-" : tambahanPemesanan.toUpperCase(),
-        ),
-        const Divider(
-          color: ColorApp.purpleBlue,
-        ),
-        PemesananTambahanWidget(
-          pemesanan: pemesanan,
-          listPemesananTambahan: listPemesananTambahan,
-        ),
-        Gap.h24,
-      ],
-    ),);
+      ),
+    );
   }
 }
 
