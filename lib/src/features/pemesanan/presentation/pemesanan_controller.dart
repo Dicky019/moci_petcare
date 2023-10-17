@@ -27,12 +27,21 @@ class PemesananController extends StateNotifier<PemesananState> {
     // _ref.refresh(pemesananControllerProvider);
   }
 
+  void invalidateListT() {
+    final state = _ref.refresh(pemesananListFutureProvider);
+    state.mapOrNull(
+      data: (data) => log(data.value.values.toString(), name: "mapOrNull"),
+    );
+    // _ref.refresh(pemesananTambahanListFutureProvider);
+  }
+
   void invalidateDetail(String id) {
     final state = _ref.refresh(pemesananDetailFutureProvider(id));
     state.mapOrNull(
       data: (data) => log(data.value.toString(), name: "mapOrNull"),
     );
     invalidateList();
+    invalidateListT();
   }
 
   final jenisLayananController = TextEditingController();
