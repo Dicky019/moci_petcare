@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../data/response/pemesanan_tambahan_response.dart';
 import '../data/response/pemesanan_response.dart';
 import '../domain/pemesanan_tambahan.dart';
@@ -43,16 +45,17 @@ class PemesananMapper {
             )
             .toList();
 
-        List<String> getList(String jenisLayanan) => list
-            .takeWhile((value) => value.jenisLayanan == jenisLayanan)
-            .map((e) => e.value)
+        getList(String jenisLayanan) => list
+            .where((value) => value.jenisLayanan == jenisLayanan)
             .toList();
+
+        log(list.toString(), name: "Result<ListPemesananTambahan>");
 
         return Result.success(
           ListPemesananTambahan(
-            listTambahanGrooming: getList("Grooming"),
-            listTambahanKesehatan: getList("Kesehatan"),
-            listTambahanKonsultasi: getList("Konsultasi"),
+            listTambahanGrooming: getList("grooming"),
+            listTambahanKesehatan: getList("kesehatan"),
+            listTambahanKonsultasi: getList("konsultasi"),
           ),
         );
       },
@@ -67,19 +70,28 @@ class PemesananMapper {
       success: (data) {
         return Result.success(
           Pemesanan(
-            id: data.id.toEmpty,
-            tanggal: data.tanggal.toEmpty,
-            jam: data.jam.toEmpty,
-            jenisKelaminHewan: data.jenisKelaminHewan.toEmpty,
-            jenisLayanan: data.jenisLayanan.toEmpty,
-            kategoriHewan: data.kategoriHewan.toEmpty,
-            keluhan: data.keluhan.toEmpty,
-            hasilKonsultasi: data.hasilKonsultasi.toEmpty,
-            namaHewan: data.namaHewan.toEmpty,
-            status: data.status.toEmpty,
-            umurHewan: data.umurHewan.toEmpty,
-            tambahanPemesanan: data.tambahanPemesanan.toEmpty,
-          ),
+              id: data.id.toEmpty,
+              tanggal: data.tanggal.toEmpty,
+              jam: data.jam.toEmpty,
+              jenisKelaminHewan: data.jenisKelaminHewan.toEmpty,
+              jenisLayanan: data.jenisLayanan.toEmpty,
+              kategoriHewan: data.kategoriHewan.toEmpty,
+              keluhan: data.keluhan.toEmpty,
+              hasilKonsultasi: data.hasilKonsultasi.toEmpty,
+              namaHewan: data.namaHewan.toEmpty,
+              status: data.status.toEmpty,
+              umurHewan: data.umurHewan.toEmpty,
+              pemesananTambahan: (data.pemesananTambahan ?? [])
+                  .map(
+                    (j) => PemesananTambahan(
+                      id: j.id.toEmpty,
+                      jenisLayanan: j.jenisLayanan.toEmpty,
+                      value: j.value.toEmpty,
+                    ),
+                  )
+                  .toList()
+              // tambahanPemesanan: data.tambahanPemesanan.toEmpty,
+              ),
         );
       },
       failure: (error, stacktrace) {
@@ -95,19 +107,28 @@ class PemesananMapper {
         final list = (data.list ?? [])
             .map(
               (e) => Pemesanan(
-                id: e.id.toEmpty,
-                jenisLayanan: e.jenisLayanan.toEmpty,
-                namaHewan: e.namaHewan.toEmpty,
-                kategoriHewan: e.kategoriHewan.toEmpty,
-                umurHewan: e.umurHewan.toEmpty,
-                jenisKelaminHewan: e.jenisKelaminHewan.toEmpty,
-                keluhan: e.keluhan.toEmpty,
-                hasilKonsultasi: e.hasilKonsultasi.toEmpty,
-                tanggal: e.tanggal.toEmpty,
-                jam: e.jam.toEmpty,
-                status: e.status.toEmpty,
-                tambahanPemesanan: e.tambahanPemesanan.toEmpty,
-              ),
+                  id: e.id.toEmpty,
+                  jenisLayanan: e.jenisLayanan.toEmpty,
+                  namaHewan: e.namaHewan.toEmpty,
+                  kategoriHewan: e.kategoriHewan.toEmpty,
+                  umurHewan: e.umurHewan.toEmpty,
+                  jenisKelaminHewan: e.jenisKelaminHewan.toEmpty,
+                  keluhan: e.keluhan.toEmpty,
+                  hasilKonsultasi: e.hasilKonsultasi.toEmpty,
+                  tanggal: e.tanggal.toEmpty,
+                  jam: e.jam.toEmpty,
+                  status: e.status.toEmpty,
+                  pemesananTambahan: (e.pemesananTambahan ?? [])
+                      .map(
+                        (j) => PemesananTambahan(
+                          id: j.id.toEmpty,
+                          jenisLayanan: j.jenisLayanan.toEmpty,
+                          value: j.value.toEmpty,
+                        ),
+                      )
+                      .toList()
+                  // tambahanPemesanan: e.tambahanPemesanan.toEmpty,
+                  ),
             )
             .toList();
         return Result.success(

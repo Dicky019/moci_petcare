@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan_tambahan.dart';
 
 part 'pemesanan.freezed.dart';
 part 'pemesanan.g.dart';
@@ -18,10 +19,10 @@ class Pemesanan with _$Pemesanan {
     required String tanggal,
     required String jam,
     required String status,
-    required String tambahanPemesanan,
+    required List<PemesananTambahan> pemesananTambahan,
   }) = _Pemesanan;
 
-  factory Pemesanan.empty({
+  const factory Pemesanan.empty({
     @Default("-") String id,
     @Default("-") String jenisLayanan,
     @Default("-") String namaHewan,
@@ -34,6 +35,7 @@ class Pemesanan with _$Pemesanan {
     @Default("-") String jam,
     @Default("-") String status,
     @Default("-") String tambahanPemesanan,
+    @Default([]) List<PemesananTambahan> pemesananTambahan,
   }) = _PemesananEmpty;
 
   factory Pemesanan.fromJson(Map<String, dynamic> json) =>

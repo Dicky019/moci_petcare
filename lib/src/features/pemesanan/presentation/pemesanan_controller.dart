@@ -8,7 +8,6 @@ import '../../authentication/application/authentication_service.dart';
 import '../../../utils/extension/dynamic_extension.dart';
 import '../data/request/pemesanan_request.dart';
 import '../application/pemesanan_service.dart';
-import '../data/request/pemesanan_tambahan_request.dart';
 import '../domain/pemesanan.dart';
 import 'pemesanan_state.dart';
 
@@ -86,17 +85,23 @@ class PemesananController extends StateNotifier<PemesananState> {
   }
 
   void setPemesanan(
-      BuildContext context, PemesananTambahanRequest request, String id) async {
-    final result = await _pemesananService.setPemesananTambahan(request, id);
+    BuildContext context,
+    // PemesananTambahanRequest request,
+    List<PemesananTambahan> pemesanan,
+    String id,
+  ) async {
+    // log(request.tambahanPemesanan);
+    // final listData = request.tambahanPemesanan.split(", ").toList();
+
+    final result = await _pemesananService.setPemesananTambahan(pemesanan, id);
 
     result.when(
       success: (data) {
         invalidateDetail(id);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             backgroundColor: Colors.greenAccent,
-            content: Text(
-                "Berhasil Tambahan Pemesanan ${request.tambahanPemesanan}"),
+            content: Text("Berhasil Tambahan Pemesanan"),
             showCloseIcon: true,
           ),
         );
@@ -104,9 +109,9 @@ class PemesananController extends StateNotifier<PemesananState> {
       failure: (error, stackTrace) {
         invalidateDetail(id);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             backgroundColor: Colors.redAccent,
-            content: Text(request.tambahanPemesanan),
+            content: Text("Ada Yang Salah"),
             showCloseIcon: true,
           ),
         );
@@ -169,7 +174,7 @@ class PemesananController extends StateNotifier<PemesananState> {
   }
 }
 
-final pemesananTambahanProvider = StateProvider((_) => <String>[]);
+final pemesananTambahanProvider = StateProvider((_) => <PemesananTambahan>{});
 
 final jenisLayananState = StateProvider.autoDispose<JenisLayanan>((ref) {
   const jenisLayananMap = {

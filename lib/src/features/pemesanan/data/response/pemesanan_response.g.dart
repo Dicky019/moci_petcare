@@ -22,7 +22,10 @@ _$_PemesananResponse _$$_PemesananResponseFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String?,
       tanggal: json['tanggal'] as String?,
       jam: json['jam'] as String?,
-      tambahanPemesanan: json['tambahanPemesanan'] as String?,
+      pemesananTambahan: (json['pemesananTambahan'] as List<dynamic>?)
+          ?.map((e) =>
+              PemesananTambahanResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_PemesananResponseToJson(
@@ -42,7 +45,7 @@ Map<String, dynamic> _$$_PemesananResponseToJson(
       'status': instance.status,
       'tanggal': instance.tanggal,
       'jam': instance.jam,
-      'tambahanPemesanan': instance.tambahanPemesanan,
+      'pemesananTambahan': instance.pemesananTambahan,
     };
 
 _$_ListPemesananResponse _$$_ListPemesananResponseFromJson(

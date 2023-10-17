@@ -18,7 +18,9 @@ _$_Pemesanan _$$_PemesananFromJson(Map<String, dynamic> json) => _$_Pemesanan(
       tanggal: json['tanggal'] as String,
       jam: json['jam'] as String,
       status: json['status'] as String,
-      tambahanPemesanan: json['tambahanPemesanan'] as String,
+      pemesananTambahan: (json['pemesananTambahan'] as List<dynamic>)
+          .map((e) => PemesananTambahan.fromJson(e as Map<String, dynamic>))
+          .toList(),
       $type: json['runtimeType'] as String?,
     );
 
@@ -35,7 +37,7 @@ Map<String, dynamic> _$$_PemesananToJson(_$_Pemesanan instance) =>
       'tanggal': instance.tanggal,
       'jam': instance.jam,
       'status': instance.status,
-      'tambahanPemesanan': instance.tambahanPemesanan,
+      'pemesananTambahan': instance.pemesananTambahan,
       'runtimeType': instance.$type,
     };
 
@@ -53,6 +55,11 @@ _$_PemesananEmpty _$$_PemesananEmptyFromJson(Map<String, dynamic> json) =>
       jam: json['jam'] as String? ?? "-",
       status: json['status'] as String? ?? "-",
       tambahanPemesanan: json['tambahanPemesanan'] as String? ?? "-",
+      pemesananTambahan: (json['pemesananTambahan'] as List<dynamic>?)
+              ?.map(
+                  (e) => PemesananTambahan.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       $type: json['runtimeType'] as String?,
     );
 
@@ -70,6 +77,7 @@ Map<String, dynamic> _$$_PemesananEmptyToJson(_$_PemesananEmpty instance) =>
       'jam': instance.jam,
       'status': instance.status,
       'tambahanPemesanan': instance.tambahanPemesanan,
+      'pemesananTambahan': instance.pemesananTambahan,
       'runtimeType': instance.$type,
     };
 

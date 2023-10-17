@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moci_petcare/src/features/pemesanan/data/request/pemesanan_request.dart';
 import 'package:moci_petcare/src/features/pemesanan/data/response/pemesanan_response.dart';
 import 'package:moci_petcare/src/features/pemesanan/data/response/pemesanan_tambahan_response.dart';
-import '../../../features/pemesanan/data/request/pemesanan_tambahan_request.dart';
+import '../../../features/pemesanan/domain/pemesanan_tambahan.dart';
 import '/src/services/remote/config/config.dart';
 
 class PemesananApi {
@@ -33,7 +33,7 @@ class PemesananApi {
     try {
       final response = await _dioClient.put(
         "${Endpoint.pemesanan}/$id",
-        data: pemesananRequest,
+        data: pemesananRequest.toJson(),
       );
       return Result.success(PemesananResponse.fromJson(response['data']));
     } catch (e, st) {
@@ -45,13 +45,13 @@ class PemesananApi {
   }
 
   Future<Result<PemesananResponse>> setPemesananTambahan(
-    PemesananTambahanRequest pemesananRequest,
+    List<PemesananTambahan> pemesananRequest,
     String id,
   ) async {
     try {
       final response = await _dioClient.put(
         "${Endpoint.pemesanan}/tambahan/$id",
-        data: pemesananRequest,
+        data: {"listData": pemesananRequest.map((e) => e.id).toList()},
       );
       return Result.success(PemesananResponse.fromJson(response['data']));
     } catch (e, st) {
@@ -64,7 +64,7 @@ class PemesananApi {
 
   Future<Result<ListPemesananTambahanResponse>> getPemesananTambahan() async {
     try {
-      final response = await _dioClient.put(
+      final response = await _dioClient.get(
         "${Endpoint.pemesanan}/tambahan",
       );
       return Result.success(

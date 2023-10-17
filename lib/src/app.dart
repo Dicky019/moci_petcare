@@ -20,6 +20,7 @@ class MyApp extends ConsumerWidget {
           return MaterialApp.router(
             title: 'Mocy Petcare',
             locale: const Locale("id"),
+            
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
@@ -28,6 +29,7 @@ class MyApp extends ConsumerWidget {
             theme: ThemeData(
               scaffoldBackgroundColor: ColorApp.purpleLight,
               primarySwatch: Colors.deepPurple,
+              useMaterial3: false,
               appBarTheme: AppBarTheme(
                 backgroundColor: ColorApp.purpleDark,
                 titleTextStyle: TextStyle(

@@ -23,14 +23,14 @@ class PemesananDetailScreen extends ConsumerWidget {
         onClick: () => context.go(Routes.pemesananHistory.path),
       ),
       body: StateWidget<Pemesanan>(
+        loadingColor: ColorApp.purpleDark,
         stream: ref.watch(pemesananDetailFutureProvider(id)),
         data: (pemesanan) => StateWidget<ListPemesananTambahan>(
+          loadingColor: ColorApp.purpleDark,
           stream: ref.watch(pemesananTambahanListFutureProvider),
           data: (listTambahan) => PemesananDetailWidget(
             pemesanan: pemesanan,
-            listTambahanKesehatan: listTambahan.listTambahanKesehatan,
-            listTambahanGrooming: listTambahan.listTambahanGrooming,
-            listTambahanKonsultasi: listTambahan.listTambahanKonsultasi,
+            listPemesananTambahan: listTambahan,
           ),
         ),
       ),

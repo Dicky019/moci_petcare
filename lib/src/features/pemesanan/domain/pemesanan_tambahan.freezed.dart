@@ -353,7 +353,7 @@ class __$$_PemesananTambahanEmptyCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PemesananTambahanEmpty extends _PemesananTambahanEmpty {
-  _$_PemesananTambahanEmpty(
+  const _$_PemesananTambahanEmpty(
       {this.id = "-",
       this.value = "-",
       this.jenisLayanan = "-",
@@ -476,11 +476,11 @@ class _$_PemesananTambahanEmpty extends _PemesananTambahanEmpty {
 }
 
 abstract class _PemesananTambahanEmpty extends PemesananTambahan {
-  factory _PemesananTambahanEmpty(
+  const factory _PemesananTambahanEmpty(
       {final String id,
       final String value,
       final String jenisLayanan}) = _$_PemesananTambahanEmpty;
-  _PemesananTambahanEmpty._() : super._();
+  const _PemesananTambahanEmpty._() : super._();
 
   factory _PemesananTambahanEmpty.fromJson(Map<String, dynamic> json) =
       _$_PemesananTambahanEmpty.fromJson;
@@ -516,48 +516,51 @@ ListPemesananTambahan _$ListPemesananTambahanFromJson(
 
 /// @nodoc
 mixin _$ListPemesananTambahan {
-  List<String> get listTambahanGrooming => throw _privateConstructorUsedError;
-  List<String> get listTambahanKesehatan => throw _privateConstructorUsedError;
-  List<String> get listTambahanKonsultasi => throw _privateConstructorUsedError;
+  List<PemesananTambahan> get listTambahanGrooming =>
+      throw _privateConstructorUsedError;
+  List<PemesananTambahan> get listTambahanKesehatan =>
+      throw _privateConstructorUsedError;
+  List<PemesananTambahan> get listTambahanKonsultasi =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)
         $default, {
     required TResult Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)
         empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)?
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)?
         $default, {
     TResult? Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)?
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)?
         empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)?
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)?
         $default, {
     TResult Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)?
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)?
         empty,
     required TResult orElse(),
   }) =>
@@ -594,9 +597,9 @@ abstract class $ListPemesananTambahanCopyWith<$Res> {
       _$ListPemesananTambahanCopyWithImpl<$Res, ListPemesananTambahan>;
   @useResult
   $Res call(
-      {List<String> listTambahanGrooming,
-      List<String> listTambahanKesehatan,
-      List<String> listTambahanKonsultasi});
+      {List<PemesananTambahan> listTambahanGrooming,
+      List<PemesananTambahan> listTambahanKesehatan,
+      List<PemesananTambahan> listTambahanKonsultasi});
 }
 
 /// @nodoc
@@ -621,15 +624,15 @@ class _$ListPemesananTambahanCopyWithImpl<$Res,
       listTambahanGrooming: null == listTambahanGrooming
           ? _value.listTambahanGrooming
           : listTambahanGrooming // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<PemesananTambahan>,
       listTambahanKesehatan: null == listTambahanKesehatan
           ? _value.listTambahanKesehatan
           : listTambahanKesehatan // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<PemesananTambahan>,
       listTambahanKonsultasi: null == listTambahanKonsultasi
           ? _value.listTambahanKonsultasi
           : listTambahanKonsultasi // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<PemesananTambahan>,
     ) as $Val);
   }
 }
@@ -643,9 +646,9 @@ abstract class _$$_ListPemesananTambahanCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<String> listTambahanGrooming,
-      List<String> listTambahanKesehatan,
-      List<String> listTambahanKonsultasi});
+      {List<PemesananTambahan> listTambahanGrooming,
+      List<PemesananTambahan> listTambahanKesehatan,
+      List<PemesananTambahan> listTambahanKonsultasi});
 }
 
 /// @nodoc
@@ -667,15 +670,15 @@ class __$$_ListPemesananTambahanCopyWithImpl<$Res>
       listTambahanGrooming: null == listTambahanGrooming
           ? _value._listTambahanGrooming
           : listTambahanGrooming // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<PemesananTambahan>,
       listTambahanKesehatan: null == listTambahanKesehatan
           ? _value._listTambahanKesehatan
           : listTambahanKesehatan // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<PemesananTambahan>,
       listTambahanKonsultasi: null == listTambahanKonsultasi
           ? _value._listTambahanKonsultasi
           : listTambahanKonsultasi // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<PemesananTambahan>,
     ));
   }
 }
@@ -683,10 +686,10 @@ class __$$_ListPemesananTambahanCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ListPemesananTambahan extends _ListPemesananTambahan {
-  _$_ListPemesananTambahan(
-      {required final List<String> listTambahanGrooming,
-      required final List<String> listTambahanKesehatan,
-      required final List<String> listTambahanKonsultasi,
+  const _$_ListPemesananTambahan(
+      {required final List<PemesananTambahan> listTambahanGrooming,
+      required final List<PemesananTambahan> listTambahanKesehatan,
+      required final List<PemesananTambahan> listTambahanKonsultasi,
       final String? $type})
       : _listTambahanGrooming = listTambahanGrooming,
         _listTambahanKesehatan = listTambahanKesehatan,
@@ -697,27 +700,27 @@ class _$_ListPemesananTambahan extends _ListPemesananTambahan {
   factory _$_ListPemesananTambahan.fromJson(Map<String, dynamic> json) =>
       _$$_ListPemesananTambahanFromJson(json);
 
-  final List<String> _listTambahanGrooming;
+  final List<PemesananTambahan> _listTambahanGrooming;
   @override
-  List<String> get listTambahanGrooming {
+  List<PemesananTambahan> get listTambahanGrooming {
     if (_listTambahanGrooming is EqualUnmodifiableListView)
       return _listTambahanGrooming;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_listTambahanGrooming);
   }
 
-  final List<String> _listTambahanKesehatan;
+  final List<PemesananTambahan> _listTambahanKesehatan;
   @override
-  List<String> get listTambahanKesehatan {
+  List<PemesananTambahan> get listTambahanKesehatan {
     if (_listTambahanKesehatan is EqualUnmodifiableListView)
       return _listTambahanKesehatan;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_listTambahanKesehatan);
   }
 
-  final List<String> _listTambahanKonsultasi;
+  final List<PemesananTambahan> _listTambahanKonsultasi;
   @override
-  List<String> get listTambahanKonsultasi {
+  List<PemesananTambahan> get listTambahanKonsultasi {
     if (_listTambahanKonsultasi is EqualUnmodifiableListView)
       return _listTambahanKonsultasi;
     // ignore: implicit_dynamic_type
@@ -764,14 +767,14 @@ class _$_ListPemesananTambahan extends _ListPemesananTambahan {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)
         $default, {
     required TResult Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)
         empty,
   }) {
     return $default(
@@ -782,14 +785,14 @@ class _$_ListPemesananTambahan extends _ListPemesananTambahan {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)?
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)?
         $default, {
     TResult? Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)?
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)?
         empty,
   }) {
     return $default?.call(
@@ -800,14 +803,14 @@ class _$_ListPemesananTambahan extends _ListPemesananTambahan {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)?
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)?
         $default, {
     TResult Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)?
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)?
         empty,
     required TResult orElse(),
   }) {
@@ -858,22 +861,22 @@ class _$_ListPemesananTambahan extends _ListPemesananTambahan {
 }
 
 abstract class _ListPemesananTambahan extends ListPemesananTambahan {
-  factory _ListPemesananTambahan(
-          {required final List<String> listTambahanGrooming,
-          required final List<String> listTambahanKesehatan,
-          required final List<String> listTambahanKonsultasi}) =
+  const factory _ListPemesananTambahan(
+          {required final List<PemesananTambahan> listTambahanGrooming,
+          required final List<PemesananTambahan> listTambahanKesehatan,
+          required final List<PemesananTambahan> listTambahanKonsultasi}) =
       _$_ListPemesananTambahan;
-  _ListPemesananTambahan._() : super._();
+  const _ListPemesananTambahan._() : super._();
 
   factory _ListPemesananTambahan.fromJson(Map<String, dynamic> json) =
       _$_ListPemesananTambahan.fromJson;
 
   @override
-  List<String> get listTambahanGrooming;
+  List<PemesananTambahan> get listTambahanGrooming;
   @override
-  List<String> get listTambahanKesehatan;
+  List<PemesananTambahan> get listTambahanKesehatan;
   @override
-  List<String> get listTambahanKonsultasi;
+  List<PemesananTambahan> get listTambahanKonsultasi;
   @override
   @JsonKey(ignore: true)
   _$$_ListPemesananTambahanCopyWith<_$_ListPemesananTambahan> get copyWith =>
@@ -890,9 +893,9 @@ abstract class _$$_ListPemesananTambahanEmptyCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<String> listTambahanGrooming,
-      List<String> listTambahanKesehatan,
-      List<String> listTambahanKonsultasi});
+      {List<PemesananTambahan> listTambahanGrooming,
+      List<PemesananTambahan> listTambahanKesehatan,
+      List<PemesananTambahan> listTambahanKonsultasi});
 }
 
 /// @nodoc
@@ -916,15 +919,15 @@ class __$$_ListPemesananTambahanEmptyCopyWithImpl<$Res>
       listTambahanGrooming: null == listTambahanGrooming
           ? _value._listTambahanGrooming
           : listTambahanGrooming // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<PemesananTambahan>,
       listTambahanKesehatan: null == listTambahanKesehatan
           ? _value._listTambahanKesehatan
           : listTambahanKesehatan // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<PemesananTambahan>,
       listTambahanKonsultasi: null == listTambahanKonsultasi
           ? _value._listTambahanKonsultasi
           : listTambahanKonsultasi // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<PemesananTambahan>,
     ));
   }
 }
@@ -932,10 +935,10 @@ class __$$_ListPemesananTambahanEmptyCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ListPemesananTambahanEmpty extends _ListPemesananTambahanEmpty {
-  _$_ListPemesananTambahanEmpty(
-      {final List<String> listTambahanGrooming = const [],
-      final List<String> listTambahanKesehatan = const [],
-      final List<String> listTambahanKonsultasi = const [],
+  const _$_ListPemesananTambahanEmpty(
+      {final List<PemesananTambahan> listTambahanGrooming = const [],
+      final List<PemesananTambahan> listTambahanKesehatan = const [],
+      final List<PemesananTambahan> listTambahanKonsultasi = const [],
       final String? $type})
       : _listTambahanGrooming = listTambahanGrooming,
         _listTambahanKesehatan = listTambahanKesehatan,
@@ -946,30 +949,30 @@ class _$_ListPemesananTambahanEmpty extends _ListPemesananTambahanEmpty {
   factory _$_ListPemesananTambahanEmpty.fromJson(Map<String, dynamic> json) =>
       _$$_ListPemesananTambahanEmptyFromJson(json);
 
-  final List<String> _listTambahanGrooming;
+  final List<PemesananTambahan> _listTambahanGrooming;
   @override
   @JsonKey()
-  List<String> get listTambahanGrooming {
+  List<PemesananTambahan> get listTambahanGrooming {
     if (_listTambahanGrooming is EqualUnmodifiableListView)
       return _listTambahanGrooming;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_listTambahanGrooming);
   }
 
-  final List<String> _listTambahanKesehatan;
+  final List<PemesananTambahan> _listTambahanKesehatan;
   @override
   @JsonKey()
-  List<String> get listTambahanKesehatan {
+  List<PemesananTambahan> get listTambahanKesehatan {
     if (_listTambahanKesehatan is EqualUnmodifiableListView)
       return _listTambahanKesehatan;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_listTambahanKesehatan);
   }
 
-  final List<String> _listTambahanKonsultasi;
+  final List<PemesananTambahan> _listTambahanKonsultasi;
   @override
   @JsonKey()
-  List<String> get listTambahanKonsultasi {
+  List<PemesananTambahan> get listTambahanKonsultasi {
     if (_listTambahanKonsultasi is EqualUnmodifiableListView)
       return _listTambahanKonsultasi;
     // ignore: implicit_dynamic_type
@@ -1016,14 +1019,14 @@ class _$_ListPemesananTambahanEmpty extends _ListPemesananTambahanEmpty {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)
         $default, {
     required TResult Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)
         empty,
   }) {
     return empty(
@@ -1034,14 +1037,14 @@ class _$_ListPemesananTambahanEmpty extends _ListPemesananTambahanEmpty {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)?
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)?
         $default, {
     TResult? Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)?
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)?
         empty,
   }) {
     return empty?.call(
@@ -1052,14 +1055,14 @@ class _$_ListPemesananTambahanEmpty extends _ListPemesananTambahanEmpty {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)?
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)?
         $default, {
     TResult Function(
-            List<String> listTambahanGrooming,
-            List<String> listTambahanKesehatan,
-            List<String> listTambahanKonsultasi)?
+            List<PemesananTambahan> listTambahanGrooming,
+            List<PemesananTambahan> listTambahanKesehatan,
+            List<PemesananTambahan> listTambahanKonsultasi)?
         empty,
     required TResult orElse(),
   }) {
@@ -1110,22 +1113,22 @@ class _$_ListPemesananTambahanEmpty extends _ListPemesananTambahanEmpty {
 }
 
 abstract class _ListPemesananTambahanEmpty extends ListPemesananTambahan {
-  factory _ListPemesananTambahanEmpty(
-          {final List<String> listTambahanGrooming,
-          final List<String> listTambahanKesehatan,
-          final List<String> listTambahanKonsultasi}) =
+  const factory _ListPemesananTambahanEmpty(
+          {final List<PemesananTambahan> listTambahanGrooming,
+          final List<PemesananTambahan> listTambahanKesehatan,
+          final List<PemesananTambahan> listTambahanKonsultasi}) =
       _$_ListPemesananTambahanEmpty;
-  _ListPemesananTambahanEmpty._() : super._();
+  const _ListPemesananTambahanEmpty._() : super._();
 
   factory _ListPemesananTambahanEmpty.fromJson(Map<String, dynamic> json) =
       _$_ListPemesananTambahanEmpty.fromJson;
 
   @override
-  List<String> get listTambahanGrooming;
+  List<PemesananTambahan> get listTambahanGrooming;
   @override
-  List<String> get listTambahanKesehatan;
+  List<PemesananTambahan> get listTambahanKesehatan;
   @override
-  List<String> get listTambahanKonsultasi;
+  List<PemesananTambahan> get listTambahanKonsultasi;
   @override
   @JsonKey(ignore: true)
   _$$_ListPemesananTambahanEmptyCopyWith<_$_ListPemesananTambahanEmpty>

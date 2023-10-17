@@ -12,7 +12,7 @@ class PemesananTambahan with _$PemesananTambahan {
     required String jenisLayanan,
   }) = _PemesananTambahan;
 
-  factory PemesananTambahan.empty({
+  const factory PemesananTambahan.empty({
     @Default("-") String id,
     @Default("-") String value,
     @Default("-") String jenisLayanan,
@@ -25,16 +25,16 @@ class PemesananTambahan with _$PemesananTambahan {
 @freezed
 class ListPemesananTambahan with _$ListPemesananTambahan {
   const ListPemesananTambahan._();
-  factory ListPemesananTambahan({
-    required List<String> listTambahanGrooming,
-    required List<String> listTambahanKesehatan,
-    required List<String> listTambahanKonsultasi,
+ const factory ListPemesananTambahan({
+    required List<PemesananTambahan> listTambahanGrooming,
+    required List<PemesananTambahan> listTambahanKesehatan,
+    required List<PemesananTambahan> listTambahanKonsultasi,
   }) = _ListPemesananTambahan;
 
-  factory ListPemesananTambahan.empty({
-    @Default([]) List<String> listTambahanGrooming,
-    @Default([]) List<String> listTambahanKesehatan,
-    @Default([]) List<String> listTambahanKonsultasi,
+ const factory ListPemesananTambahan.empty({
+    @Default([]) List<PemesananTambahan> listTambahanGrooming,
+    @Default([]) List<PemesananTambahan> listTambahanKesehatan,
+    @Default([]) List<PemesananTambahan> listTambahanKonsultasi,
   }) = _ListPemesananTambahanEmpty;
 
   factory ListPemesananTambahan.fromJson(Map<String, dynamic> json) =>

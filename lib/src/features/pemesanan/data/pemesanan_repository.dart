@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moci_petcare/src/features/pemesanan/data/response/pemesanan_tambahan_response.dart';
+import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan_tambahan.dart';
 
 import '/src/services/remote/config/config.dart';
 import '../../../services/remote/api/pemesanan_api.dart';
 import 'request/pemesanan_request.dart';
-import 'request/pemesanan_tambahan_request.dart';
 import 'response/pemesanan_response.dart';
 
 class PemesananRepository {
@@ -32,7 +32,7 @@ class PemesananRepository {
   }
 
   Future<Result<PemesananResponse>> setPemesananTambahan(
-    PemesananTambahanRequest pemesananRequest,
+     List<PemesananTambahan> pemesananRequest,
     String id,
   ) async {
     final result =

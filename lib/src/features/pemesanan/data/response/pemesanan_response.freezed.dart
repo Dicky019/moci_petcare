@@ -48,8 +48,10 @@ mixin _$PemesananResponse {
   String? get tanggal => throw _privateConstructorUsedError;
   @JsonKey(name: "jam")
   String? get jam => throw _privateConstructorUsedError;
-  @JsonKey(name: "tambahanPemesanan")
-  String? get tambahanPemesanan => throw _privateConstructorUsedError;
+  @JsonKey(name: "pemesananTambahan")
+  @JsonKey(name: "data", defaultValue: [])
+  List<PemesananTambahanResponse>? get pemesananTambahan =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -78,7 +80,9 @@ abstract class $PemesananResponseCopyWith<$Res> {
       @JsonKey(name: "status") String? status,
       @JsonKey(name: "tanggal") String? tanggal,
       @JsonKey(name: "jam") String? jam,
-      @JsonKey(name: "tambahanPemesanan") String? tambahanPemesanan});
+      @JsonKey(name: "pemesananTambahan")
+      @JsonKey(name: "data", defaultValue: [])
+      List<PemesananTambahanResponse>? pemesananTambahan});
 }
 
 /// @nodoc
@@ -108,7 +112,7 @@ class _$PemesananResponseCopyWithImpl<$Res, $Val extends PemesananResponse>
     Object? status = freezed,
     Object? tanggal = freezed,
     Object? jam = freezed,
-    Object? tambahanPemesanan = freezed,
+    Object? pemesananTambahan = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -167,10 +171,10 @@ class _$PemesananResponseCopyWithImpl<$Res, $Val extends PemesananResponse>
           ? _value.jam
           : jam // ignore: cast_nullable_to_non_nullable
               as String?,
-      tambahanPemesanan: freezed == tambahanPemesanan
-          ? _value.tambahanPemesanan
-          : tambahanPemesanan // ignore: cast_nullable_to_non_nullable
-              as String?,
+      pemesananTambahan: freezed == pemesananTambahan
+          ? _value.pemesananTambahan
+          : pemesananTambahan // ignore: cast_nullable_to_non_nullable
+              as List<PemesananTambahanResponse>?,
     ) as $Val);
   }
 }
@@ -198,7 +202,9 @@ abstract class _$$_PemesananResponseCopyWith<$Res>
       @JsonKey(name: "status") String? status,
       @JsonKey(name: "tanggal") String? tanggal,
       @JsonKey(name: "jam") String? jam,
-      @JsonKey(name: "tambahanPemesanan") String? tambahanPemesanan});
+      @JsonKey(name: "pemesananTambahan")
+      @JsonKey(name: "data", defaultValue: [])
+      List<PemesananTambahanResponse>? pemesananTambahan});
 }
 
 /// @nodoc
@@ -226,7 +232,7 @@ class __$$_PemesananResponseCopyWithImpl<$Res>
     Object? status = freezed,
     Object? tanggal = freezed,
     Object? jam = freezed,
-    Object? tambahanPemesanan = freezed,
+    Object? pemesananTambahan = freezed,
   }) {
     return _then(_$_PemesananResponse(
       id: freezed == id
@@ -285,10 +291,10 @@ class __$$_PemesananResponseCopyWithImpl<$Res>
           ? _value.jam
           : jam // ignore: cast_nullable_to_non_nullable
               as String?,
-      tambahanPemesanan: freezed == tambahanPemesanan
-          ? _value.tambahanPemesanan
-          : tambahanPemesanan // ignore: cast_nullable_to_non_nullable
-              as String?,
+      pemesananTambahan: freezed == pemesananTambahan
+          ? _value._pemesananTambahan
+          : pemesananTambahan // ignore: cast_nullable_to_non_nullable
+              as List<PemesananTambahanResponse>?,
     ));
   }
 }
@@ -311,7 +317,10 @@ class _$_PemesananResponse implements _PemesananResponse {
       @JsonKey(name: "status") this.status,
       @JsonKey(name: "tanggal") this.tanggal,
       @JsonKey(name: "jam") this.jam,
-      @JsonKey(name: "tambahanPemesanan") this.tambahanPemesanan});
+      @JsonKey(name: "pemesananTambahan")
+      @JsonKey(name: "data", defaultValue: [])
+      final List<PemesananTambahanResponse>? pemesananTambahan})
+      : _pemesananTambahan = pemesananTambahan;
 
   factory _$_PemesananResponse.fromJson(Map<String, dynamic> json) =>
       _$$_PemesananResponseFromJson(json);
@@ -358,13 +367,22 @@ class _$_PemesananResponse implements _PemesananResponse {
   @override
   @JsonKey(name: "jam")
   final String? jam;
+  final List<PemesananTambahanResponse>? _pemesananTambahan;
   @override
-  @JsonKey(name: "tambahanPemesanan")
-  final String? tambahanPemesanan;
+  @JsonKey(name: "pemesananTambahan")
+  @JsonKey(name: "data", defaultValue: [])
+  List<PemesananTambahanResponse>? get pemesananTambahan {
+    final value = _pemesananTambahan;
+    if (value == null) return null;
+    if (_pemesananTambahan is EqualUnmodifiableListView)
+      return _pemesananTambahan;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'PemesananResponse(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, hasilKonsultasi: $hasilKonsultasi, status: $status, tanggal: $tanggal, jam: $jam, tambahanPemesanan: $tambahanPemesanan)';
+    return 'PemesananResponse(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId, jenisLayanan: $jenisLayanan, namaHewan: $namaHewan, kategoriHewan: $kategoriHewan, umurHewan: $umurHewan, jenisKelaminHewan: $jenisKelaminHewan, keluhan: $keluhan, hasilKonsultasi: $hasilKonsultasi, status: $status, tanggal: $tanggal, jam: $jam, pemesananTambahan: $pemesananTambahan)';
   }
 
   @override
@@ -394,8 +412,8 @@ class _$_PemesananResponse implements _PemesananResponse {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.tanggal, tanggal) || other.tanggal == tanggal) &&
             (identical(other.jam, jam) || other.jam == jam) &&
-            (identical(other.tambahanPemesanan, tambahanPemesanan) ||
-                other.tambahanPemesanan == tambahanPemesanan));
+            const DeepCollectionEquality()
+                .equals(other._pemesananTambahan, _pemesananTambahan));
   }
 
   @JsonKey(ignore: true)
@@ -416,7 +434,7 @@ class _$_PemesananResponse implements _PemesananResponse {
       status,
       tanggal,
       jam,
-      tambahanPemesanan);
+      const DeepCollectionEquality().hash(_pemesananTambahan));
 
   @JsonKey(ignore: true)
   @override
@@ -435,22 +453,24 @@ class _$_PemesananResponse implements _PemesananResponse {
 
 abstract class _PemesananResponse implements PemesananResponse {
   const factory _PemesananResponse(
-      {@JsonKey(name: "id") final String? id,
-      @JsonKey(name: "createdAt") final String? createdAt,
-      @JsonKey(name: "updatedAt") final String? updatedAt,
-      @JsonKey(name: "userId") final String? userId,
-      @JsonKey(name: "jenisLayanan") final String? jenisLayanan,
-      @JsonKey(name: "namaHewan") final String? namaHewan,
-      @JsonKey(name: "kategoriHewan") final String? kategoriHewan,
-      @JsonKey(name: "umurHewan") final String? umurHewan,
-      @JsonKey(name: "jenisKelaminHewan") final String? jenisKelaminHewan,
-      @JsonKey(name: "keluhan") final String? keluhan,
-      @JsonKey(name: "hasilKonsultasi") final String? hasilKonsultasi,
-      @JsonKey(name: "status") final String? status,
-      @JsonKey(name: "tanggal") final String? tanggal,
-      @JsonKey(name: "jam") final String? jam,
-      @JsonKey(name: "tambahanPemesanan")
-      final String? tambahanPemesanan}) = _$_PemesananResponse;
+          {@JsonKey(name: "id") final String? id,
+          @JsonKey(name: "createdAt") final String? createdAt,
+          @JsonKey(name: "updatedAt") final String? updatedAt,
+          @JsonKey(name: "userId") final String? userId,
+          @JsonKey(name: "jenisLayanan") final String? jenisLayanan,
+          @JsonKey(name: "namaHewan") final String? namaHewan,
+          @JsonKey(name: "kategoriHewan") final String? kategoriHewan,
+          @JsonKey(name: "umurHewan") final String? umurHewan,
+          @JsonKey(name: "jenisKelaminHewan") final String? jenisKelaminHewan,
+          @JsonKey(name: "keluhan") final String? keluhan,
+          @JsonKey(name: "hasilKonsultasi") final String? hasilKonsultasi,
+          @JsonKey(name: "status") final String? status,
+          @JsonKey(name: "tanggal") final String? tanggal,
+          @JsonKey(name: "jam") final String? jam,
+          @JsonKey(name: "pemesananTambahan")
+          @JsonKey(name: "data", defaultValue: [])
+          final List<PemesananTambahanResponse>? pemesananTambahan}) =
+      _$_PemesananResponse;
 
   factory _PemesananResponse.fromJson(Map<String, dynamic> json) =
       _$_PemesananResponse.fromJson;
@@ -498,8 +518,9 @@ abstract class _PemesananResponse implements PemesananResponse {
   @JsonKey(name: "jam")
   String? get jam;
   @override
-  @JsonKey(name: "tambahanPemesanan")
-  String? get tambahanPemesanan;
+  @JsonKey(name: "pemesananTambahan")
+  @JsonKey(name: "data", defaultValue: [])
+  List<PemesananTambahanResponse>? get pemesananTambahan;
   @override
   @JsonKey(ignore: true)
   _$$_PemesananResponseCopyWith<_$_PemesananResponse> get copyWith =>

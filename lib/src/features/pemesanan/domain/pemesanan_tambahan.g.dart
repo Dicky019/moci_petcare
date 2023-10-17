@@ -45,13 +45,13 @@ _$_ListPemesananTambahan _$$_ListPemesananTambahanFromJson(
         Map<String, dynamic> json) =>
     _$_ListPemesananTambahan(
       listTambahanGrooming: (json['listTambahanGrooming'] as List<dynamic>)
-          .map((e) => e as String)
+          .map((e) => PemesananTambahan.fromJson(e as Map<String, dynamic>))
           .toList(),
       listTambahanKesehatan: (json['listTambahanKesehatan'] as List<dynamic>)
-          .map((e) => e as String)
+          .map((e) => PemesananTambahan.fromJson(e as Map<String, dynamic>))
           .toList(),
       listTambahanKonsultasi: (json['listTambahanKonsultasi'] as List<dynamic>)
-          .map((e) => e as String)
+          .map((e) => PemesananTambahan.fromJson(e as Map<String, dynamic>))
           .toList(),
       $type: json['runtimeType'] as String?,
     );
@@ -69,15 +69,18 @@ _$_ListPemesananTambahanEmpty _$$_ListPemesananTambahanEmptyFromJson(
         Map<String, dynamic> json) =>
     _$_ListPemesananTambahanEmpty(
       listTambahanGrooming: (json['listTambahanGrooming'] as List<dynamic>?)
-              ?.map((e) => e as String)
+              ?.map(
+                  (e) => PemesananTambahan.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       listTambahanKesehatan: (json['listTambahanKesehatan'] as List<dynamic>?)
-              ?.map((e) => e as String)
+              ?.map(
+                  (e) => PemesananTambahan.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       listTambahanKonsultasi: (json['listTambahanKonsultasi'] as List<dynamic>?)
-              ?.map((e) => e as String)
+              ?.map(
+                  (e) => PemesananTambahan.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       $type: json['runtimeType'] as String?,

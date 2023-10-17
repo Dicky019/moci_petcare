@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:moci_petcare/src/features/pemesanan/data/request/pemesanan_tambahan_request.dart';
 
 import '../domain/pemesanan_tambahan.dart';
 import '/src/services/remote/config/config.dart';
@@ -46,7 +45,7 @@ class PemesananService {
   }
 
   Future<Result<void>> setPemesananTambahan(
-    PemesananTambahanRequest pemesananRequest,
+    List<PemesananTambahan> pemesananRequest,
     String id,
   ) async {
     final response = await pemesananRepository.setPemesananTambahan(

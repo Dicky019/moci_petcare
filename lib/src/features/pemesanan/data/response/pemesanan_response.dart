@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:moci_petcare/src/features/pemesanan/data/response/pemesanan_tambahan_response.dart';
 
 part 'pemesanan_response.freezed.dart';
 part 'pemesanan_response.g.dart';
@@ -22,7 +23,9 @@ class PemesananResponse with _$PemesananResponse {
     @JsonKey(name: "status") String? status,
     @JsonKey(name: "tanggal") String? tanggal,
     @JsonKey(name: "jam") String? jam,
-    @JsonKey(name: "tambahanPemesanan") String? tambahanPemesanan,
+    @JsonKey(name: "pemesananTambahan")
+    @JsonKey(name: "data", defaultValue: []) List<PemesananTambahanResponse>?  pemesananTambahan,
+    // @JsonKey(name: "tambahanPemesanan") String? tambahanPemesanan,
   }) = _PemesananResponse;
 
   factory PemesananResponse.fromJson(Map<String, dynamic> json) =>
