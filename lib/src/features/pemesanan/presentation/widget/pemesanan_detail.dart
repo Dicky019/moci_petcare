@@ -26,7 +26,11 @@ class PemesananDetailWidget extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final tambahanPemesanan =
         ref.watch(pemesananTambahanProvider).map((e) => e.value).join(", ");
-    return ListView(
+    return RefreshIndicator(
+        onRefresh: () async {
+          ref.invalidate(pemesananTambahanListFutureProvider);
+        },
+        child: ListView(
       children: [
         Gap.h12,
         TitleAndValue(
@@ -105,7 +109,7 @@ class PemesananDetailWidget extends ConsumerWidget {
         ),
         Gap.h24,
       ],
-    );
+    ),);
   }
 }
 
