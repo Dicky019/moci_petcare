@@ -28,7 +28,7 @@ class PemesananController extends StateNotifier<PemesananState> {
   }
 
   void invalidateListT() {
-    final state = _ref.refresh(pemesananListFutureProvider);
+    final state = _ref.refresh(pemesananTambahanListFutureProvider);
     state.mapOrNull(
       data: (data) => log(data.value.values.toString(), name: "mapOrNull"),
     );
