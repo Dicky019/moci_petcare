@@ -29,6 +29,7 @@ class PemesananDetailWidget extends ConsumerWidget {
     return RefreshIndicator(
         onRefresh: () async {
           ref.invalidate(pemesananTambahanListFutureProvider);
+          ref.invalidate(pemesananDetailFutureProvider(pemesanan.id));
         },
         child: ListView(
       children: [
