@@ -24,12 +24,14 @@ class PemesananDetailWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final tambahanPemesanan =
-        ref.watch(pemesananTambahanProvider).map((e) => e.value).join(", ");
+    final tambahanPemesanan = ref.watch(pemesananTambahanProvider);
     return RefreshIndicator(
       onRefresh: () async {
         ref.read(pemesananControllerProvider.notifier).invalidateDetail(
               pemesanan.id,
+            );
+        ref.read(pemesananTambahanProvider.notifier).update(
+              (state) => pemesanan.pemesananTambahan.toSet(),
             );
       },
       child: ListView(
@@ -99,8 +101,12 @@ class PemesananDetailWidget extends ConsumerWidget {
           ],
           TitleAndValue(
             title: "Tambahan Pemesanan :".toUpperCase(),
-            value:
-                tambahanPemesanan == "" ? "-" : tambahanPemesanan.toUpperCase(),
+            value: tambahanPemesanan.isEmpty
+                ? "-"
+                : tambahanPemesanan
+                    .map((e) => e.value)
+                    .join(", ")
+                    .toUpperCase(),
           ),
           const Divider(
             color: ColorApp.purpleBlue,
