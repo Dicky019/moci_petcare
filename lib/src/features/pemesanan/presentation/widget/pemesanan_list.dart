@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan_tambahan.dart';
+// import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan_tambahan.dart';
 import 'package:moci_petcare/src/routing/app_route.dart';
 
 import '../../../../common_widgets/common_widgets.dart';
@@ -53,13 +53,13 @@ class ListPemesananWidget extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    final controllerTambahanPemesanan =
-        ref.read(pemesananTambahanProvider.notifier);
+    // final controllerTambahanPemesanan =
+    //     ref.read(pemesananTambahanProvider.notifier);
 
-    void toDetailPage(String id, List<PemesananTambahan> pemesananTambahan) {
-      controllerTambahanPemesanan.update(
-        (state) => pemesananTambahan.toSet(),
-      );
+    void toDetailPage(String id) {
+      // controllerTambahanPemesanan.update(
+      //   (state) => pemesananTambahan.toSet(),
+      // );
 
       context.go(Routes.pemesananDetailPath(id));
     }
@@ -82,7 +82,7 @@ class ListPemesananWidget extends ConsumerWidget {
         final title = "$status / $jenisLayanan";
         final subtitle = '${tanggal.toUpperCase()}\nJam $jam';
         final id = data.id;
-        final tambahanPemesanan = data.pemesananTambahan;
+        // final tambahanPemesanan = data.pemesananTambahan;
         final isSuccess = status == "success";
         final isProcessing = status == "processing";
 
@@ -172,7 +172,7 @@ class ListPemesananWidget extends ConsumerWidget {
                     ),
               onTap: () => toDetailPage(
                 id,
-                tambahanPemesanan,
+                // tambahanPemesanan,
               ),
             ),
             if (index == listPemesanan.values.length - 1) Gap.h16,

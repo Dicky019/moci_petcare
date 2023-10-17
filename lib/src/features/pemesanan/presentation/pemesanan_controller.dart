@@ -233,7 +233,7 @@ final pemesananTambahanListFutureProvider =
     return data.when(
       success: (data) => data,
       failure: (error, stackTrace) {
-        return ListPemesananTambahan.empty();
+        return const ListPemesananTambahan.empty();
       },
     );
   },
@@ -244,7 +244,12 @@ final pemesananDetailFutureProvider =
   (ref, id) async {
     final data = await ref.read(pemesananServiceProvider).getPemesanan(id);
     return data.when(
-      success: (data) => data,
+      success: (data) {
+        ref.read(pemesananTambahanProvider.notifier).update(
+              (state) => data.pemesananTambahan.toSet(),
+            );
+        return data;
+      },
       failure: (error, stackTrace) {
         log(error.toString());
         return Pemesanan.empty(

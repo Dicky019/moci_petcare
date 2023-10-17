@@ -30,9 +30,7 @@ class PemesananDetailWidget extends ConsumerWidget {
         ref.read(pemesananControllerProvider.notifier).invalidateDetail(
               pemesanan.id,
             );
-        ref.read(pemesananTambahanProvider.notifier).update(
-              (state) => pemesanan.pemesananTambahan.toSet(),
-            );
+    
       },
       child: ListView(
         children: [
