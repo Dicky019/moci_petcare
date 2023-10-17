@@ -84,15 +84,30 @@ class PemesananController extends StateNotifier<PemesananState> {
     );
   }
 
-  void setPemesanan(PemesananTambahanRequest request, String id) async {
+  void setPemesanan(
+      BuildContext context, PemesananTambahanRequest request, String id) async {
     final result = await _pemesananService.setPemesananTambahan(request, id);
 
     result.when(
       success: (data) {
         invalidateDetail(id);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.greenAccent,
+            content: Text("Berhasil Tambahan Pemesanan ${request.tambahanPemesanan}"),
+            showCloseIcon: true,
+          ),
+        );
       },
       failure: (error, stackTrace) {
         invalidateDetail(id);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.redAccent,
+            content: Text(request.tambahanPemesanan),
+            showCloseIcon: true,
+          ),
+        );
         log(error.toString());
       },
     );
