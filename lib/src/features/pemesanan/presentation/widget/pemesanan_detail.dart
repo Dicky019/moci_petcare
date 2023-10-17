@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moci_petcare/src/constants/data/list_data.dart';
+
 import 'package:moci_petcare/src/features/pemesanan/data/request/pemesanan_tambahan_request.dart';
 import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan.dart';
 import 'package:moci_petcare/src/features/pemesanan/presentation/pemesanan_controller.dart';
@@ -12,7 +12,17 @@ import '../../../../constants/constants.dart';
 
 class PemesananDetailWidget extends ConsumerWidget {
   final Pemesanan pemesanan;
-  const PemesananDetailWidget({super.key, required this.pemesanan});
+  final List<String> listTambahanGrooming;
+  final List<String> listTambahanKesehatan;
+  final List<String> listTambahanKonsultasi;
+
+  const PemesananDetailWidget({
+    super.key,
+    required this.pemesanan,
+    required this.listTambahanGrooming,
+    required this.listTambahanKesehatan,
+    required this.listTambahanKonsultasi,
+  });
 
   @override
   Widget build(BuildContext context, ref) {
@@ -90,7 +100,12 @@ class PemesananDetailWidget extends ConsumerWidget {
         const Divider(
           color: ColorApp.purpleBlue,
         ),
-        PemesananTambahanWidget(pemesanan: pemesanan),
+        PemesananTambahanWidget(
+          pemesanan: pemesanan,
+          listTambahanGrooming: listTambahanGrooming,
+          listTambahanKesehatan: listTambahanKesehatan,
+          listTambahanKonsultasi: listTambahanKonsultasi,
+        ),
         Gap.h24,
       ],
     );
@@ -99,38 +114,43 @@ class PemesananDetailWidget extends ConsumerWidget {
 
 class PemesananTambahanWidget extends ConsumerWidget {
   final Pemesanan pemesanan;
-  const PemesananTambahanWidget({super.key, required this.pemesanan});
+  final List<String> listTambahanGrooming;
+  final List<String> listTambahanKesehatan;
+  final List<String> listTambahanKonsultasi;
+  const PemesananTambahanWidget({
+    super.key,
+    required this.pemesanan,
+    required this.listTambahanGrooming,
+    required this.listTambahanKesehatan,
+    required this.listTambahanKonsultasi,
+  });
 
   @override
   Widget build(BuildContext context, ref) {
-    const listTambahanGrooming = ListData.listPemesananGrooming;
-    const listTambahanKesehatan = ListData.listPemesananKesehatan;
-    const listTambahanKonsultasi = ListData.listPemesananKonsultasi;
-    const listPemesananKesehatanPertahap =
-        ListData.listPemesananKesehatanPertahap;
     //
     final controller = ref.read(pemesananControllerProvider.notifier);
     final tambahanPemesanan = ref.watch(pemesananTambahanProvider).join(", ");
-    final controllerTambahanPemesanan =
-        ref.read(pemesananTambahanProvider.notifier);
+    final controllerTambahanPemesanan = ref.read(
+      pemesananTambahanProvider.notifier,
+    );
+
     bool isActive(String tambahan) => !tambahanPemesanan.contains(tambahan);
 
     onSetTambahan() {
       final pemesananTambahan = PemesananTambahanRequest(
         tambahanPemesanan: tambahanPemesanan,
       );
-      return controller.setPemesanan(context,pemesananTambahan, pemesanan.id);
+      return controller.setPemesanan(
+        context,
+        pemesananTambahan,
+        pemesanan.id,
+      );
     }
 
     onPemesananTambahan(String value) {
       controllerTambahanPemesanan.update((state) {
         final oldData = state;
         final cekData = oldData.remove(value);
-        // if (oldData.contains("Vaksin Rabies")) {
-          for (var element in listPemesananKesehatanPertahap) {
-            oldData.remove(element);
-          }
-        // }
 
         if (cekData) {
           return oldData.skipWhile((newData) => newData == value).toList();
@@ -165,24 +185,6 @@ class PemesananTambahanWidget extends ConsumerWidget {
                   isActive(tambahan) ? Icons.add : Icons.minimize_outlined,
                 ),
                 onTap: () => onPemesananTambahan(tambahan),
-              ),
-            if (tambahan == "Vaksin Pertahap")
-              ExpansionTile(
-                title: Text(tambahan),
-                initiallyExpanded:
-                    listPemesananKesehatanPertahap.contains(tambahanPemesanan),
-                children: [
-                  for (var tambahan in listPemesananKesehatanPertahap)
-                    ListTile(
-                      title: Text(tambahan),
-                      trailing: Icon(
-                        isActive(tambahan)
-                            ? Icons.add
-                            : Icons.minimize_outlined,
-                      ),
-                      onTap: () => onPemesananTambahan(tambahan),
-                    )
-                ],
               ),
           ],
         //

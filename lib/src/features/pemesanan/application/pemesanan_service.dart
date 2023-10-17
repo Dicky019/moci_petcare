@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moci_petcare/src/features/pemesanan/data/request/pemesanan_tambahan_request.dart';
 
+import '../domain/pemesanan_tambahan.dart';
 import '/src/services/remote/config/config.dart';
 import '../data/request/pemesanan_request.dart';
 import '../data/pemesanan_repository.dart';
@@ -53,6 +54,12 @@ class PemesananService {
       id,
     );
     final result = PemesananMapper.mapToPemesanan(response);
+    return result;
+  }
+
+  Future<Result<ListPemesananTambahan>> getPemesananTambahan() async {
+    final response = await pemesananRepository.getPemesananTambahan();
+    final result = PemesananMapper.mapToListPemesananTambahan(response);
     return result;
   }
 

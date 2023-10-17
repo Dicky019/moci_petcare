@@ -32,25 +32,25 @@ class ListData {
     "hamster"
   ];
 
-  static const listPemesananGrooming = [
-    "Mandi & Potong Bulu",
-    "Mandi & Potong Kuku",
-    "Mandi & Potong Bulu & Potong Kuku",
-    "Mandi & Obat Kutu",
-    "Mandi & Obat Jamur"
-  ];
+  // static const listPemesananGrooming = [
+  //   "Mandi & Potong Bulu",
+  //   "Mandi & Potong Kuku",
+  //   "Mandi & Potong Bulu & Potong Kuku",
+  //   "Mandi & Obat Kutu",
+  //   "Mandi & Obat Jamur"
+  // ];
 
-  static const listPemesananKesehatan = ["Vaksin Rabies", "Vaksin Pertahap"];
+  // static const listPemesananKesehatan = ["Vaksin Rabies", "Vaksin Pertahap"];
 
-  static const listPemesananKesehatanPertahap = [
-    "Vaksin Pertahap 6 Minggu/2 bulan",
-    "Vaksin Pertahap 3 bulan",
-    "Vaksin Pertahap 1 tahun",
-  ];
+  // static const listPemesananKesehatanPertahap = [
+  //   "Vaksin Pertahap 6 Minggu/2 bulan",
+  //   "Vaksin Pertahap 3 bulan",
+  //   "Vaksin Pertahap 1 tahun",
+  // ];
 
-  static const listPemesananKonsultasi = [
-    "Obat Cacing",
-    "Obat Flu",
-    "Obat Diare"
-  ];
+  // static const listPemesananKonsultasi = [
+  //   "Obat Cacing",
+  //   "Obat Flu",
+  //   "Obat Diare"
+  // ];
 }

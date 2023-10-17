@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moci_petcare/src/features/pemesanan/data/request/pemesanan_request.dart';
 import 'package:moci_petcare/src/features/pemesanan/data/response/pemesanan_response.dart';
+import 'package:moci_petcare/src/features/pemesanan/data/response/pemesanan_tambahan_response.dart';
 import '../../../features/pemesanan/data/request/pemesanan_tambahan_request.dart';
 import '/src/services/remote/config/config.dart';
 
@@ -53,6 +54,22 @@ class PemesananApi {
         data: pemesananRequest,
       );
       return Result.success(PemesananResponse.fromJson(response['data']));
+    } catch (e, st) {
+      return Result.failure(
+        NetworkExceptions.getDioException(e, st),
+        st,
+      );
+    }
+  }
+
+  Future<Result<ListPemesananTambahanResponse>> getPemesananTambahan() async {
+    try {
+      final response = await _dioClient.put(
+        "${Endpoint.pemesanan}/tambahan",
+      );
+      return Result.success(
+        ListPemesananTambahanResponse.fromJson(response),
+      );
     } catch (e, st) {
       return Result.failure(
         NetworkExceptions.getDioException(e, st),

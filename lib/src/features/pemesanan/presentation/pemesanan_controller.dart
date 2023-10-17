@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:moci_petcare/src/features/pemesanan/domain/pemesanan_tambahan.dart';
 
 import '../../authentication/application/authentication_service.dart';
 import '../../../utils/extension/dynamic_extension.dart';
@@ -94,7 +95,8 @@ class PemesananController extends StateNotifier<PemesananState> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.greenAccent,
-            content: Text("Berhasil Tambahan Pemesanan ${request.tambahanPemesanan}"),
+            content: Text(
+                "Berhasil Tambahan Pemesanan ${request.tambahanPemesanan}"),
             showCloseIcon: true,
           ),
         );
@@ -204,6 +206,20 @@ final pemesananListFutureProvider = FutureProvider<ListPemesanan>(
       success: (data) => data,
       failure: (error, stackTrace) {
         return ListPemesanan(values: []);
+      },
+    );
+  },
+);
+
+final pemesananTambahanListFutureProvider =
+    FutureProvider<ListPemesananTambahan>(
+  (ref) async {
+    final data =
+        await ref.read(pemesananServiceProvider).getPemesananTambahan();
+    return data.when(
+      success: (data) => data,
+      failure: (error, stackTrace) {
+        return ListPemesananTambahan.empty();
       },
     );
   },

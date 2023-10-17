@@ -1,0 +1,42 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'pemesanan_tambahan.freezed.dart';
+part 'pemesanan_tambahan.g.dart';
+
+@freezed
+class PemesananTambahan with _$PemesananTambahan {
+  const PemesananTambahan._();
+  factory PemesananTambahan({
+    required String id,
+    required String value,
+    required String jenisLayanan,
+  }) = _PemesananTambahan;
+
+  factory PemesananTambahan.empty({
+    @Default("-") String id,
+    @Default("-") String value,
+    @Default("-") String jenisLayanan,
+  }) = _PemesananTambahanEmpty;
+
+  factory PemesananTambahan.fromJson(Map<String, dynamic> json) =>
+      _$PemesananTambahanFromJson(json);
+}
+
+@freezed
+class ListPemesananTambahan with _$ListPemesananTambahan {
+  const ListPemesananTambahan._();
+  factory ListPemesananTambahan({
+    required List<String> listTambahanGrooming,
+    required List<String> listTambahanKesehatan,
+    required List<String> listTambahanKonsultasi,
+  }) = _ListPemesananTambahan;
+
+  factory ListPemesananTambahan.empty({
+    @Default([]) List<String> listTambahanGrooming,
+    @Default([]) List<String> listTambahanKesehatan,
+    @Default([]) List<String> listTambahanKonsultasi,
+  }) = _ListPemesananTambahanEmpty;
+
+  factory ListPemesananTambahan.fromJson(Map<String, dynamic> json) =>
+      _$ListPemesananTambahanFromJson(json);
+}
